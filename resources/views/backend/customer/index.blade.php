@@ -1,8 +1,8 @@
 @extends('backend.layouts.app_backend')
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
-        <h2>Danh mục (List khách hàng)</h2>
-        <a href="{{ route('get_admin.category.create') }}">Thêm mới</a>
+        <h2>Khách hàng</h2>
+        <a href="{{ route('get_admin.customer.create') }}">Thêm mới</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -10,28 +10,34 @@
                 <tr>
                     <th>#</th>
                     <th>Avatar</th>
-                    <th>Tên</th>
-                    <th>Mô tả</th>
+                    <th>Tên khách hàng</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                    <th>List khách hàng</th>
+                    <th>Người tạo</th>
                     <th>Ngày tạo</th>
-                    <th>Slug</th>
+                    {{-- <th>Slug</th> --}}
                     <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($category ?? [] as $item)
+                @foreach ($customer ?? [] as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>
                             <img src="{{ pare_url_file($item->avatar) }}" style="width: 60px; height: 60px; border-radius: 10px" alt="">
                         </td>  
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->phone }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->category->name ?? "[N\A]" }}</td>
+                        <td>{{ $item->user_id }}</td>
                         <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->slug }}</td>
+                        {{-- <td>{{ $item->slug }}</td> --}}
                         <td>
-                            <a href="{{ route('get_admin.category.update', $item->id) }}">Edit</a>
+                            <a href="{{ route('get_admin.customer.update', $item->id) }}">Edit</a>
                             <a href="#">|</a>
-                            <a href="{{ route('get_admin.category.delete', $item->id) }}">Delete</a>
+                            <a href="{{ route('get_admin.customer.delete', $item->id) }}">Delete</a>
                         </td>
                     </tr>
                 @endforeach

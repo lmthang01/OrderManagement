@@ -47,3 +47,49 @@
 - Link: https://github.com/yoeunes/toastr
 - Tải package: composer require yoeunes/toastr
 - Cấu hình: php artisan vendor:publish --provider="Yoeunes\Toastr\ToastrServiceProvider"
+
+# Video11 Tạo layouts customer
+- Tạo route
+- Tạo views/customer
+- Tạo controller
+- Tạo request
+
+# Video12 Tạo csdl customer
+- Tạo table: php artisan make:migration create_custumers_table
+- Tạo dữ liệu
+- Tạo model
+
+# Video13 Xử lý thêm customer
+- Tạo view
+- Xử lý controller
+    + Thêm $categories = Category::all(); 
+- Xử lý Request
+    + Thêm 'name' => 'required|unique:customers,name,'.$this->id,
+
+# Video14 Tạo liên kết customers với categories
+- Ở model 
+    + belongTo
+- Ở controller
+    + with()
+- views
+
+# Video15 Viết hàm xử lý ảnh cho Category (List khách hàng)
+- Tạo folder helpers 
+    -> tạo file autoload.php, upload_file.php
+- Cài đặt file composer.json
+    -> "files": [
+            "app/Helpers/autoload.php"
+        ]
+- Chạy lệnh: composer dump-autoload 
+- Tạo function upload_image()
+
+# Video16 Hiển thị avatar ho Category (List khách hàng)
+- Tạo hàm pare_url_file()
+- Tùy chỉnh trong index.blade.php
+- Tùy chỉnh trong form.blade.php
+- ** Ở customer cũng tương tự
+
+# Video17 Dựng template quản lý user và user type
+- Tạo route user
+- Tạo controller user, user type
+- Tạo views user

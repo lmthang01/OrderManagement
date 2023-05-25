@@ -3,31 +3,33 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Category;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-
-class CategoryController extends Controller
+class CustomerController extends Controller
 {
     public function index()
     {
-        $category = Category::orderByDesc('id')->paginate(20); // Phân trang 20 dòng
+        $customer = Customer::with('category:id,name')->orderByDesc('id')->paginate(20); // Phân trang 20 dòng
         $viewData = [
-            'category' => $category
+            'customer' => $customer
         ];
-        return view('backend.category.index', $viewData);
+        // $viewData = [];
+        return view('backend.customer.index', $viewData);
     }
 
     public function create()
     {
-        return view('backend.category.create');
+        $categories = Category::all(); // Hiểm thị dữ liệu của List khách hàng ở trang thêm mới khách hàng
+        return view('backend.customer.create', compact('categories'));
     }
 
-    public function store(CategoryRequest $request)
+    public function store(CustomerRequest $request)
     {
         // dd($request->all());
         try {
@@ -43,31 +45,31 @@ class CategoryController extends Controller
                 }
             }
 
-            $category = Category::create($data);
+            $customer = Customer::create($data);
 
             toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
-            Log::error("ERROR => CategoryController@store => " . $exception->getMessage());
+            Log::error("ERROR => CustomerController@store => " . $exception->getMessage());
             toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
-            return redirect()->route('get_admin.category.create');
+            return redirect()->route('get_admin.customer.create');
         }
-        return redirect()->route('get_admin.category.index');
+        return redirect()->route('get_admin.customer.index');
     }
 
     public function edit($id){
 
-        $category = Category::findOrFail($id);
-        return view('backend.category.update', compact('category')); // compact(): Tạo mảng với giá trị 'category'
+        $customer = Customer::findOrFail($id);
+        $categories = Category::all();
+        return view('backend.customer.update', compact('customer', 'categories')); // compact(): Tạo mảng với giá trị 'customer'
     }
 
-    public function update(CategoryRequest $request, $id){
+    public function update(CustomerRequest $request, $id){
         try {
             $data = $request->except('_token', 'avatar');
             $data['slug'] = Str::slug($request->name);
             $data['updated_at'] = Carbon::now();
 
             // dd($request->all());
-            /* Nếu có name = avatar gửi lên request và có kết quả trả về "code" */
             if($request->avatar){
                 $file = upload_image('avatar');
                 if(isset($file['code']) && $file['code'] == 1){
@@ -75,25 +77,25 @@ class CategoryController extends Controller
                 }
             }
 
-            Category::find($id)->update($data);
+            Customer::find($id)->update($data);
             toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
-            Log::error("ERROR => CategoryController@update => ". $exception->getMessage());
+            Log::error("ERROR => CustomerController@update => ". $exception->getMessage());
             toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
-            return redirect()->route('get_admin.category.update', $id);
+            return redirect()->route('get_admin.customer.update', $id);
         }
-        return redirect()->route('get_admin.category.index');
+        return redirect()->route('get_admin.customer.index');
     }
 
     public function delete(Request $request, $id){
         try {
-            $category = Category::findOrFail($id);
-            if($category) $category->delete();
+            $customer = Customer::findOrFail($id);
+            if($customer) $customer->delete();
             toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
             toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => CategoryController@delete => ". $exception->getMessage());
         }
-        return redirect()->route('get_admin.category.index');
+        return redirect()->route('get_admin.customer.index');
     }
 }

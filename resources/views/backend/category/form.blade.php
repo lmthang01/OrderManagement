@@ -18,6 +18,12 @@
     <div class="form-group">
         <label for="exampleInputPassword1">Hình ảnh</label>
         <input type="file" class="form-control" name="avatar">
+
+        @if (isset($category->avatar) && $category->avatar)
+            <img src="{{ pare_url_file($category->avatar) }}"
+                style="width: 60px; height: 60px; border-radius: 10px; margin-top: 10px" alt="">
+        @endif
+        
     </div>
     <button type="submit" class="btn btn-primary">Lưu dữ liệu</button>
 </form>

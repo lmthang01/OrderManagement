@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function(){
     Route::get('', [BackendHomeController::class, 'index'])->name('get_admin.home');
     
+    // Category (List khách hàng)
     Route::group(['prefix' => 'category'], function(){
         Route::get('', [CategoryController::class, 'index'])->name('get_admin.category.index');
 
@@ -36,10 +39,37 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function(){
 
         Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('get_admin.category.delete');
     });
+
+    // Customer
+    Route::group(['prefix' => 'customer'], function(){
+        Route::get('', [CustomerController::class, 'index'])->name('get_admin.customer.index');
+
+        Route::get('create', [CustomerController::class, 'create'])->name('get_admin.customer.create');
+        Route::post('create', [CustomerController::class, 'store'])->name('get_admin.customer.store');
+
+        Route::get('update/{id}', [CustomerController::class, 'edit'])->name('get_admin.customer.update');
+        Route::post('update/{id}', [CustomerController::class, 'update'])->name('get_admin.customer.update');
+
+        Route::get('delete/{id}', [CustomerController::class, 'delete'])->name('get_admin.customer.delete');
+    });
+
+    // User
+        // Customer
+        Route::group(['prefix' => 'user'], function(){
+            Route::get('', [UserController::class, 'index'])->name('get_admin.user.index');
+    
+            Route::get('create', [UserController::class, 'create'])->name('get_admin.user.create');
+            Route::post('create', [UserController::class, 'store'])->name('get_admin.user.store');
+    
+            Route::get('update/{id}', [UserController::class, 'edit'])->name('get_admin.user.update');
+            Route::post('update/{id}', [UserController::class, 'update'])->name('get_admin.user.update');
+    
+            Route::get('delete/{id}', [UserController::class, 'delete'])->name('get_admin.user.delete');
+        });
 });
 
 
-// User Fronend
+// User
 Route::group(['namespace' => 'Frontend'], function(){
     Route::get('', [HomeController::class, 'index'])->name('get.home');
 });
