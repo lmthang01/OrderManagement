@@ -15,9 +15,9 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customer = Customer::with('category:id,name')->orderByDesc('id')->paginate(20); // Phân trang 20 dòng
+        $customers = Customer::with('category:id,name')->orderByDesc('id')->paginate(20); // Phân trang 20 dòng
         $viewData = [
-            'customer' => $customer
+            'customers' => $customers
         ];
         // $viewData = [];
         return view('backend.customer.index', $viewData);

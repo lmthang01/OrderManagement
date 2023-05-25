@@ -1,7 +1,7 @@
 <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label for="exampleInputEmail1">Tên nhóm</label>
+        <label for="exampleInputEmail1">Tên nhóm <span style="color: red">*</span></label>
         <input type="text" name="name" placeholder="Tên nhóm ..." class="form-control"
             value="{{ old('name', $category->name ?? '') }}">
         @error('name')

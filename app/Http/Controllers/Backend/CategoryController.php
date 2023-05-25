@@ -15,9 +15,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::orderByDesc('id')->paginate(20); // Phân trang 20 dòng
+        $categories = Category::orderByDesc('id')->paginate(20); // Phân trang 20 dòng
         $viewData = [
-            'category' => $category
+            'categories' => $categories
         ];
         return view('backend.category.index', $viewData);
     }

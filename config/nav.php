@@ -14,9 +14,15 @@ return [
         'prefix' => ['category'],
     ],
     [
-        'icon' => 'users',
+        'icon' => 'file-text',
         'name' => 'Khách hàng',
         'route' => 'get_admin.customer.index',
         'prefix' => ['customer'],
+    ],
+    [
+        'icon' => 'users',
+        'name' => 'User',
+        'route' => 'get_admin.user.index',
+        'prefix' => ['user'],
     ]
 ];

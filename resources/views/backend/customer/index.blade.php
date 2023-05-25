@@ -2,7 +2,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
         <h2>Khách hàng</h2>
-        <a href="{{ route('get_admin.customer.create') }}">Thêm mới</a>
+        <a href="{{ route('get_admin.customer.create') }}"  class="btn btn-primary"  style="color: azure;">Thêm mới</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($customer ?? [] as $item)
+                @foreach ($customers ?? [] as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>
@@ -35,9 +35,9 @@
                         <td>{{ $item->created_at }}</td>
                         {{-- <td>{{ $item->slug }}</td> --}}
                         <td>
-                            <a href="{{ route('get_admin.customer.update', $item->id) }}">Edit</a>
-                            <a href="#">|</a>
-                            <a href="{{ route('get_admin.customer.delete', $item->id) }}">Delete</a>
+                            <a href="{{ route('get_admin.customer.update', $item->id) }}" class="btn btn-info" style="padding: 5px">Edit</a>
+                            {{-- <a href="#">|</a> --}}
+                            <a href="{{ route('get_admin.customer.delete', $item->id) }}" class="btn btn-danger" style="padding: 5px">Delete</a>
                         </td>
                     </tr>
                 @endforeach

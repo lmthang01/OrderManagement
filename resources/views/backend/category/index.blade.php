@@ -2,7 +2,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
         <h2>Danh mục (List khách hàng)</h2>
-        <a href="{{ route('get_admin.category.create') }}">Thêm mới</a>
+        <a href="{{ route('get_admin.category.create') }}" class="btn btn-primary"  style="color: azure;">Thêm mới</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($category ?? [] as $item)
+                @foreach ($categories ?? [] as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>
@@ -29,9 +29,9 @@
                         <td>{{ $item->created_at }}</td>
                         <td>{{ $item->slug }}</td>
                         <td>
-                            <a href="{{ route('get_admin.category.update', $item->id) }}">Edit</a>
-                            <a href="#">|</a>
-                            <a href="{{ route('get_admin.category.delete', $item->id) }}">Delete</a>
+                            <a href="{{ route('get_admin.category.update', $item->id) }}" class="btn btn-info" style="padding: 5px">Edit</a>
+                            {{-- <a href="#">|</a> --}}
+                            <a href="{{ route('get_admin.category.delete', $item->id) }}" class="btn btn-danger" style="padding: 5px">Delete</a>
                         </td>
                     </tr>
                 @endforeach

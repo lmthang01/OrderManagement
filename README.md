@@ -92,4 +92,25 @@
 # Video17 Dựng template quản lý user và user type
 - Tạo route user
 - Tạo controller user, user type
-- Tạo views user
+- Tạo views user, 4  file
+- Tạo model user
+- config nav
+- Tạo csdl user_type (có user_has_type) -> Tạo 2 table
+    -> php artisan make:migration create_user_type_table 
+- Thêm dữ liệu USER | ADMIN | SYSTEM bằng tay trong table user_types
+- Tạo thêm model user_types, user_has_types
+
+# Video18 Xử lý lưu user *(Chưa quay video)
+- Tạo request
+- Đặt password mặt định, status = 1
+- Kiểm tra type của user
+- Tạo function insertOrUpdateHasType()
+- Cập nhật function store
+- Cập nhật delete
+
+# Video19 Show active, user_type tương ứng tài khoản
+- Chỉnh sưa views index
+- Cài đặt trong model User
+- Cài đặt trạng thái hoạt động
+- Cài đặt user
+- Hiển thị trạng thái khi cập nhật
