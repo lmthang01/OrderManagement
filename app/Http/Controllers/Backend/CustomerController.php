@@ -8,16 +8,32 @@ use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::with('category:id,name')->orderByDesc('id')->paginate(20); // Phân trang 20 dòng
+        $customers = Customer::with('category:id,name', 'user:id,name');
+
+        if ($name = $request->n) // Tìm bằng tên
+            $customers->where('name', 'like', '%' . $name . '%');
+
+        if ($s = $request->status) // Tìm bằng trạng thái
+            $customers->where('status', $s);
+
+        $customers = $customers
+            ->orderByDesc('id')
+            ->paginate(20);
+
+        $model = new Customer();
+        $status = $model->getStatus();
+
         $viewData = [
-            'customers' => $customers
+            'customers' => $customers,
+            'status' => $status,
         ];
         // $viewData = [];
         return view('backend.customer.index', $viewData);
@@ -26,7 +42,12 @@ class CustomerController extends Controller
     public function create()
     {
         $categories = Category::all(); // Hiểm thị dữ liệu của List khách hàng ở trang thêm mới khách hàng
-        return view('backend.customer.create', compact('categories'));
+
+        $model = new Customer();
+        $status = $model->getStatus(); // Hiển thị chọn trạng thái
+        // dd($status);
+
+        return view('backend.customer.create', compact('categories', 'status'));
     }
 
     public function store(CustomerRequest $request)
@@ -38,12 +59,14 @@ class CustomerController extends Controller
             $data['slug'] = Str::slug($request->name);
             $data['created_at'] = Carbon::now();
 
-            if($request->avatar){
+            if ($request->avatar) {
                 $file = upload_image('avatar');
-                if(isset($file['code']) && $file['code'] == 1){
+                if (isset($file['code']) && $file['code'] == 1) {
                     $data['avatar'] = $file['name'];
                 }
             }
+
+            $data['user_id'] = Auth::user()->id; // Hiển thị name người tạo customer
 
             $customer = Customer::create($data);
 
@@ -56,23 +79,29 @@ class CustomerController extends Controller
         return redirect()->route('get_admin.customer.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $customer = Customer::findOrFail($id);
         $categories = Category::all();
-        return view('backend.customer.update', compact('customer', 'categories')); // compact(): Tạo mảng với giá trị 'customer'
+
+        $model = new Customer();
+        $status = $model->getStatus();
+
+        return view('backend.customer.update', compact('customer', 'categories', 'status')); // compact(): Tạo mảng với giá trị 'customer'
     }
 
-    public function update(CustomerRequest $request, $id){
+    public function update(CustomerRequest $request, $id)
+    {
         try {
             $data = $request->except('_token', 'avatar');
             $data['slug'] = Str::slug($request->name);
             $data['updated_at'] = Carbon::now();
 
             // dd($request->all());
-            if($request->avatar){
+            if ($request->avatar) {
                 $file = upload_image('avatar');
-                if(isset($file['code']) && $file['code'] == 1){
+                if (isset($file['code']) && $file['code'] == 1) {
                     $data['avatar'] = $file['name'];
                 }
             }
@@ -80,21 +109,22 @@ class CustomerController extends Controller
             Customer::find($id)->update($data);
             toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
-            Log::error("ERROR => CustomerController@update => ". $exception->getMessage());
+            Log::error("ERROR => CustomerController@update => " . $exception->getMessage());
             toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
             return redirect()->route('get_admin.customer.update', $id);
         }
         return redirect()->route('get_admin.customer.index');
     }
 
-    public function delete(Request $request, $id){
+    public function delete(Request $request, $id)
+    {
         try {
             $customer = Customer::findOrFail($id);
-            if($customer) $customer->delete();
+            if ($customer) $customer->delete();
             toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
             toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
-            Log::error("ERROR => CategoryController@delete => ". $exception->getMessage());
+            Log::error("ERROR => CategoryController@delete => " . $exception->getMessage());
         }
         return redirect()->route('get_admin.customer.index');
     }

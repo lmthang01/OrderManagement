@@ -56,9 +56,9 @@ class User extends Authenticatable
     // const STATUS_CANCEL = -1; 
 
 
-    // const ROLE_ADMIN = 'ADMIN';
+    const ROLE_ADMIN = 'ADMIN';
 
-    // const ROLE_USER = 'USER';
+    const ROLE_USER = 'USER';
 
     protected $setStatus = [
         self::STATUS_DEFAULT => [

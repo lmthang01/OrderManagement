@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
@@ -22,10 +23,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Login
+Route::group(['namespace' => 'Backend', 'prefix' => 'auth'], function(){
+    Route::get('login', [AuthController::class, 'login'])->name('get_admin.login');
+    Route::post('login', [AuthController::class, 'postLogin']);
+
+});
 
 // Admin
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'check.login.admin'], function(){
     Route::get('', [BackendHomeController::class, 'index'])->name('get_admin.home');
+
+    Route::get('logout', [AuthController::class, 'logout'])->name('get_admin.logout'); // Đăng xuất login
     
     // Category (List khách hàng)
     Route::group(['prefix' => 'category'], function(){

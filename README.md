@@ -100,7 +100,7 @@
 - Thêm dữ liệu USER | ADMIN | SYSTEM bằng tay trong table user_types
 - Tạo thêm model user_types, user_has_types
 
-# Video18 Xử lý lưu user *(Chưa quay video)
+# Video18 Xử lý lưu user
 - Tạo request
 - Đặt password mặt định, status = 1
 - Kiểm tra type của user
@@ -114,3 +114,46 @@
 - Cài đặt trạng thái hoạt động
 - Cài đặt user
 - Hiển thị trạng thái khi cập nhật
+
+# Video20 Hiển thị trạng thái customer
+- Gán cứng status trong model Customer 
+- set const 1: Mới | 2: Tiềm năng | 3: Đã mua hàng | -1: Không quay lại
+- Hiển thị ở index
+- Tùy chỉnh trong controller customer
+
+# Video21 Giao diện đăng nhập admin
+- Link: https://bootsnipp.com/snippets/351Vo
+- Tạo folder: auth/login.blade.php
+- Tạo route login
+- Tạo controller 
+
+# Video22 Xử lý đăng nhập admin
+- Tạo request
+- Tạo route post
+- Tạo function postLogin()
+- Doc: https://laravel.com/docs/10.x/authentication
+- Seed data (tạo tk thủ công)
+
+# Video22 Xử lý đăng xuất admin
+- Tạo route
+- Tạo function logout
+- Gắn link route
+
+# Video23 Check login minddleware
+- Doc: https://laravel.com/docs/10.x/middleware#defining-middleware
+- Tạo middleware CheckLoginAdmin
+- Khai báo trong Kernel.php
+- Check trong route group admin doc: https://laravel.com/docs/10.x/authentication#retrieving-the-authenticated-user
+- Tạo const trong model users
+- Tiến hành CheckLoginAdmin
+
+# Video24 Hiển thị thông tin tài khoản tạo customers
+- Xử lý trong store()
+- Tạo liên kết csdl ỏ model customer  => user()
+- Thêm ở index()
+
+# Video25 Tìm kiếm customer theo tên
+- Tạo views
+- Edit trong index
+
+

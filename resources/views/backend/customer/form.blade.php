@@ -17,6 +17,15 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="exampleInputEmail1">Trạng thái</label>
+                <select name="status" class="form-control" id="">
+                    @foreach ($status ?? [] as $key => $item)
+                        <option value="{{ $key }}" {{ ($customer->status ?? 0) == $key ? 'selected' : '' }}>
+                            {{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1">Tên khách hàng <span style="color: red">*</span></label>
                 <input type="text" name="name" placeholder="Tên khách hàng ..." class="form-control"
                     value="{{ old('name', $customer->name ?? '') }}">
