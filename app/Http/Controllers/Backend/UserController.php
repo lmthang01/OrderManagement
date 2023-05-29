@@ -63,7 +63,11 @@ class UserController extends Controller
                 $this->insertOrUpdateHasType($user, $request->user_type);
             }
 
-            Mail::to('thang259a3@gmail.com')->send(new SendEmailRegisterUser($user));
+            // #1. Gửi mail thường
+            Mail::to($user->email)->send(new SendEmailRegisterUser($user));
+
+            // #2. Gửi mail dùng queue (rút ngắn thời gian)
+            // Mail::to($user->email)->queue(new SendEmailRegisterUser($user));
 
             toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
