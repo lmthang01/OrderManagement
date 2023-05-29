@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'auth'], function(){
     Route::get('login', [AuthController::class, 'login'])->name('get_admin.login');
     Route::post('login', [AuthController::class, 'postLogin']);
 
+     Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
+     Route::post('xac-thuc-tai-khoan', [VerifyAccountController::class, 'updateNewPassword']);
+
 });
 
 // Admin
@@ -75,6 +78,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
             Route::post('update/{id}', [UserController::class, 'update'])->name('get_admin.user.update');
     
             Route::get('delete/{id}', [UserController::class, 'delete'])->name('get_admin.user.delete');
+
+            // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
         });
 });
 

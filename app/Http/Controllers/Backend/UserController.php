@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
 
-        Mail::to('thang259a3@gmail.com')->send(new SendEmailRegisterUser());
+        // Mail::to('thang259a3@gmail.com')->send(new SendEmailRegisterUser());
 
         $users = User::with('userType')->orderByDesc('id')->paginate(20); 
         $viewData = [
@@ -63,7 +63,7 @@ class UserController extends Controller
                 $this->insertOrUpdateHasType($user, $request->user_type);
             }
 
-            // Mail::to('thangb1906766@gmail.com')->send(new SendEmailRegisterUser($user));
+            Mail::to('thang259a3@gmail.com')->send(new SendEmailRegisterUser($user));
 
             toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {

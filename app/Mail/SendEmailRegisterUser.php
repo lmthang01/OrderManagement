@@ -17,9 +17,11 @@ class SendEmailRegisterUser extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+
+    protected $user;
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -39,9 +41,9 @@ class SendEmailRegisterUser extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.active_account',
+            view: 'backend.email.active_account',
             with: [
-               'oderName' => "Truyền dữ liệu sau"
+                'user' => $this->user,
                 
             ],
         );
