@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\VerifyAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,9 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 // User
 Route::group(['namespace' => 'Frontend'], function(){
     Route::get('', [HomeController::class, 'index'])->name('get.home');
+
+    // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
+
 });
 
 

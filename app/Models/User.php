@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     const STATUS_ACTIVE = 2;
 
-    // const STATUS_CANCEL = -1; 
+    const STATUS_CANCEL = -1; 
 
 
     const ROLE_ADMIN = 'ADMIN';
@@ -65,10 +65,10 @@ class User extends Authenticatable
             'name' => 'Tạm dừng',
             'class' => 'badge badge-light'
         ],
-        // self::STATUS_CANCEL => [
-        //     'name' => 'Khóa / Block',
-        //     'class' => 'badge badge-danger'
-        // ],
+        self::STATUS_CANCEL => [
+            'name' => 'Khóa / Block',
+            'class' => 'badge badge-danger'
+        ],
         self::STATUS_ACTIVE => [
             'name' => 'Hoạt động',
             'class' => 'badge badge-primary'

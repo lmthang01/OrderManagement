@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Mail\SendEmailRegisterUser;
 use App\Models\User;
 use App\Models\UserHasType;
 use App\Models\UserType;
@@ -12,11 +13,17 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class UserController extends Controller
 {
     public function index()
     {
+
+        Mail::to('thang259a3@gmail.com')->send(new SendEmailRegisterUser());
+
         $users = User::with('userType')->orderByDesc('id')->paginate(20); 
         $viewData = [
             'users' => $users
@@ -38,6 +45,7 @@ class UserController extends Controller
             $data['created_at'] = Carbon::now();
             $data['password'] = bcrypt(Carbon::now()); // Mã hóa password, vì tạo trường password không được để trống bên databases
             $data['status'] = 1;
+            $data['email_verified_at'] = Carbon::now(); 
 
             if($request->avatar){
                 $file = upload_image('avatar');
@@ -54,6 +62,8 @@ class UserController extends Controller
             if ($user) {
                 $this->insertOrUpdateHasType($user, $request->user_type);
             }
+
+            // Mail::to('thangb1906766@gmail.com')->send(new SendEmailRegisterUser($user));
 
             toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {

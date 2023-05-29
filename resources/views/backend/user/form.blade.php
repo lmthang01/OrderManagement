@@ -48,10 +48,9 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Trạng thái</label>
                 <select name="status" class="form-control" id="">
-                    {{-- <option value="-1" {{ ($user->status ?? -1) == -1 ? "selected" : "" }}>Tạm dừng</option> --}}
-                    <option value="1" {{ ($user->status ?? 1) == 1 ? "selected" : "" }}>Tạm dừng</option>
+                    <option value="-1" {{ ($user->status ?? -1) == -1 ? "selected" : "" }}>Tạm dừng</option>
+                    <option value="1" {{ ($user->status ?? 1) == 1 ? "selected" : "" }}>Chờ kích hoạt</option>
                     <option value="2" {{ ($user->status ?? 1) == 2 ? "selected" : "" }}>Hoạt động</option>
-
                 </select>
             </div>
         </div>

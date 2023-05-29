@@ -156,4 +156,10 @@
 - Tạo views
 - Edit trong index
 
+# Video26 Gửi mail khi thêm tài khoản
+- docs: https://laravel.com/docs/9.x/mail
+- Tạo: mail -> php artisan make:mail SendEmailRegisterUser 
+- Tạo view mail
+- Khai báo env mail
+- 
 
