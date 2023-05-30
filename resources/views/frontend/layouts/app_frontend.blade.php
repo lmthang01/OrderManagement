@@ -58,7 +58,7 @@
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
                                     <li><a href="#">Liên hệ với khách hàng</a></li>
-                                    <li><a href="{{ route('get.list_customer_index') }}">List khách hàng</a></li>
+                                    <li><a href="{{ route('get.category_index') }}">List khách hàng</a></li>
                                 </ul>
                             </li>
 
@@ -283,7 +283,7 @@
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
                             <img class="avatar user-thumb" src="../../../assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Huỳnh Nhật Trường<i class="fa fa-angle-down"></i></h4>
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">User<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item profile-option" href="#">Hướng dẫn sử dụng</a>
                                 <a class="dropdown-item profile-option" href="#">Thông tin cá nhân</a>

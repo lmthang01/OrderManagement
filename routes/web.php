@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
@@ -99,13 +100,27 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('customer/update', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
     // List khách hàng
-    Route::get('list_customer/index', [ListCustomerController::class, 'index'])->name('get.list_customer_index');
+    // Route::get('list_customer/index', [ListCustomerController::class, 'index'])->name('get.list_customer_index');
 
-    Route::get('list_customer/create', [ListCustomerController::class, 'create'])->name('get.list_customer_create');
+    // Route::get('list_customer/create', [ListCustomerController::class, 'create'])->name('get.list_customer_create');
 
-    Route::get('list_customer/detail', [ListCustomerController::class, 'detail'])->name('get.list_customer_detail');
+    // Route::get('list_customer/detail', [ListCustomerController::class, 'detail'])->name('get.list_customer_detail');
 
-    Route::get('list_customer/update', [ListCustomerController::class, 'update'])->name('get.list_customer_update');
+    // Route::get('list_customer/update', [ListCustomerController::class, 'update'])->name('get.list_customer_update');
+
+    Route::get('category/index', [FrontendCategoryController::class, 'index'])->name('get.category_index');
+
+    Route::get('category/create', [FrontendCategoryController::class, 'create'])->name('get.category_create');
+    Route::post('category/create', [FrontendCategoryController::class, 'store'])->name('get.category_store');
+
+
+    Route::get('category/detail', [FrontendCategoryController::class, 'detail'])->name('get.category_detail');
+
+    Route::get('category/update/{id}', [FrontendCategoryController::class, 'edit'])->name('get.category_update');
+    Route::post('category/update/{id}', [FrontendCategoryController::class, 'update'])->name('get.category_update');
+
+    Route::get('category/delete/{id}', [FrontendCategoryController::class, 'delete'])->name('get.category_delete');
+
 
 });
 

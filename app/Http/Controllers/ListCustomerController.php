@@ -7,23 +7,23 @@ use Illuminate\Http\Request;
 class ListCustomerController extends Controller
 {
     
-    public function index(){
+//     public function index(){
 
-        return view('frontend.category.index');
-    }
+//         return view('frontend.category.index');
+//     }
 
-    public function create(){
+//     public function create(){
 
-        return view('frontend.category.create');
-    }
+//         return view('frontend.category.create');
+//     }
 
-    public function detail(){
+//     public function detail(){
 
-        return view('frontend.category.detail');
-    }
+//         return view('frontend.category.detail');
+//     }
 
-    public function update(){
+//     public function update(){
 
-        return view('frontend.category.update');
-    }
-}
+//         return view('frontend.category.update');
+//     }
+ }
