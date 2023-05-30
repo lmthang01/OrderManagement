@@ -5,8 +5,10 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
+use App\Http\Controllers\ListCustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Login
+// Login admin
 Route::group(['namespace' => 'Backend', 'prefix' => 'auth'], function(){
     Route::get('login', [AuthController::class, 'login'])->name('get_admin.login');
     Route::post('login', [AuthController::class, 'postLogin']);
@@ -86,9 +88,24 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 
 // User
 Route::group(['namespace' => 'Frontend'], function(){
-    Route::get('', [HomeController::class, 'index'])->name('get.home');
 
-    // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
+    // Khách hàng
+    Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
+
+    Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
+
+    Route::get('customer/detail', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
+
+    Route::get('customer/update', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
+
+    // List khách hàng
+    Route::get('list_customer/index', [ListCustomerController::class, 'index'])->name('get.list_customer_index');
+
+    Route::get('list_customer/create', [ListCustomerController::class, 'create'])->name('get.list_customer_create');
+
+    Route::get('list_customer/detail', [ListCustomerController::class, 'detail'])->name('get.list_customer_detail');
+
+    Route::get('list_customer/update', [ListCustomerController::class, 'update'])->name('get.list_customer_update');
 
 });
 
