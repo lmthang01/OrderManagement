@@ -1,6 +1,7 @@
 # Xây dựng website quản lý đơn hàng cho doanh nghiệp
 # https: https://github.com/lmthang01/OrderManagement.git
-
+# Nhật trường down branch 
+=======
 # Video1: phân chia folder, tạo Controller, tạo routes
 - Phân chia folder
 - resources/views/backend/home, category, product
