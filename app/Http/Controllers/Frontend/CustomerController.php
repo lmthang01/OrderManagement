@@ -86,12 +86,18 @@ class CustomerController extends Controller
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('frontend.customer.update', compact('customer', 'categories', 'status')); // compact(): Tạo mảng với giá trị 'customer'
+        return view('frontend.customer.update', compact('customer', 'categories', 'status')); 
     }
 
-    public function detail(){
+    public function detail($id){
 
-        return view('frontend.customer.detail');
+        $customer = Customer::findOrFail($id);
+        $categories = Category::all();
+
+        $model = new Customer();
+        $status = $model->getStatus();
+
+        return view('frontend.customer.detail', compact('customer', 'categories', 'status'));
     }
 
     public function update(CustomerRequest $request, $id)

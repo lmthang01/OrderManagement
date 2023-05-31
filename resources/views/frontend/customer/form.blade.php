@@ -84,9 +84,7 @@
                     <img src="{{ pare_url_file($customer->avatar) }}"
                         style="width: 60px; height: 60px; border-radius: 10px; margin-top: 10px" alt="avatar customer">
                 @endif
-
             </div>
         </div>
     </div>
-
 </form>

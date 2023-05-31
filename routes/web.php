@@ -96,7 +96,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
     Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
 
-    Route::get('customer/detail', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
+    Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
 
     Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
     Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');

@@ -50,7 +50,7 @@
                                             <td>{{ $item->user->name ?? '[N\A]' }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-2"><a href="{{ route('get.customer_detail') }}"
+                                                    <li class="mr-2"><a href="{{ route('get.customer_detail', $item->id) }}"
                                                             class="text-primary"><i class="fa fa-info-circle"
                                                                 aria-hidden="true"></i></a></li>
                                                     <li class="mr-2"><a href="{{ route('get.customer_update', $item->id) }}"
