@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
@@ -89,23 +90,31 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 // User
 Route::group(['namespace' => 'Frontend'], function(){
 
-    // Khách hàng
+    // Customer
     Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
 
     Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
+    Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
 
-    Route::get('customer/detail', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
+    Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
 
-    Route::get('customer/update', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
+    Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
+    Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
-    // List khách hàng
-    Route::get('list_customer/index', [ListCustomerController::class, 'index'])->name('get.list_customer_index');
+    Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
-    Route::get('list_customer/create', [ListCustomerController::class, 'create'])->name('get.list_customer_create');
 
-    Route::get('list_customer/detail', [ListCustomerController::class, 'detail'])->name('get.list_customer_detail');
+    // Category (List khách hàng)
+    Route::get('category/index', [FrontendCategoryController::class, 'index'])->name('get.category_index');
 
-    Route::get('list_customer/update', [ListCustomerController::class, 'update'])->name('get.list_customer_update');
+    Route::get('category/create', [FrontendCategoryController::class, 'create'])->name('get.category_create');
+    Route::post('category/create', [FrontendCategoryController::class, 'store'])->name('get.category_store');
+
+    Route::get('category/update/{id}', [FrontendCategoryController::class, 'edit'])->name('get.category_update');
+    Route::post('category/update/{id}', [FrontendCategoryController::class, 'update'])->name('get.category_update');
+
+    Route::get('category/delete/{id}', [FrontendCategoryController::class, 'delete'])->name('get.category_delete');
+
 
 });
 

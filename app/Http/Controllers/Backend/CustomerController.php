@@ -70,12 +70,12 @@ class CustomerController extends Controller
 
             $customer = Customer::create($data);
 
-            toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         } catch (\Exception $exception) {
             Log::error("ERROR => CustomerController@store => " . $exception->getMessage());
             toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
             return redirect()->route('get_admin.customer.create');
         }
+        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.customer.index');
     }
 
