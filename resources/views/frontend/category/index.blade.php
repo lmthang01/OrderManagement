@@ -25,7 +25,6 @@
                                         <th>TÊN NHÓM</th>
                                         <th>MÔ TẢ</th>
                                         <th>NGÀY TẠO</th>
-                                        {{-- <th>NGÀY CẬP NHẬT</th> --}}
                                         <th>THAO TÁC</th>
                                         <th>SỐ LƯỢNG</th>
                                     </tr>
@@ -34,21 +33,10 @@
                                     @foreach ($categories ?? [] as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            {{-- <td>
-                                                <img src="{{ pare_url_file($item->avatar) }}"
-                                                    style="width: 60px; height: 60px; border-radius: 10px" alt="">
-                                            </td> --}}
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td>{{ $item->created_at }}</td>
-                                            {{-- <td>{{ $item->slug }}</td> --}}
-                                            {{-- <td>
-                                                <a href="{{ route('get_admin.category.update', $item->id) }}"
-                                                    class="btn btn-info" style="padding: 5px">Edit</a>
-                                                <a href="#">|</a>
-                                                <a href="{{ route('get_admin.category.delete', $item->id) }}"
-                                                    class="btn btn-danger" style="padding: 5px">Delete</a>
-                                            </td> --}}
+                                            
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     {{-- <li class="mr-2"><a href="#" class="text-primary"><i
@@ -68,14 +56,6 @@
                 </div>
             </div>
             <!-- data table end -->
-
-            <!-- Dark table start -->
-            <div class="col-12 mt-5">
-                <div class="card">
-
-                </div>
-            </div>
-            <!-- Dark table end -->
         </div>
     </div>
 @stop
