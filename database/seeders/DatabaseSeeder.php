@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('users')->insert([
+            'name' => 'Lê Thắng',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123456789'),
+            'phone' => '0869888999',
+            'status' => 2, // Type ADMIN
+            'address' => 'Cần Thơ',
+            'created_at' => Carbon::now()
+        ]);
     }
 }
