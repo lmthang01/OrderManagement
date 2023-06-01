@@ -57,7 +57,7 @@
                                 <i class="ti-user"></i><span>Khách hàng</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
-                                    <li><a href="#">Liên hệ với khách hàng</a></li>
+                                    <li><a href="{{ route('get.contact_index') }}">Liên hệ với khách hàng</a></li>
                                     <li><a href="{{ route('get.category_index') }}">List khách hàng</a></li>
                                 </ul>
                             </li>
@@ -68,7 +68,7 @@
                                 <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
                                 <ul class="collapse">
                                     <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li>
-                                    <li><a href="../../BusinessManagement/Order/order.php">Đơn hàng</a></li>
+                                    <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
                                     <li><a href="../../BusinessManagement/Contract/contract.php">Hợp đồng bán ra</a></li>
                                 </ul>
                             </li>
@@ -290,7 +290,7 @@
                                 <a class="dropdown-item profile-option" href="#">Cài đặt Email</a>
                                 <a class="dropdown-item profile-option" href="#">Hòm thư</a>
                                 <a class="dropdown-item profile-option" href="#">Trợ giúp</a>
-                                <a class="dropdown-item profile-option" href="#">Thoát</a>
+                                <a class="dropdown-item profile-option" href="{{ route ('get_user.logout') }}">Thoát</a>
                             </div>
                         </div>
                     </div>

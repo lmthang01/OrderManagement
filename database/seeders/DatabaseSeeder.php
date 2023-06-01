@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Cần Thơ',
             'created_at' => Carbon::now()
         ]);
+       
     }
 }
