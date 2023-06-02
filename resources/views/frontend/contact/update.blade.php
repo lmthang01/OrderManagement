@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <!-- Form nhập thông tin hàng hóa end -->
-                            <!-- Form thông tin hàng hóa start -->
+                            {{-- <!-- Form thông tin hàng hóa start -->
                             <div class="col-12 mt-2">
                                 <div class="card">
                                     <div class="card-body">
@@ -125,10 +125,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Form thông tin khách hàng end -->
+                            <!-- Form thông tin khách hàng end --> --}}
                         </div>
                     </div>
                 </div>
+           
             
             
        

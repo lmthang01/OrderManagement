@@ -66,7 +66,7 @@
                                                     <input type="text" class="form-control" id="example-text-input" value="Cần Thơ">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-form-label input-label">Loại giao dịch:</label>
+                                                    <label class="col-form-label input-label">Giới tính</label>
                                                     <select class="custom-select custom-select-height">
                                                         <option>--Chọn giới tính--</option>
                                                         <option>Nam</option>
@@ -89,12 +89,17 @@
                             <!-- Form nhập thông tin hàng hóa end -->     
                         </div>
                     </div>
-                    <!-- Form thông tin hàng hóa start -->
+                    {{-- <!-- Form thông tin hàng hóa start -->
                     <div class="col-12 mt-2">
                         <div class="card">
                             <div class="card-body">
-                                <div class="head-title-addbtn">
-                                    <h4 class="header-title">Khách hàng</h4>
+                                <div class="head-product-contact">
+                                    <div class="head-title-addbtn">
+                                        <h4 class="header-title">Khách Hàng</h4>
+                                    </div>
+                                    <div class="btn-load">
+                                        <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3" ><i class="ti-plus"></i> Chọn Khách Hàng</button>
+                                    </div>
                                 </div>
                                 <div class="data-tables datatable-dark">
                                     <table id="dataTable3" class="text-center table-business">
@@ -132,10 +137,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Form thông tin khách hàng end -->
                 </div>
             </div>       
-        </div>
+        {{-- </div> --}}
+   
         <!-- main content area end -->
 @stop

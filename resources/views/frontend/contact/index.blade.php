@@ -29,19 +29,22 @@
                                                 <th>Số điện thoại</th>
                                                 <th>Ngày sinh</th>
                                                 <th>Thao tác</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
+                                            @foreach ($contacts ?? [] as $item)
                                             <tr>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td><a href="#">Hà Trung Nghĩa</a></td>
-                                                <td>Kĩ thuật</td>
-                                                <td>truong@gmail.com</td>
-                                                <td>Cần Thơ</td>
-                                                <td>Nam</td>
-                                                <td>0988222666</td>                                                
-                                                <td>01/01/2001</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td><a href="#" >
+                                                   {{ $item->customer_id }}
+                                                </a></td>
+                                                <td>{{ $item->position }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->address }}</td>
+                                                <td>{{ $item->gender }}</td>
+                                                <td>{{ $item->tel }}</td>                                                
+                                                <td>{{ $item->date }}</td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
                                                         <li class="mr-2"><a href="../Contact/infoContact.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
@@ -49,7 +52,44 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                  
+                                                <td></td>
+                                            </tr>
+                                            @endforeach
+                                            {{-- <tr>
+                                                <td>Huỳnh Nhật Trường</td>
+                                                <td><a href="../../View/Lienhe/customerdetails.php">Hà Trung Nghĩa</a></td>
+                                                <td>Kĩ thuật</td>
+                                                <td>truong@gmail.com</td>
+                                                <td>Cần Thơ</td>
+                                                <td>Nam</td>
+                                                <td>0988222666</td>                                                
+                                                <td>01/01/2001</td>
+                                                <td>
+                                                    <ul class="d-flex justify-content-center">
+                                                        <li class="mr-2"><a href="../Contact/infoContact.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                                        <li class="mr-2"><a href="../Contact/updateContact.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    </ul>
+                                                </td>                                                
+                                                 <td></td>     
+                                            </tr> --}}
+                                            {{-- <tr>
+                                                <td>Huỳnh Nhật Trường</td>
+                                                <td><a href="../../View/Lienhe/customerdetails.php">Hà Trung Nghĩa</a></td>
+                                                <td>Kĩ thuật</td>
+                                                <td>truong@gmail.com</td>
+                                                <td>Cần Thơ</td>
+                                                <td>Nam</td>
+                                                <td>0988222666</td>                                                
+                                                <td>01/01/2001</td>
+                                                <td>
+                                                    <ul class="d-flex justify-content-center">
+                                                        <li class="mr-2"><a href="../Contact/infoContact.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                                        <li class="mr-2"><a href="../Contact/updateContact.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    </ul>
+                                                </td>                                                
+                                                    <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -67,7 +107,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                      
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -85,7 +125,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                    
+                                                   <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -103,7 +143,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -121,7 +161,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                   
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -139,7 +179,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -157,7 +197,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                
+                                                  <td></td>    
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -175,7 +215,7 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                
+                                                 <td></td> 
                                             </tr>
                                             <tr>
                                                 <td>Huỳnh Nhật Trường</td>
@@ -193,44 +233,8 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>                                                
-                                                      
-                                            </tr>
-                                            <tr>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td><a href="../../View/Lienhe/customerdetails.php">Hà Trung Nghĩa</a></td>
-                                                <td>Kĩ thuật</td>
-                                                <td>truong@gmail.com</td>
-                                                <td>Cần Thơ</td>
-                                                <td>Nam</td>
-                                                <td>0988222666</td>                                                
-                                                <td>01/01/2001</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="../Contact/infoContact.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="../Contact/updateContact.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>                                                
-                                                  
-                                            </tr>
-                                            <tr>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td><a href="../../View/Lienhe/customerdetails.php">Hà Trung Nghĩa</a></td>
-                                                <td>Kĩ thuật</td>
-                                                <td>truong@gmail.com</td>
-                                                <td>Cần Thơ</td>
-                                                <td>Nam</td>
-                                                <td>0988222666</td>                                                
-                                                <td>01/01/2001</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="../Contact/infoContact.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="../Contact/updateContact.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>                                                
-                                                   
-                                            </tr>
+                                                   <td></td>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -238,14 +242,14 @@
                         </div>
                     </div>
                     <!-- data table end -->
-                      <!-- Dark table start -->
+                      {{-- <!-- Dark table start -->
                       <div class="col-12 mt-5">
                         <div class="card">
                             
                         </div>
                     </div>
-                    <!-- Dark table end -->
+                    <!-- Dark table end --> --}}
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
 @stop
