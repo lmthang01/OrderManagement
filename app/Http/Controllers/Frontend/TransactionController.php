@@ -75,10 +75,19 @@ class TransactionController extends Controller
         return view('frontend.transaction.detail', compact('transaction', 'customer', 'status'));
     }
 
-    public function update(TransactionRequest $transaction_request, $id)
+    public function update(TransactionRequest $request, $id)
     {
         try {
-            $data = $transaction_request->all();
+            // $data = $request->all();
+            $data = new Transaction;
+            // $data->name = $request->input('name');
+            // $data->des = $request->input('des');
+            // $data->name = $request->input('name');
+            // $data->name = $request->input('name');
+            // $data->name = $request->input('name');
+            // $data->name = $request->input('name');
+            // Transaction::create($request->all());
+
             $data['updated_at'] = Carbon::now();
 
             Transaction::find($id)->update($data);

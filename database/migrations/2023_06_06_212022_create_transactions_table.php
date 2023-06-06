@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('customer_id')->nullable();  // Khách hàng
             $table->string('transaction_type');     // Loại giao dịch
             $table->string('contact_id')->nullable();   // Người liên hệ
-            $table->timestamp('create_day')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Ngày tạo
-            $table->timestamp('start_day')->default(DB::raw('CURRENT_TIMESTAMP'));   // Ngày bắt đầu
-            $table->timestamp('finish_day')->default(DB::raw('CURRENT_TIMESTAMP'));  // Ngày kết thúc
+            $table->dateTime('create_day')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Ngày tạo
+            $table->dateTime('start_day')->default(DB::raw('CURRENT_TIMESTAMP'));   // Ngày bắt đầu
+            $table->dateTime('finish_day')->default(DB::raw('CURRENT_TIMESTAMP'));  // Ngày kết thúc
             $table->integer('status')->default(1);      // Trạng thái
             $table->string('result')->nullable();      // Kết quả
             $table->integer('priority');    // Ưu tiên
