@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app_frontend')
+@extends('frontend.layouts.header_sidebar_business')
 @section('content')
     <div class="main-content-inner">
         <div class="row">
@@ -34,145 +34,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach ($transaction ?? [] as $item)
+                                    @foreach ($transactions ?? [] as $item)
                                         <tr>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->description }}</td>
-
+                                            <td>{{ $item->assessment }}</td>
+                                            <td>{{ $item->user->name ?? '[N\A]' }}</td>
+                                            <td>{{ $item->customer->name ?? '[N\A]' }}</td>
+                                            <td>{{ $item->transaction_type }}</td>
+                                            <td>{{ $item->contact->name ?? '[N\A]' }}</td>
+                                            <td style="white-space: pre-line;">{{ $item->create_day }}<br>{{ $item->start_day }}<br>{{ $item->finish_day }}</td>
+                                            <td>
+                                                <span
+                                                    class="{{ $item->get_Transaction_Status($item->status)['class'] ?? 'badge badge-light' }}">
+                                                    {{ $item->get_Transaction_Status($item->status)['name'] ?? 'Mới' }}
+                                                </span>
+                                            </td>
+                                            <td>{{ $item->result }}</td>
+                                            <td>{{ $item->priority }}</td>
+                                            <td>
+                                                <ul class="d-flex justify-content-center">
+                                                    <li class="mr-2"><a href="{{ route('get.transaction_detail', $item->id) }}"
+                                                            class="text-primary"><i class="fa fa-info-circle"
+                                                                aria-hidden="true"></i></a></li>
+                                                    <li class="mr-2"><a href="{{ route('get.transaction_update', $item->id) }}"
+                                                            class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                    <li><a href="{{ route('get.transaction_delete', $item->id) }}"
+                                                            class="text-danger"><i class="ti-trash"></i></a></li>
+                                                </ul>
+                                            </td>
                                         </tr>
                                     @endforeach
-
-                                    <tr>
-                                        <td>May túi xách</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>Hà Trung Nghĩa</td>
-                                        <td>Huỳnh Nhật Trường</td>
-                                        <td>Đào tạo</td>
-                                        <td>Lê Minh Thắng</td>
-                                        <td>
-                                            <div>
-                                                <span id="createDate">24/05/2023 16:00</span><br>
-                                                <span id="startDate">24/05/2023 16:00</span><br>
-                                                <span id="endDate">25/05/2023 16:00</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-p bg-primary">pending</span></td>
-                                        <td>...</td>
-                                        <td>1</td>
-                                        <td>
-                                            <ul class="d-flex justify-content-center">
-                                                <li class="mr-2"><a href="../Transaction/infoTransaction.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                <li class="mr-2"><a href="../Transaction/editTransaction.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>May túi xách</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>Hà Trung Nghĩa</td>
-                                        <td>Huỳnh Nhật Trường</td>
-                                        <td>Đào tạo</td>
-                                        <td>Lê Minh Thắng</td>
-                                        <td>
-                                            <div>
-                                                <span id="createDate">24/05/2023 16:00</span><br>
-                                                <span id="startDate">24/05/2023 16:00</span><br>
-                                                <span id="endDate">25/05/2023 16:00</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-p bg-primary">pending</span></td>
-                                        <td>...</td>
-                                        <td>1</td>
-                                        <td>
-                                            <ul class="d-flex justify-content-center">
-                                                <li class="mr-2"><a href="../Transaction/infoTransaction.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                <li class="mr-2"><a href="../Transaction/editTransaction.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>May túi xách</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>Hà Trung Nghĩa</td>
-                                        <td>Huỳnh Nhật Trường</td>
-                                        <td>Đào tạo</td>
-                                        <td>Lê Minh Thắng</td>
-                                        <td>
-                                            <div>
-                                                <span id="createDate">24/05/2023 16:00</span><br>
-                                                <span id="startDate">24/05/2023 16:00</span><br>
-                                                <span id="endDate">25/05/2023 16:00</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-p bg-primary">pending</span></td>
-                                        <td>...</td>
-                                        <td>1</td>
-                                        <td>
-                                            <ul class="d-flex justify-content-center">
-                                                <li class="mr-2"><a href="../Transaction/infoTransaction.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                <li class="mr-2"><a href="../Transaction/editTransaction.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>May túi xách</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>Hà Trung Nghĩa</td>
-                                        <td>Huỳnh Nhật Trường</td>
-                                        <td>Đào tạo</td>
-                                        <td>Lê Minh Thắng</td>
-                                        <td>
-                                            <div>
-                                                <span id="createDate">24/05/2023 16:00</span><br>
-                                                <span id="startDate">24/05/2023 16:00</span><br>
-                                                <span id="endDate">25/05/2023 16:00</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-p bg-primary">pending</span></td>
-                                        <td>...</td>
-                                        <td>1</td>
-                                        <td>
-                                            <ul class="d-flex justify-content-center">
-                                                <li class="mr-2"><a href="../Transaction/infoTransaction.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                <li class="mr-2"><a href="../Transaction/editTransaction.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>May túi xách</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>Hà Trung Nghĩa</td>
-                                        <td>Huỳnh Nhật Trường</td>
-                                        <td>Đào tạo</td>
-                                        <td>Lê Minh Thắng</td>
-                                        <td>
-                                            <div>
-                                                <span id="createDate">24/05/2023 16:00</span><br>
-                                                <span id="startDate">24/05/2023 16:00</span><br>
-                                                <span id="endDate">25/05/2023 16:00</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-p bg-primary">pending</span></td>
-                                        <td>...</td>
-                                        <td>1</td>
-                                        <td>
-                                            <ul class="d-flex justify-content-center">
-                                                <li class="mr-2"><a href="../Transaction/infoTransaction.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                <li class="mr-2"><a href="../Transaction/editTransaction.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

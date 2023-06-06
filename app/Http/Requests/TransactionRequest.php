@@ -32,7 +32,7 @@ class TransactionRequest extends FormRequest
             'name.required' => 'Tên giao dịch không được để trống!',
             'start_day.required' => 'Ngày bắt đầu không được để trống!',
             'finish_day.required' => 'Ngày kết thúc không được để trống!',
-            'transaction.required' => 'Phải chọn loại giao dịch!'
+            'transaction_type.required' => 'Phải chọn loại giao dịch!'
         ];
     }
 }

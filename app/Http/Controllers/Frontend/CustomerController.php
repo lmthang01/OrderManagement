@@ -41,10 +41,10 @@ class CustomerController extends Controller
 
     public function create()
     {
-        $categories = Category::all(); 
+        $categories = Category::all();
 
         $model = new Customer();
-        $status = $model->getStatus(); 
+        $status = $model->getStatus();
 
         return view('frontend.customer.create', compact('categories', 'status'));
     }
@@ -86,7 +86,7 @@ class CustomerController extends Controller
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('frontend.customer.update', compact('customer', 'categories', 'status')); 
+        return view('frontend.customer.update', compact('customer', 'categories', 'status'));
     }
 
     public function detail($id){

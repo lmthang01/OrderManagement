@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\HomeController as BackendHomeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
@@ -121,12 +122,12 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('transaction/create', [FrontendTransactionController::class, 'create'])->name('get.transaction_create');
     Route::post('transaction/create', [FrontendTransactionController::class, 'store'])->name('get.transaction_store');
 
-    Route::get('transaction/detail/{transaction_id}', [FrontendTransactionController::class, 'detail'])->name('get.transaction_detail');
+    Route::get('transaction/detail/{id}', [FrontendTransactionController::class, 'detail'])->name('get.transaction_detail');
 
-    Route::get('transaction/update/{transaction_id}', [FrontendTransactionController::class, 'edit'])->name('get.transaction_update');
-    Route::post('transaction/update/{transaction_id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
+    Route::get('transaction/update/{id}', [FrontendTransactionController::class, 'edit'])->name('get.transaction_update');
+    Route::post('transaction/update/{id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
 
-    Route::get('transaction/delete/{transaction_id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
+    Route::get('transaction/delete/{id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
 
 });
 

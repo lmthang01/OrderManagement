@@ -66,4 +66,19 @@ class Transaction extends Model
         return Arr::get($this->set_Transaction_Status, $this->status, []);
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // public function contact()
+    // {
+    //     return $this->belongsTo(Contact::class, 'contact_id');
+    // }
+
 }
