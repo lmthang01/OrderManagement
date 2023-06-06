@@ -42,7 +42,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
     Route::get('', [BackendHomeController::class, 'index'])->name('get_admin.home');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('get_admin.logout'); // Đăng xuất login
-    
+
     // Category (List khách hàng)
     Route::group(['prefix' => 'category'], function(){
         Route::get('', [CategoryController::class, 'index'])->name('get_admin.category.index');
@@ -73,13 +73,13 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         // Customer
         Route::group(['prefix' => 'user'], function(){
             Route::get('', [UserController::class, 'index'])->name('get_admin.user.index');
-    
+
             Route::get('create', [UserController::class, 'create'])->name('get_admin.user.create');
             Route::post('create', [UserController::class, 'store'])->name('get_admin.user.store');
-    
+
             Route::get('update/{id}', [UserController::class, 'edit'])->name('get_admin.user.update');
             Route::post('update/{id}', [UserController::class, 'update'])->name('get_admin.user.update');
-    
+
             Route::get('delete/{id}', [UserController::class, 'delete'])->name('get_admin.user.delete');
 
             // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
@@ -115,6 +115,18 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('category/delete/{id}', [FrontendCategoryController::class, 'delete'])->name('get.category_delete');
 
+    // Transaction (Giao dịch với khách hàng)
+    Route::get('transaction/index', [FrontendTransactionController::class, 'index'])->name('get.transaction_index');
+
+    Route::get('transaction/create', [FrontendTransactionController::class, 'create'])->name('get.transaction_create');
+    Route::post('transaction/create', [FrontendTransactionController::class, 'store'])->name('get.transaction_store');
+
+    Route::get('transaction/detail/{transaction_id}', [FrontendTransactionController::class, 'detail'])->name('get.transaction_detail');
+
+    Route::get('transaction/update/{transaction_id}', [FrontendTransactionController::class, 'edit'])->name('get.transaction_update');
+    Route::post('transaction/update/{transaction_id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
+
+    Route::get('transaction/delete/{transaction_id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
 
 });
 
