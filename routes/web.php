@@ -120,7 +120,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('transaction/index', [FrontendTransactionController::class, 'index'])->name('get.transaction_index');
 
     Route::get('transaction/create', [FrontendTransactionController::class, 'create'])->name('get.transaction_create');
-    Route::post('transaction/create', [FrontendTransactionController::class, 'store'])->name('get.transaction_store');
+    Route::post('transaction', [FrontendTransactionController::class, 'store'])->name('get.transaction_store');
 
     Route::get('transaction/detail/{id}', [FrontendTransactionController::class, 'detail'])->name('get.transaction_detail');
 

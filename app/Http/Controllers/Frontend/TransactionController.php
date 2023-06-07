@@ -22,7 +22,7 @@ class TransactionController extends Controller
             ->paginate(20);
 
         $model = new Transaction();
-        $status = $model->get_Transaction_Status();
+        $status = $model->getStatus();
 
         $viewData = [
             'transactions' => $transactions,
@@ -70,7 +70,7 @@ class TransactionController extends Controller
         $customer = Customer::all();
 
         $model = new Transaction();
-        $status = $model->get_Transaction_Status();
+        $status = $model->getStatus();
 
         return view('frontend.transaction.detail', compact('transaction', 'customer', 'status'));
     }

@@ -43,11 +43,11 @@
                                             <td>{{ $item->customer->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->transaction_type }}</td>
                                             <td>{{ $item->contact->name ?? '[N\A]' }}</td>
-                                            <td style="white-space: pre-line;">{{ $item->create_day }}<br>{{ $item->start_day }}<br>{{ $item->finish_day }}</td>
+                                            <td style="white-space: pre-line;">{{ $item->start_day }}<br>{{ $item->deadline_day }}<br>{{ $item->finish_day }}</td>
                                             <td>
                                                 <span
-                                                    class="{{ $item->get_Transaction_Status($item->status)['class'] ?? 'badge badge-light' }}">
-                                                    {{ $item->get_Transaction_Status($item->status)['name'] ?? 'Mới' }}
+                                                    class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
+                                                    {{ $item->getStatus($item->status)['name'] ?? 'Mới' }}
                                                 </span>
                                             </td>
                                             <td>{{ $item->result }}</td>

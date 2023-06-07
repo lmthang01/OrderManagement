@@ -30,7 +30,7 @@ class Transaction extends Model
     const STATUS_CANCEL = -2; // Đã hủy
     const STATUS_REFUND = -3; // Hoàn trả
 
-    public $set_Transaction_Status = [
+    public $setStatus = [
         self::STATUS_DEFAULT => [
             'name' => 'Giao dịch mới',
             'class' => 'badge badge-light'
@@ -61,9 +61,9 @@ class Transaction extends Model
         ],
     ];
 
-    public function get_Transaction_Status()
+    public function getStatus()
     {
-        return Arr::get($this->set_Transaction_Status, $this->status, []);
+        return Arr::get($this->setStatus, $this->status, []);
     }
 
     public function customer()

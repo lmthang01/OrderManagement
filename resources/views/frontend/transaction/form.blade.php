@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('get.transaction_update', ['id' => 1]) }}" autocomplete="off" enctype="multipart/form-data">
+<form method="POST" action="{{ route('get.transaction_store') }}" autocomplete="off" enctype="multipart/form-data">
     <div class="row">
         <div class="col-sm-6">
             @csrf
