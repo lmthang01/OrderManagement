@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 05:45 PM
+-- Generation Time: Jun 08, 2023 at 01:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -83,7 +83,8 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `effective_date`, `status`, `name`, `contract_type`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, NULL, 0.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', NULL, 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '0', '', NULL, NULL, NULL);
+(1, 1, 3, NULL, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', NULL, 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
+(2, 2, 4, NULL, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', NULL, 3, 'Hợp đồng lắp đặt wifi theo năm.', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -452,7 +453,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contract_types`

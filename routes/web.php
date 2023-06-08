@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionController;
+use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
@@ -128,6 +129,19 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::post('transaction/update/{id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
 
     Route::get('transaction/delete/{id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
+
+    // Contract (Hợp đồng bán ra)
+    Route::get('contract/index', [FrontendContractController::class, 'index'])->name('get.contract_index');
+
+    Route::get('contract/create', [FrontendContractController::class, 'create'])->name('get.contract_create');
+    Route::post('contract', [FrontendContractController::class, 'store'])->name('get.contract_store');
+
+    Route::get('contract/detail/{id}', [FrontendContractController::class, 'detail'])->name('get.contract_detail');
+
+    Route::get('contract/update/{id}', [FrontendContractController::class, 'edit'])->name('get.contract_update');
+    Route::post('contract/update/{id}', [FrontendContractController::class, 'update'])->name('get.contract_update');
+
+    Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
 });
 

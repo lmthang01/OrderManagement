@@ -42,7 +42,7 @@
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Người phụ trách:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $user->name ?? "[N/A]" }}</p>
+                                                <p class="col-form-label input-label">{{ $transaction->user->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -117,7 +117,7 @@
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Người liên hệ:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->name ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $transaction->contact->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -125,7 +125,7 @@
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Chức vụ:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->role ?? "[N/A]" }}</p>
+                                                <p class="col-form-label input-label">{{ $transaction->contact->role ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
