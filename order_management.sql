@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2023 at 04:33 PM
+-- Generation Time: Jun 08, 2023 at 06:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -254,12 +254,12 @@ CREATE TABLE `transactions` (
   `transaction_type` varchar(255) NOT NULL,
   `contact_id` varchar(255) DEFAULT NULL,
   `start_day` datetime NOT NULL DEFAULT current_timestamp(),
-  `deadline_day` datetime DEFAULT current_timestamp(),
-  `finish_day` datetime NOT NULL DEFAULT current_timestamp(),
+  `deadline_day` datetime NOT NULL DEFAULT current_timestamp(),
+  `finish_day` datetime DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 1,
   `result` varchar(255) DEFAULT NULL,
-  `priority` int(11) NOT NULL,
-  `transaction_address` varchar(255) NOT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `transaction_address` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

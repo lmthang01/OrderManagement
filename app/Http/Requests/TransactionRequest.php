@@ -30,10 +30,9 @@ class TransactionRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên giao dịch không được để trống!',
-            'customer.required'=> 'Hãy chọn khách hàng!',
             'start_day.required' => 'Hãy chọn ngày bắt đầu giao dịch!',
             'finish_day.required' => 'Hãy chọn ngày hoàn thành giao dịch!',
-            'transaction_type.required' => 'Hãy chọn loại giao dịch!',
+            'transaction_type.required' => 'Hãy chọn loại giao dịch!'
         ];
     }
 }

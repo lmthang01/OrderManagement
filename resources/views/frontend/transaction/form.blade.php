@@ -1,7 +1,7 @@
-<form method="POST" action="{{ route('get.transaction_store') }}" autocomplete="off" enctype="multipart/form-data">
+<form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+    @csrf
     <div class="row">
         <div class="col-sm-6">
-            @csrf
             {{-- Tên giao dịch --}}
             <div class="form-group">
                 <label for="transaction_name" class="input-label">Tên giao dịch<span style="color: red">*</span>:</label>
@@ -13,7 +13,7 @@
             {{-- Mô tả giao dịch --}}
             <div class="form-group">
                 <label for="transaction_des" class="input-label">Mô tả:</label>
-                <textarea name="description" id="transaction_des" class="form-control" cols="30" rows="2">{{ old('description', $customer->description ?? '') }}</textarea>
+                <textarea name="description" id="transaction_des" class="form-control" cols="30" rows="2">{{ old('description', $transaction->description ?? '') }}</textarea>
                 @error('description')
                     <small id="" class="form-text text-danger">{{ $errors->first('description') }}</small>
                 @enderror
@@ -47,16 +47,16 @@
                 @enderror
             </div> --}}
             <div class="form-group">
-                <label for="create_day" class="col-form-label input-label">Ngày tạo:</label>
-                <input class="form-control" type="datetime-local" value="" id="create_day">
+                <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
+                <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day') }}" id="start_day">
             </div>
             <div class="form-group">
-                <label for="start_day" class="col-form-label input-label">Ngày bắt đầu:</label>
-                <input class="form-control" type="datetime-local" value="" id="start_day">
+                <label for="deadline_date" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
+                <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
             </div>
             <div class="form-group">
                 <label for="finish_day" class="col-form-label input-label">Ngày hoàn thành:</label>
-                <input class="form-control" type="datetime-local" value="" id="finish_day">
+                <input class="form-control" type="datetime-local" name="finish_day" value="{{ old('finish_day') }}" id="finish_day">
             </div>
 
         </div>
@@ -65,14 +65,15 @@
                 <label for="choose_customer" class="input-label">Loại giao dịch<span style="color: red">*</span>:</label>
                 <select name="transtypes_id" class="custom-select custom-select-height" id="choose_customer">
                     <option value="">----Chọn loại giao dịch----</option>
-                    <option value="1">Đăng ký dịch vụ</option>
-                    <option value="2">Đào tạo nghiệp vụ</option>
-                    <option value="3">Vận chuyển</option>
-                    <option value="4">Đóng hàng</option>
+                    <option value="1" {{ old('transtypes_id') == 1 ? 'selected' : '' }}>Giao dịch bán hàng</option>
+                    <option value="2" {{ old('transtypes_id') == 2 ? 'selected' : '' }}>Giao dịch cung cấp dịch vụ</option>
+                    <option value="3" {{ old('transtypes_id') == 3 ? 'selected' : '' }}>Giao dịch hợp tác đối tác</option>
+                    <option value="4" {{ old('transtypes_id') == 4 ? 'selected' : '' }}>Giao dịch mua sắm</option>
+                    <option value="5" {{ old('transtypes_id') == 5 ? 'selected' : '' }}>Giao dịch tài chính</option>
                 </select>
                 @error('transtypes_id')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
-                @enderror
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('transtypes_id') }}</small>
+                 @enderror
             </div>
             <div class="form-group">
                 <label for="" class="input-label">Trạng thái:</label>
@@ -92,14 +93,18 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="" class="input-label">Mức ưu tiên:</label>
-                <select name="status" class="custom-select custom-select-height" >
-                    <option value="0">--Chọn mức ưu tiên--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                <label for="choose_customer" class="input-label">Mức ưu tiên:</label>
+                <select name="status" class="custom-select custom-select-height" id="choose_customer">
+                    <option value="">----Chọn mức ưu tiên----</option>
+                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>1</option>
+                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>2</option>
+                    <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>3</option>
+                    <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>4</option>
+                    <option value="5" {{ old('status') == 5 ? 'selected' : '' }}>5</option>
                 </select>
+                @error('status')
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('status') }}</small>
+                 @enderror
             </div>
             <div class="form-group">
                 <label for="transaction_address" class="input-label">Địa chỉ giao dịch:</label>
@@ -108,14 +113,13 @@
                     <small id="" class="form-text text-danger">{{ $errors->first('transaction_address') }}</small>
                 @enderror
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="transaction_doc" class="input-label">Tài liệu giao dịch:</label>
                 <input type="file" class="form-control" name="document">
-            </div>
-            <div class="form-group btn-group-savetrans">
-                <button type="submit" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
-                <button onclick="window.location.href='{{ route('get.transaction_index') }}'" type="button" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-times-circle" aria-hidden="true"></i><span>Hủy</span></button>
-            </div>
+            </div> --}}
         </div>
+    </div>
+    <div class="form-group btn-group-savetrans">
+        <button type="submit" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
     </div>
 </form>
