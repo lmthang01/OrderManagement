@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2023 at 01:20 PM
+-- Generation Time: Jun 08, 2023 at 04:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -46,7 +46,7 @@ INSERT INTO `categories` (`id`, `name`, `description`, `avatar`, `slug`, `create
 (2, 'CTU', 'Khách hàng CTU', '2023-05-25__category-ctu.png', 'ctu', '2023-05-25 02:35:38', '2023-05-25 09:31:54'),
 (3, 'Khác', 'Khách hàng khác', '2023-05-25__category-viettel.png', 'khac', '2023-05-25 02:35:47', '2023-05-25 09:48:54'),
 (4, 'NCTU', 'Khách hàng Nam Cần Thơ', '2023-05-25__caterofy-nctu.png', 'nctu', '2023-05-25 12:16:31', '2023-05-25 12:16:31'),
-(5, 'Nhóm crm', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'nhom-crm', '2023-05-30 14:18:40', '2023-05-30 14:34:32');
+(5, 'CRM', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'crm', '2023-05-30 14:18:40', '2023-06-08 14:04:05');
 
 -- --------------------------------------------------------
 
@@ -105,9 +105,10 @@ CREATE TABLE `contract_types` (
 --
 
 INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Đơn hàng khách lẻ', NULL, NULL, NULL),
-(2, 'Hợp đồng bảo trì', NULL, NULL, NULL),
-(3, 'Gói dịch vụ', 'Các gói dịch vụ lớn', NULL, NULL);
+(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình, dịch vụ hoặc ứng dụng đã được công ty cung cấp', NULL, '2023-06-08 14:29:54'),
+(3, 'Gói dịch vụ', 'Các gói dịch vụ được cung cấp', NULL, '2023-06-08 14:28:08'),
+(4, 'Đóng gói', 'Đóng gói các loại hàng hóa, tính phí theo kích thước và cân nặng,...', '2023-06-08 13:47:27', '2023-06-08 13:47:27'),
+(5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00');
 
 -- --------------------------------------------------------
 
@@ -447,7 +448,7 @@ ALTER TABLE `user_types`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `contracts`
@@ -459,7 +460,7 @@ ALTER TABLE `contracts`
 -- AUTO_INCREMENT for table `contract_types`
 --
 ALTER TABLE `contract_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customers`

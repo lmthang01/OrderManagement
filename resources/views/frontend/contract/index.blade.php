@@ -19,7 +19,7 @@
                                 <a href="{{ route('get.contract_create') }}">
                                     <button type="button" class="btn btn-primary btn-addtrans mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm mới</span></button>
                                 </a>
-                                <a href="#">
+                                <a href="{{ route('get.contract_type_index') }}">
                                     <button type="button" class="btn btn-primary btn-addtrans mb-3 ml-2"><i class="fa fa-wrench" aria-hidden="true"></i><span>Loại HĐ</span></button>
                                 </a>
                             </div>

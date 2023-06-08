@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryControll
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionController;
 use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
+use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractTypeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
@@ -143,6 +144,16 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
+    // ContractType (Loại hợp đồng)
+    Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');
+
+    Route::get('contract_type/create', [FrontendContractTypeController::class, 'create'])->name('get.contract_type_create');
+    Route::post('contract_type/create', [FrontendContractTypeController::class, 'store'])->name('get.contract_type_store');
+
+    Route::get('contract_type/update/{id}', [FrontendContractTypeController::class, 'edit'])->name('get.contract_type_update');
+    Route::post('contract_type/update/{id}', [FrontendContractTypeController::class, 'update'])->name('get.contract_type_update');
+
+    Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
 });
 
 
