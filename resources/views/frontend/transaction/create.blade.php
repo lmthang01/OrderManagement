@@ -1,4 +1,4 @@
-@extends('frontend.layouts.header_sidebar_business')
+@extends('frontend.layouts.business_transaction')
 @section('content')
     <div class="main-content-inner">
         <div class="row">
@@ -26,7 +26,7 @@
                                 </div>
                                 <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
 
-                                @include('frontend.transaction.form')
+                                @include('frontend.transaction.form_create')
 
                             </div>
                         </div>

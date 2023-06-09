@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');                     // Tên giao dịch
             $table->string('description')->nullable();  // Mô tả
-            $table->string('assessment')->nullable();   // Đánh giá
             $table->integer('user_id')->nullable();      // Người phụ trách (tài khoản đang đăng nhập)
             $table->integer('customer_id')->nullable();  // Khách hàng
             $table->string('transaction_type');     // Loại giao dịch
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->string('result')->nullable();      // Kết quả
             $table->integer('priority');    // Ưu tiên
             $table->string('transaction_address');    // Địa chỉ giao dịch
+            $table->string('document')->nullable(); // Tài liệu liên quan
             $table->timestamps();
         });
     }

@@ -48,10 +48,17 @@ class TransactionController extends Controller
     public function store(TransactionRequest $request)
     {
         try {
-            $data = $request->all(); // Lấy dữ liệu từ $request gửi lên
-            // $data['created_at'] = Carbon::now();
+            $data = $request->all();
+            // Thêm đoạn code sau để lấy thông tin khách hàng từ request và gán vào các field tương ứng
+            $customers = Customer::findOrFail($data['customer_id']);
 
-            // $data['user_id'] = Auth::user()->id; // Hiển thị name người phụ trách giao dịch
+            // Lưu tệp tin vào thư mục lưu trữ
+            if ($request->hasFile('document')) {
+                $file = $request->file('document');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs('documents', $fileName, 'public');
+                $data['document'] = $filePath;
+            }
 
             $transaction = Transaction::create($data);
 
@@ -60,10 +67,11 @@ class TransactionController extends Controller
         } catch (\Exception $exception) {
             Log::error("ERROR => TransactionController@store => " . $exception->getMessage());
             toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
-            return redirect()->route('frontend.transaction_create');
+            return redirect()->route('get.transaction_create');
         }
         return redirect()->route('get.transaction_index');
     }
+
 
     public function detail($id)
     {
@@ -76,30 +84,39 @@ class TransactionController extends Controller
         return view('frontend.transaction.detail', compact('transaction', 'customer', 'status'));
     }
 
-    // public function update(TransactionRequest $request, $id)
-    // {
-    //     try {
-    //         // $data = $request->all();
-    //         $data = new Transaction;
-    //         // $data->name = $request->input('name');
-    //         // $data->des = $request->input('des');
-    //         // $data->name = $request->input('name');
-    //         // $data->name = $request->input('name');
-    //         // $data->name = $request->input('name');
-    //         // $data->name = $request->input('name');
-    //         // Transaction::create($request->all());
+    public function edit($id){
 
-    //         $data['updated_at'] = Carbon::now();
+        $transaction = Transaction::findOrFail($id);
+        $customers = Customer::all();
 
-    //         Transaction::find($id)->update($data);
-    //     } catch (\Exception $exception) {
-    //         Log::error("ERROR => TransactionController@update => " . $exception->getMessage());
-    //         toastr()->error('Cập nhật giao dịch thất bại!', 'Thông báo', ['timeOut' => 2000]);
-    //         return redirect()->route('get.transaction_update', $id);
-    //     }
-    //     toastr()->success('Cập nhật giao dịch thành công!', 'Thông báo', ['timeOut' => 2000]);
-    //     return redirect()->route('get.transaction_index');
-    // }
+        return view('frontend.transaction.update', compact('transaction', 'customers'));
+    }
+
+    public function update(TransactionRequest $request, $id)
+    {
+        try {
+            $data = $request->all();
+            $data['updated_at'] = Carbon::now();
+
+            // Thêm đoạn code sau để lấy thông tin khách hàng từ request và gán vào các field tương ứng
+            $customer = Customer::findOrFail($data['customer_id']);
+            $data['customer_name'] = $customer->name;
+            $data['customer_address'] = $customer->address;
+            $data['customer_phone'] = $customer->phone;
+            $data['customer_email'] = $customer->email;
+            $data['customer_tax_code'] = $customer->tax_code;
+
+            Transaction::find($id)->update($data);
+            toastr()->success('Cập nhật giao dịch thành công!', 'Thông báo', ['timeOut' => 2000]);
+
+        } catch (\Exception $exception) {
+            Log::error("ERROR => TransactionController@update => " . $exception->getMessage());
+            toastr()->error('Cập nhật giao dịch thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            return redirect()->route('get.transaction_update', $id);
+        }
+        return redirect()->route('get.transaction_index');
+    }
+
 
     public function delete(Request $request, $id)
     {

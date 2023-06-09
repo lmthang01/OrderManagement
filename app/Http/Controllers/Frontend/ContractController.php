@@ -34,12 +34,32 @@ class ContractController extends Controller
 
     public function create()
     {
+        $customers = Customer::all();
 
+        $model = new Contract();
+        $status = $model->getStatus();
+
+        return view('frontend.contract.create', compact('customers', 'status'));
     }
 
     public function store(ContractRequest $request)
     {
+        try {
 
+            $data = $request->all();
+            $data['created_at'] = Carbon::now();
+
+            // $data['user_id'] = Auth::user()->id;
+
+            $customer = Contract::create($data);
+
+        } catch (\Exception $exception) {
+            Log::error("ERROR => CustomerController@store => " . $exception->getMessage());
+            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            return redirect()->route('frontend.customer.create');
+        }
+            toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
+            return redirect()->route('get.index');
     }
 
     public function detail($id)

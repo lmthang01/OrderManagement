@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('user_id')->nullable();     //Người tạo (Chủ sở hữu)
             $table->integer('customer_id')->nullable(); //Khách hàng
             $table->integer('contact_id')->nullable();  //Liên hệ
-            $table->decimal('value', 10, 2)->default(0);    // Giá trị hợp đồng
+            $table->decimal('value', 10, 2)->default(0)->nullable();    // Giá trị hợp đồng
             $table->dateTime('start_day');  // Ngày bắt đầu
             $table->dateTime('finish_day');  // Ngày kết thúc
             $table->dateTime('effective_date')->nullable();  // Ngày hiệu lực

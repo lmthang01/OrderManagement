@@ -1,4 +1,4 @@
-@extends('frontend.layouts.header_sidebar_business')
+@extends('frontend.layouts.business_transaction')
 @section('content')
     <div class="main-content-inner">
         <div class="row">
@@ -21,7 +21,6 @@
                                     <tr>
                                         <th>Tên giao dịch</th>
                                         <th>Mô tả</th>
-                                        <th>Đánh giá</th>
                                         <th>Người phụ trách</th>
                                         <th>Khách hàng</th>
                                         <th>Loại giao dịch</th>
@@ -38,7 +37,6 @@
                                         <tr>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->description }}</td>
-                                            <td>{{ $item->assessment }}</td>
                                             <td>{{ $item->user->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->customer->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->transaction_type }}</td>

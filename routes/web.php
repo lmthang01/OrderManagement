@@ -93,19 +93,18 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 // User
 Route::group(['namespace' => 'Frontend'], function(){
 
-    // Customer
-    Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
+     // Customer
+     Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
 
-    Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
-    Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
+     Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
+     Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
 
-    Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
+     Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
 
-    Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
-    Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
+     Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
+     Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
-    Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
-
+     Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
     // Category (List khách hàng)
     Route::get('category/index', [FrontendCategoryController::class, 'index'])->name('get.category_index');
@@ -135,7 +134,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('contract/index', [FrontendContractController::class, 'index'])->name('get.contract_index');
 
     Route::get('contract/create', [FrontendContractController::class, 'create'])->name('get.contract_create');
-    Route::post('contract', [FrontendContractController::class, 'store'])->name('get.contract_store');
+    Route::post('contract/create', [FrontendContractController::class, 'store'])->name('get.contract_store');
 
     Route::get('contract/detail/{id}', [FrontendContractController::class, 'detail'])->name('get.contract_detail');
 

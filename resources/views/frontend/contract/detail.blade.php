@@ -131,6 +131,14 @@
                                                 <p class="col-form-label input-label">{{ $contract->payments }}</p>
                                             </div>
                                         </div>
+                                        <div class="row form-group">
+                                            <div class="col-sm-5">
+                                                <label for="example-text-input" class="col-form-label input-label"><strong>Trạng thái:</strong></label>
+                                            </div>
+                                            <div class="col-sm-7 pt-2">
+                                                <p class="input-label {{ $contract->getStatus($contract->status)['class'] ?? 'badge badge-light' }}">{{ $contract->getStatus($contract->status)['name'] ?? '[N\A]' }}</p>
+                                            </div>
+                                        </div>
                                         {{-- <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Địa chỉ giao hàng:</strong></label>
@@ -142,14 +150,6 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <div class="row form-group">
-                                            <div class="col-sm-5">
-                                                <label for="example-text-input" class="col-form-label input-label"><strong>Giá trị hợp đồng:</strong></label>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ number_format($contract->value, 0, ',', '.') }}</p>
-                                            </div>
-                                        </div>
                                         <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Thuế:</strong></label>
@@ -168,6 +168,14 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-sm-5">
+                                                <label for="example-text-input" class="col-form-label input-label"><strong>Giá trị hợp đồng:</strong></label>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <p class="col-form-label input-label">{{ number_format($contract->value, 0, ',', '.') }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Đã thanh toán:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
@@ -179,7 +187,7 @@
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Nợ:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ number_format($contract->value - $contract->payments, 0, ',', '.') }}</p>
+                                                <p class="col-form-label input-label">{{ number_format(floatval($contract->value) - floatval($contract->payments), 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">

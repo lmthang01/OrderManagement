@@ -21,8 +21,8 @@ class TransactionRequest extends FormRequest
         return [
             'name' => 'required',
             'start_day' => 'required',
-            'finish_day' => 'required',
-            'transaction_type' => 'required'
+            'deadline_date' => 'required',
+            'transaction_type' => 'required',
         ];
     }
 
@@ -31,7 +31,7 @@ class TransactionRequest extends FormRequest
         return [
             'name.required' => 'Tên giao dịch không được để trống!',
             'start_day.required' => 'Hãy chọn ngày bắt đầu giao dịch!',
-            'finish_day.required' => 'Hãy chọn ngày hoàn thành giao dịch!',
+            'deadline_date.required' => 'Hãy chọn ngày hoàn thành giao dịch!',
             'transaction_type.required' => 'Hãy chọn loại giao dịch!'
         ];
     }

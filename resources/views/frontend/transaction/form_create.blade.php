@@ -49,30 +49,41 @@
             <div class="form-group">
                 <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
                 <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day') }}" id="start_day">
+                @error('start_day')
+                    <small id="" class="form-text text-danger">{{ $errors->first('start_day') }}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="deadline_date" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
                 <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
+                @error('deadline_date')
+                    <small id="" class="form-text text-danger">{{ $errors->first('deadline_date') }}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="finish_day" class="col-form-label input-label">Ngày hoàn thành:</label>
                 <input class="form-control" type="datetime-local" name="finish_day" value="{{ old('finish_day') }}" id="finish_day">
+                @error('finish_day')
+                    <small id="" class="form-text text-danger">{{ $errors->first('finish_day') }}</small>
+                @enderror
             </div>
-
+            <input type="hidden" name="selected_start_day" id="selected_start_day">
+            <input type="hidden" name="selected_deadline_date" id="selected_deadline_date">
+            <input type="hidden" name="selected_finish_day" id="selected_finish_day">
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="choose_customer" class="input-label">Loại giao dịch<span style="color: red">*</span>:</label>
-                <select name="transtypes_id" class="custom-select custom-select-height" id="choose_customer">
+                <label for="choose_transaction" class="input-label">Loại giao dịch<span style="color: red">*</span>:</label>
+                <select name="transaction_type" class="custom-select custom-select-height" id="choose_transaction">
                     <option value="">----Chọn loại giao dịch----</option>
-                    <option value="1" {{ old('transtypes_id') == 1 ? 'selected' : '' }}>Giao dịch bán hàng</option>
-                    <option value="2" {{ old('transtypes_id') == 2 ? 'selected' : '' }}>Giao dịch cung cấp dịch vụ</option>
-                    <option value="3" {{ old('transtypes_id') == 3 ? 'selected' : '' }}>Giao dịch hợp tác đối tác</option>
-                    <option value="4" {{ old('transtypes_id') == 4 ? 'selected' : '' }}>Giao dịch mua sắm</option>
-                    <option value="5" {{ old('transtypes_id') == 5 ? 'selected' : '' }}>Giao dịch tài chính</option>
+                    <option value="Giao dịch bán hàng" {{ old('transaction_type') == 1 ? 'selected' : '' }}>Giao dịch bán hàng</option>
+                    <option value="Giao dịch cung cấp dịch vụ" {{ old('transaction_type') == 2 ? 'selected' : '' }}>Giao dịch cung cấp dịch vụ</option>
+                    <option value="Giao dịch hợp tác đối tác" {{ old('transaction_type') == 3 ? 'selected' : '' }}>Giao dịch hợp tác đối tác</option>
+                    <option value="Giao dịch mua sắm" {{ old('transaction_type') == 4 ? 'selected' : '' }}>Giao dịch mua sắm</option>
+                    <option value="Giao dịch tài chính" {{ old('transaction_type') == 5 ? 'selected' : '' }}>Giao dịch tài chính</option>
                 </select>
-                @error('transtypes_id')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('transtypes_id') }}</small>
+                @error('transaction_type')
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('transaction_type') }}</small>
                  @enderror
             </div>
             <div class="form-group">
@@ -93,17 +104,17 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="choose_customer" class="input-label">Mức ưu tiên:</label>
-                <select name="status" class="custom-select custom-select-height" id="choose_customer">
+                <label for="choose_priority" class="input-label">Mức ưu tiên:</label>
+                <select name="priority" class="custom-select custom-select-height" id="choose_priority">
                     <option value="">----Chọn mức ưu tiên----</option>
-                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>1</option>
-                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>2</option>
-                    <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>3</option>
-                    <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>4</option>
-                    <option value="5" {{ old('status') == 5 ? 'selected' : '' }}>5</option>
+                    <option value="1" {{ old('priority') == 1 ? 'selected' : '' }}>1</option>
+                    <option value="2" {{ old('priority') == 2 ? 'selected' : '' }}>2</option>
+                    <option value="3" {{ old('priority') == 3 ? 'selected' : '' }}>3</option>
+                    <option value="4" {{ old('priority') == 4 ? 'selected' : '' }}>4</option>
+                    <option value="5" {{ old('priority') == 5 ? 'selected' : '' }}>5</option>
                 </select>
-                @error('status')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('status') }}</small>
+                @error('priority')
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('priority') }}</small>
                  @enderror
             </div>
             <div class="form-group">
@@ -113,13 +124,28 @@
                     <small id="" class="form-text text-danger">{{ $errors->first('transaction_address') }}</small>
                 @enderror
             </div>
-            {{-- <div class="form-group">
-                <label for="transaction_doc" class="input-label">Tài liệu giao dịch:</label>
+            <div class="form-group">
+                <label class="input-label" for="">Tài liệu giao dịch:</label>
                 <input type="file" class="form-control" name="document">
-            </div> --}}
+
+                @if (isset($transaction->document) && $transaction->document)
+                    <a href="{{ pare_url_file($transaction->document) }}" target="_blank">{{ $transaction->document }}</a>
+                @endif
+            </div>
         </div>
     </div>
     <div class="form-group btn-group-savetrans">
-        <button type="submit" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+        <button type="submit" onclick="setSelectedDates()" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
     </div>
+    <script>
+        function setSelectedDates() {
+            var startDay = document.getElementById('start_day').value;
+            var deadlineDate = document.getElementById('deadline_date').value;
+            var finishDay = document.getElementById('finish_day').value;
+
+            document.getElementById('selected_start_day').value = startDay;
+            document.getElementById('selected_deadline_date').value = deadlineDate;
+            document.getElementById('selected_finish_day').value = finishDay;
+        }
+    </script>
 </form>

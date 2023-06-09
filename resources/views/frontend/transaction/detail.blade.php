@@ -1,4 +1,4 @@
-@extends('frontend.layouts.header_sidebar_business')
+@extends('frontend.layouts.business_transaction')
 @section('content')
     <div class="main-content-inner">
         <div class="row">
@@ -142,6 +142,16 @@
                                             </div>
                                             <div class="col-sm-7">
                                                 <p class="col-form-label input-label">{{ $transaction->transaction_address }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-sm-5">
+                                                <label for="example-text-input" class="col-form-label input-label"><strong>Tài liệu liên quan:</strong></label>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                @if (isset($transaction->document) && $transaction->document)
+                                                    <p>{{ $transaction->document }}</p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
