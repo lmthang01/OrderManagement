@@ -44,7 +44,7 @@ class VerifyAccountController extends Controller
 
         $user->save();
 
-        return redirect()->route('get_admin.login');
+        return redirect()->route('get.index');
         
     }
 }
