@@ -22,11 +22,11 @@
                                 <thead class="text-capitalize">
                                     <tr>
                                         <th>#</th>
-                                        <th>TÊN NHÓM</th>
-                                        <th>MÔ TẢ</th>
-                                        <th>NGÀY TẠO</th>
-                                        <th>THAO TÁC</th>
-                                        <th>SỐ LƯỢNG</th>
+                                        <th>Tên Nhóm</th>
+                                        <th>Mô tả</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thao tác</th>
+                                        <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,7 +36,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td>{{ $item->created_at }}</td>
-                                            
+
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     {{-- <li class="mr-2"><a href="#" class="text-primary"><i

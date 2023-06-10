@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 04:42 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 09, 2023 at 05:19 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -46,7 +46,69 @@ INSERT INTO `categories` (`id`, `name`, `description`, `avatar`, `slug`, `create
 (2, 'CTU', 'Khách hàng CTU', '2023-05-25__category-ctu.png', 'ctu', '2023-05-25 02:35:38', '2023-05-25 09:31:54'),
 (3, 'Khác', 'Khách hàng khác', '2023-05-25__category-viettel.png', 'khac', '2023-05-25 02:35:47', '2023-05-25 09:48:54'),
 (4, 'NCTU', 'Khách hàng Nam Cần Thơ', '2023-05-25__caterofy-nctu.png', 'nctu', '2023-05-25 12:16:31', '2023-05-25 12:16:31'),
-(5, 'Nhóm crm', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'nhom-crm', '2023-05-30 14:18:40', '2023-05-30 14:34:32');
+(5, 'CRM', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'crm', '2023-05-30 14:18:40', '2023-06-08 14:04:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contracts`
+--
+
+CREATE TABLE `contracts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `contact_id` int(11) DEFAULT NULL,
+  `value` decimal(10,2) DEFAULT 0.00,
+  `start_day` datetime NOT NULL,
+  `finish_day` datetime NOT NULL,
+  `effective_date` datetime DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `contract_type` varchar(255) NOT NULL,
+  `payments` varchar(255) DEFAULT NULL,
+  `transportation` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `payment_date` datetime DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `payment_amount` varchar(255) NOT NULL DEFAULT '0',
+  `sales_attributed_to` varchar(255) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contracts`
+--
+
+INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `effective_date`, `status`, `name`, `contract_type`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, NULL, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', NULL, 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
+(2, 2, 4, NULL, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', NULL, 3, 'Hợp đồng lắp đặt wifi theo năm.', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_types`
+--
+
+CREATE TABLE `contract_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contract_types`
+--
+
+INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình, dịch vụ hoặc ứng dụng đã được công ty cung cấp', NULL, '2023-06-08 14:29:54'),
+(3, 'Gói dịch vụ', 'Đăng ký sử dụng các gói dịch vụ được cung cấp', NULL, '2023-06-09 09:55:52'),
+(4, 'Đóng gói', 'Đóng gói các loại hàng hóa, tính phí theo kích thước và cân nặng,...', '2023-06-08 13:47:27', '2023-06-08 13:47:27'),
+(5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00');
 
 -- --------------------------------------------------------
 
@@ -56,14 +118,14 @@ INSERT INTO `categories` (`id`, `name`, `description`, `avatar`, `slug`, `create
 
 CREATE TABLE `customers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tax_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `tax_code` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL DEFAULT 0,
@@ -76,7 +138,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, `description`, `avatar`, `slug`, `status`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(2, 'Lê Minh Thắng', NULL, '0869859343', NULL, NULL, NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
+(2, 'Lê Minh Thắng', NULL, '0869859343', NULL, 'T02', NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
 (3, 'Nhật Trường CTU', NULL, '0899555333', NULL, NULL, NULL, '2023-05-25__customer-ctu.png', 'nhat-truong-ctu', 2, 0, 2, '2023-05-25 02:50:54', '2023-05-26 01:56:28'),
 (4, 'Cao Thuần', NULL, '0899666333', 'thuan@gmail.com', NULL, NULL, '2023-05-25__customer-ctu.png', 'cao-thuan', 2, 0, 2, '2023-05-25 12:02:32', '2023-05-26 01:54:43'),
 (5, 'Bá Tùng', NULL, '0899555333', 'truong@gmail.com', NULL, NULL, NULL, 'ba-tung', 3, 0, 3, '2023-05-26 01:55:03', '2023-05-26 01:55:11'),
@@ -90,11 +152,11 @@ INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, 
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -106,8 +168,8 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `payload` longtext NOT NULL,
   `attempts` tinyint(3) UNSIGNED NOT NULL,
   `reserved_at` int(10) UNSIGNED DEFAULT NULL,
   `available_at` int(10) UNSIGNED NOT NULL,
@@ -122,7 +184,7 @@ CREATE TABLE `jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -139,7 +201,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2023_05_23_152449_create_categories_table', 2),
 (29, '2023_05_24_163950_create_customers_table', 2),
 (30, '2023_05_25_195044_create_user_type_table', 3),
-(31, '2023_05_29_214705_create_jobs_table', 4);
+(31, '2023_05_29_214705_create_jobs_table', 4),
+(35, '2023_06_06_212022_create_transactions_table', 5),
+(36, '2023_06_07_200414_create_contract_table', 5),
+(37, '2023_06_07_211747_create_contract_types_table', 6),
+(38, '2023_06_07_212407_create_contract_types_table', 7);
 
 -- --------------------------------------------------------
 
@@ -148,8 +214,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -161,11 +227,11 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -175,21 +241,55 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `transaction_type` varchar(255) DEFAULT NULL,
+  `contact_id` varchar(255) DEFAULT NULL,
+  `start_day` datetime DEFAULT current_timestamp(),
+  `deadline_day` datetime DEFAULT current_timestamp(),
+  `finish_day` datetime DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1,
+  `result` varchar(255) DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `transaction_address` varchar(255) DEFAULT NULL,
+  `document` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id`, `transaction_type`, `contact_id`, `start_day`, `deadline_day`, `finish_day`, `status`, `result`, `priority`, `transaction_address`, `document`, `created_at`, `updated_at`) VALUES
+(1, 'Đăng ký Gói DV01', 'Đăng ký sử dụng gói dịch vụ 01 trong 1 tháng tới.', 1, 3, 'Giao dịch cung cấp dịch vụ', NULL, '2023-06-06 00:19:34', '2023-06-07 00:19:34', '2023-06-06 00:19:34', 1, 'Thành công', 3, 'Cần Thơ', NULL, '2023-06-05 17:19:34', '2023-06-05 17:19:34'),
+(12, 'Test', 'sdadsad', NULL, 2, 'Giao dịch hợp tác đối tác', NULL, '2023-06-04 22:12:00', '2023-06-09 22:12:24', '2023-06-08 22:12:00', 3, 'OK', 2, NULL, 'documents/hello.txt', '2023-06-09 15:12:24', '2023-06-09 15:12:24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT 0,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -236,8 +336,8 @@ INSERT INTO `user_has_types` (`id`, `user_id`, `user_type_id`, `created_at`, `up
 
 CREATE TABLE `user_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -261,6 +361,18 @@ INSERT INTO `user_types` (`id`, `name`, `description`, `created_at`, `updated_at
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
+
+--
+-- Indexes for table `contracts`
+--
+ALTER TABLE `contracts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contract_types`
+--
+ALTER TABLE `contract_types`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customers`
@@ -304,6 +416,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -331,7 +449,19 @@ ALTER TABLE `user_types`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `contracts`
+--
+ALTER TABLE `contracts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contract_types`
+--
+ALTER TABLE `contract_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -355,13 +485,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

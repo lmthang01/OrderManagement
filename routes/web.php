@@ -8,8 +8,14 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+
+use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionController;
+use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
+use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractTypeController;
+
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
+
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
@@ -45,7 +51,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
     Route::get('', [BackendHomeController::class, 'index'])->name('get_admin.home');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('get_admin.logout'); // Đăng xuất login
-    
+
     // Category (List khách hàng)
     Route::group(['prefix' => 'category'], function(){
         Route::get('', [CategoryController::class, 'index'])->name('get_admin.category.index');
@@ -76,13 +82,13 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         // Customer
         Route::group(['prefix' => 'user'], function(){
             Route::get('', [UserController::class, 'index'])->name('get_admin.user.index');
-    
+
             Route::get('create', [UserController::class, 'create'])->name('get_admin.user.create');
             Route::post('create', [UserController::class, 'store'])->name('get_admin.user.store');
-    
+
             Route::get('update/{id}', [UserController::class, 'edit'])->name('get_admin.user.update');
             Route::post('update/{id}', [UserController::class, 'update'])->name('get_admin.user.update');
-    
+
             Route::get('delete/{id}', [UserController::class, 'delete'])->name('get_admin.user.delete');
 
             // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
@@ -95,19 +101,22 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
 
     Route::get('logout', [FrontendAuthController::class, 'logout'])->name('get_user.logout'); // Đăng xuất login
 
+
+     // Customer
+     Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
+
     // Customer
     Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
 
-    Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
-    Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
+     Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
+     Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
 
-    Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
+     Route::get('customer/detail/{id}', [FrontendCustomerController::class, 'detail'])->name('get.customer_detail');
 
-    Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
-    Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
+     Route::get('customer/update/{id}', [FrontendCustomerController::class, 'edit'])->name('get.customer_update');
+     Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
-    Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
-
+     Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
     // Category (List khách hàng)
     Route::get('', [FrontendCategoryController::class, 'index'])->name('get.category_index');
@@ -119,6 +128,41 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
     Route::post('category/update/{id}', [FrontendCategoryController::class, 'update'])->name('get.category_update');
 
     Route::get('category/delete/{id}', [FrontendCategoryController::class, 'delete'])->name('get.category_delete');
+
+    // Transaction (Giao dịch với khách hàng)
+    Route::get('transaction/index', [FrontendTransactionController::class, 'index'])->name('get.transaction_index');
+
+    Route::get('transaction/create', [FrontendTransactionController::class, 'create'])->name('get.transaction_create');
+    Route::post('transaction/create', [FrontendTransactionController::class, 'store'])->name('get.transaction_store');
+
+    Route::get('transaction/detail/{id}', [FrontendTransactionController::class, 'detail'])->name('get.transaction_detail');
+
+    Route::get('transaction/update/{id}', [FrontendTransactionController::class, 'edit'])->name('get.transaction_update');
+    Route::post('transaction/update/{id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
+
+    Route::get('transaction/delete/{id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
+
+    // Contract (Hợp đồng bán ra)
+    Route::get('contract/index', [FrontendContractController::class, 'index'])->name('get.contract_index');
+
+    Route::get('contract/create', [FrontendContractController::class, 'create'])->name('get.contract_create');
+    Route::post('contract/create', [FrontendContractController::class, 'store'])->name('get.contract_store');
+
+    Route::get('contract/detail/{id}', [FrontendContractController::class, 'detail'])->name('get.contract_detail');
+
+    Route::get('contract/update/{id}', [FrontendContractController::class, 'edit'])->name('get.contract_update');
+    Route::post('contract/update/{id}', [FrontendContractController::class, 'update'])->name('get.contract_update');
+
+    Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
+
+    // ContractType (Loại hợp đồng)
+    Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');
+
+    Route::get('contract_type/create', [FrontendContractTypeController::class, 'create'])->name('get.contract_type_create');
+    Route::post('contract_type/create', [FrontendContractTypeController::class, 'store'])->name('get.contract_type_store');
+
+    Route::get('contract_type/update/{id}', [FrontendContractTypeController::class, 'edit'])->name('get.contract_type_update');
+    Route::post('contract_type/update/{id}', [FrontendContractTypeController::class, 'update'])->name('get.contract_type_update');
 
     // Contact (Liên hệ với khách hàng)
     Route::get('contact/index', [FrontendContactController::class, 'index'])->name('get.contact_index');
@@ -155,6 +199,8 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
     Route::get('order/update', [FrontendOrderController::class, 'update'])->name('get.order_update');
     Route::post('order/update', [FrontendOrderController::class, 'store'])->name('get.order_store');
 
+
+    Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
 });
 
 
