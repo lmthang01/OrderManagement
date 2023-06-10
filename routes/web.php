@@ -95,7 +95,6 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
 
     Route::get('logout', [FrontendAuthController::class, 'logout'])->name('get_user.logout'); // Đăng xuất login
 
-
     // Customer
     Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
 
@@ -127,8 +126,17 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
     Route::get('contact/create', [FrontendContactController::class, 'create'])->name('get.contact_create');
     Route::post('contact/create', [FrontendContactController::class, 'store'])->name('get.contact_store');
 
-    Route::get('contact/update', [FrontendContactController::class, 'update'])->name('get.contact_update');
-    Route::post('contact/update', [FrontendContactController::class, 'store'])->name('get.contact_store');
+    Route::get('contact/customer_detail/{id}', [FrontendContactController::class, 'customer_detail'])->name('get.contact_customer_detail');
+    Route::post('contact/customer_update/{id}', [FrontendContactController::class, 'customer_update'])->name('get.contact_customer_update');
+    Route::get('contact/customer_update/{id}', [FrontendContactController::class, 'customer_edit'])->name('get.contact_customer_update');
+
+    Route::get('contact/detail/{id}', [FrontendContactController::class, 'detail'])->name('get.contact_detail');
+
+    Route::get('contact/update/{id}', [FrontendContactController::class, 'edit'])->name('get.contact_update');
+    Route::post('contact/update/{id}', [FrontendContactController::class, 'update'])->name('get.contact_update');
+
+    Route::get('contact/delete/{id}', [FrontendContactController::class, 'delete'])->name('get.contact_delete');
+
 
 
     //Order (Đơn hàng)
@@ -138,6 +146,11 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
 
     Route::get('order/create', [FrontendOrderController::class, 'create'])->name('get.order_create');
     Route::post('order/create', [FrontendOrderController::class, 'store'])->name('get.order_store');
+        // Goods (Hàng hóa)
+    Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');
+    Route::post('order/form_goods', [FrontendOrderController::class, 'goods_store'])->name('get.goods_store');
+
+    Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.goods_delete');
 
     Route::get('order/update', [FrontendOrderController::class, 'update'])->name('get.order_update');
     Route::post('order/update', [FrontendOrderController::class, 'store'])->name('get.order_store');

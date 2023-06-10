@@ -1,7 +1,9 @@
 @extends('frontend.layouts.app_frontend')
 @section('content')
             <!-- page title area end -->
+            <form method="POST" action="" >
             <div class="main-content-inner">
+
                 <div class="row">
                 <div class="col-lg-12">
                         <div class="row">
@@ -12,7 +14,7 @@
                                         <div class="card-header-order">
                                             <h4 class="header-title header-title-main">Cập Nhật Liên Hệ</h4>
                                             <div class="btn-group-head-order">
-                                                <button type="button" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Cập nhật</span></button>
+                                                <button type="submit" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Cập nhật</span></button>
                                                 <!-- <button type="button" class="btn btn-addorder"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Lưu và sinh hợp đồng</span></button> -->
                                                 <button onclick="window.location.href='{{ route ('get.contact_index') }}'" type="button" class="btn btn-addorder btn-back">Trở về</button>
                                             </div>
@@ -32,27 +34,51 @@
                                         
                                         <div class="row">
                                             <div class="col-6">
+                                                @csrf
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Người liên hệ</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
+                                                    <input type="text" name="name" placeholder="Tên người liên hệ ..." class="form-control"
+                                                        value="{{ old('name', $contact->name ?? '') }}">
+                                                    @error('name')
+                                                        <small id="" class="form-text text-danger">{{ $errors->first('name') }}</small>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-search-input" class="col-form-label input-label">Khách hàng</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
+                                                    <select name="customer_id" class="custom-select custom-select-height" id="">
+                                                        <option value="">----Chọn----</option>
+                                                        @foreach ($customers ?? [] as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ ($contact->customer_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('customer_id')
+                                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
+                                                    @enderror
+                                                    
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label input-label">Chức vụ:</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option>---Chọn chức vụ--</option>
-                                                        <option>Giám đốc</option>
-                                                        <option>Phó giám đốc</option>
-                                                        <option>Trưởng phòng kỹ thuật</option>
-                                                        <option>Thu mua</option>
+                                                    <select name="position_id" class="custom-select custom-select-height" id="">
+                                                        <option value="">----Chọn----</option>
+                                                        @foreach ($positions ?? [] as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ ($contact->position_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
-                                                </div>
+                                                    @error('position_id')
+                                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('position_id') }}</small>
+                                                    @enderror
+                                                </div> 
                                                 <div class="form-group">
                                                     <label for="example-email-input" class="col-form-label input-label">Email</label>
-                                                    <input class="form-control" type="email" value="" id="example-email-input">
+                                                    <input type="text" name="email" placeholder="truong@gmail.com" class="form-control"
+                                                        value="{{ old('email', $contact->email ?? '') }}">
+                                                    @error('email')
+                                                        <small id="" class="form-text text-danger">{{ $errors->first('email') }}</small>
+                                                    @enderror
                                                 </div>
                                                         
                                             </div>
@@ -60,23 +86,28 @@
                                             <div class="col-6 ">
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Địa chỉ liên hệ</label>
-                                                    <input type="text" class="form-control" id="example-text-input" value="">
+                                                    <input type="text" name="address" placeholder="Bạc Liêu." class="form-control"
+                                                        value="{{ old('address', $contact->address ?? '') }}">
+                                                       
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-form-label input-label">Giới tính:</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option>Nam</option>
-                                                        <option>Nữ</option>
-                                                        <option>...</option>
-                                                    </select>
-                                                </div>                                      
+                                                    <label class="col-form-label input-label">Giới tính</label>
+                                                    <select name="gender" class="custom-select custom-select-height" id="">
+                                                        @foreach ($gender ?? [] as $key => $item)
+                                                            <option value="{{ $key }}" {{ ($contact->gender ?? '') == $key ? 'selected' : '' }}>
+                                                                {{ $item['name'] }}</option>
+                                                        @endforeach    
+                                                    </select>                                                
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="example-tel-input" class="col-form-label input-label">Số điện thoại</label>
-                                                    <input class="form-control" type="tel" value="" id="example-tel-input">
+                                                    <input type="text" name="phone" placeholder="098760..." class="form-control"
+                                                        value="{{ old('phone', $contact->phone ?? '') }}">                                        
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-datetime-local-input" class="col-form-label input-label">Ngày sinh</label>
-                                                    <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
+                                                    <input type="date" name="birthday"class="form-control"
+                                                        value="{{ old('birthday', $contact->birthday ?? '') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -129,8 +160,5 @@
                         </div>
                     </div>
                 </div>
-           
-            
-            
-       
-@stop 
+            </form>
+                @stop 

@@ -40,18 +40,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($orders ?? [] as $item)
                                             <tr>
-                                                <td>DH00001</td>
-                                                <td>Hà Trung Nghĩa</td>
-                                                <td>24/05/2023 16:00</td>
-                                                <td>26/05/2023 16:00</td>
-                                                <td>Châu Đốc - An Giang</td>
-                                                <td><span class="status-p bg-primary">pending</span></td>
-                                                <td>Lê Minh Thắng</td>
-                                                <td>Accountant</td>
-                                                <td>Thanh toán khi nhận hàng</td>
-                                                <td>HD00001</td>
-                                                <td>Huỳnh Nhật Trường</td>
+                                                <td>{{ $item->customer->id }}</td>
+                                                <td>{{ $item->customer->name }}</td>
+                                                <td>{{ $item->order_date }}</td>
+                                                <td>{{ $item->delivery_time }}</td>
+                                                <td>{{ $item->delivery_address }}</td>
+                                                <td><span class="status-p bg-primary">{{ $item->status }}</span></td>
+                                                <td>{{ $item->deliver }}</td>
+                                                <td>{{ $item->note }}</td>
+                                                <td>{{ $item->payments }}</td>
+                                                <td>{{ $item->contract_id }}</td>
+                                                <td>{{ $item->user->name }}</td>
                                                 <td>1.900.000</td>
                                                 <td>0</td>
                                                 <td>0</td>
@@ -63,79 +64,10 @@
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>
+
                                             </tr>
-                                            <tr>
-                                                <td>DH00001</td>
-                                                <td>Hà Trung Nghĩa</td>
-                                                <td>24/05/2023 16:00</td>
-                                                <td>26/05/2023 16:00</td>
-                                                <td>Châu Đốc - An Giang</td>
-                                                <td><span class="status-p bg-primary">pending</span></td>
-                                                <td>Lê Minh Thắng</td>
-                                                <td>Accountant</td>
-                                                <td>Thanh toán khi nhận hàng</td>
-                                                <td>HD00001</td>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td>1.900.000</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>1.900.000</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="../Order/infoOrder.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="../Order/editOrder.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>DH00001</td>
-                                                <td>Hà Trung Nghĩa</td>
-                                                <td>24/05/2023 16:00</td>
-                                                <td>26/05/2023 16:00</td>
-                                                <td>Châu Đốc - An Giang</td>
-                                                <td><span class="status-p bg-primary">pending</span></td>
-                                                <td>Lê Minh Thắng</td>
-                                                <td>Accountant</td>
-                                                <td>Thanh toán khi nhận hàng</td>
-                                                <td>HD00001</td>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td>1.900.000</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>1.900.000</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="../Order/infoOrder.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="../Order/editOrder.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>DH00001</td>
-                                                <td>Hà Trung Nghĩa</td>
-                                                <td>24/05/2023 16:00</td>
-                                                <td>26/05/2023 16:00</td>
-                                                <td>Châu Đốc - An Giang</td>
-                                                <td><span class="status-p bg-primary">pending</span></td>
-                                                <td>Lê Minh Thắng</td>
-                                                <td>Accountant</td>
-                                                <td>Thanh toán khi nhận hàng</td>
-                                                <td>HD00001</td>
-                                                <td>Huỳnh Nhật Trường</td>
-                                                <td>1.900.000</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>1.900.000</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="../Order/infoOrder.php" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="../Order/editOrder.php" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                          
                                         </tbody>
                                     </table>
                                 </div>

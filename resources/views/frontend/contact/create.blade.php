@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app_frontend')
 @section('content')
             <!-- page title area end -->
+            <form method="POST" action="" >
+
             <div class="main-content-inner">
                 <div class="row">
                     <div class="col-lg-12">
@@ -12,7 +14,7 @@
                                         <div class="card-header-order">
                                             <h4 class="header-title header-title-main">Thêm mới liên hệ</h4>
                                             <div class="btn-group-head-order">
-                                                <button type="button" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+                                                <button type="submit" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
                                                 <a href="{{ route ('get.contact_index') }}">
                                                     <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                                 </a>
@@ -23,6 +25,7 @@
                             </div>
                             <!-- End -->
                             <!-- Form nhập thông tin liên hệ start-->
+
                             <div class="col-12 mt-2">
                                 <div class="card">
                                     <div class="card-body">
@@ -30,32 +33,53 @@
                                             <h4 class="header-title">Thông tin cơ bản</h4>
                                         </div>
                                         <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
-                                        
-                                        <div class="row">
-                                            
-
+                                        <div class="row"> 
                                             <div class="col-6">
+                                                @csrf
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Người liên hệ</label>
-                                                    <input class="form-control" type="text" value="Huỳnh Nhật Trường" id="example-text-input">
+                                                    <input type="text" name="name" placeholder="Tên người liên hệ ..." class="form-control"
+                                                        value="{{ old('name', $contacts->name ?? '') }}">
+                                                    @error('name')
+                                                        <small id="" class="form-text text-danger">{{ $errors->first('name') }}</small>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-search-input" class="col-form-label input-label">Khách hàng</label>
-                                                    <input class="form-control" type="text" value="Nguyễn Văn Tèo" id="example-text-input">
+                                                    <select name="customer_id" class="custom-select custom-select-height" id="">
+                                                        <option value="">----Chọn----</option>
+                                                        @foreach ($customers ?? [] as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ ($contact->customer_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('customer_id')
+                                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
+                                                    @enderror
+                                                    
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label input-label">Chức vụ:</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option>---Chọn chức vụ--</option>
-                                                        <option>Giám đốc</option>
-                                                        <option>Phó giám đốc</option>
-                                                        <option>Trưởng phòng kỹ thuật</option>
-                                                        <option>Thu mua</option>
+                                                    <select name="position_id" class="custom-select custom-select-height" id="">
+                                                        <option value="">----Chọn----</option>
+                                                        @foreach ($positions ?? [] as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ ($contact->position_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
+                                                    @error('position_id')
+                                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('position_id') }}</small>
+                                                    @enderror
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="example-email-input" class="col-form-label input-label">Email</label>
-                                                    <input class="form-control" type="email" value="truong@gmail.com" id="example-email-input">
+                                                    <input type="text" name="email" placeholder="truong@gmail.com" class="form-control"
+                                                        value="{{ old('email', $contacts->email ?? '') }}">
+                                                    @error('email')
+                                                        <small id="" class="form-text text-danger">{{ $errors->first('email') }}</small>
+                                                    @enderror
                                                 </div>
                                                         
                                             </div>
@@ -63,29 +87,35 @@
                                             <div class="col-6 ">
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Địa chỉ liên hệ</label>
-                                                    <input type="text" class="form-control" id="example-text-input" value="Cần Thơ">
+                                                    <input type="text" name="address" placeholder="Bạc Liêu." class="form-control"
+                                                        value="{{ old('address', $contacts->address ?? '') }}">
+                                                       
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label input-label">Giới tính</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option>--Chọn giới tính--</option>
-                                                        <option>Nam</option>
-                                                        <option>Nữ</option>
-                                                    </select>
+                                                    <select name="gender" class="custom-select custom-select-height" id="">
+                                                        @foreach ($gender ?? [] as $key => $item)
+                                                            <option value="{{ $key }}" {{ ($contacts->gender ?? '') == $key ? 'selected' : '' }}>
+                                                                {{ $item['name'] }}</option>
+                                                        @endforeach          
+                                                    </select>                                       
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-tel-input" class="col-form-label input-label">Số điện thoại</label>
-                                                    <input class="form-control" type="tel" value="0123345678" id="example-tel-input">
+                                                    <input type="text" name="phone" placeholder="098760..." class="form-control"
+                                                        value="{{ old('phone', $contacts->phone ?? '') }}">                                        
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-datetime-local-input" class="col-form-label input-label">Ngày sinh</label>
-                                                    <input class="form-control" type="datetime-local" value="2001-01-01" id="example-datetime-local-input">
+                                                    <input type="date" name="birthday"class="form-control"
+                                                        value="{{ old('birthday', $contacts->birthday ?? '') }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                      
                             <!-- Form nhập thông tin hàng hóa end -->     
                         </div>
                     </div>
@@ -140,7 +170,9 @@
                     </div> --}}
                     <!-- Form thông tin khách hàng end -->
                 </div>
-            </div>       
+            </div>   
+        </form>    
+
         {{-- </div> --}}
    
         <!-- main content area end -->

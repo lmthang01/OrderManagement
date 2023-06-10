@@ -10,7 +10,7 @@
                         <div class="card card-header-main">
                             <div class="card-body">
                                 <div class="card-header-order">
-                                    <h4 class="header-title header-title-main">Chi tiết thông tin người liên hệ</h4>
+                                    <h4 class="header-title header-title-main">Chi tiết thông tin Khách hàng</h4>
                                     <div class="btn-group-head-order">
                                         {{-- <button onclick="window.location.href='../Customer/updateCustomer.php'"
                                         type="button" class="btn btn-addorder btn-back"><i
@@ -20,7 +20,7 @@
                                             aria-hidden="true"></i><span>Trở về</span></button> --}}
 
                                         <span class="btn btn-addorder btn-back"><i class="fa fa-edit"></i>
-                                            <a href="{{ route('get.contact_update', $contact->id) }}" style="color: white"><span>Sửa</span></a>
+                                            <a href="{{ route('get.contact_customer_update', $customer->id) }}" style="color: white"><span>Sửa</span></a>
                                         </span>
                                         <span class="btn btn-addorder btn-back"><i class="fa fa-chevron-left"
                                                 aria-hidden="true"></i>
@@ -41,21 +41,21 @@
                                         <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input"
-                                                    class="col-form-label input-label"><strong>Mã người
-                                                        liên hệ (ID):</strong></label>
+                                                    class="col-form-label input-label"><strong>Mã khách
+                                                        hàng (ID):</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->id ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->id ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input"
-                                                    class="col-form-label input-label"><strong>Tên người 
-                                                        liên hệ:</strong></label>
+                                                    class="col-form-label input-label"><strong>Tên khách
+                                                        hàng:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->name ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -64,25 +64,25 @@
                                                     class="col-form-label input-label"><strong>Người tạo:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->user->name ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->user->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input"
-                                                    class="col-form-label input-label"><strong>Chức vụ </strong></label>
+                                                    class="col-form-label input-label"><strong>Danh mục: </strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->position->name ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->category->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input"
-                                                    class="col-form-label input-label"><strong>Giới tính: </strong></label>
+                                                    class="col-form-label input-label"><strong>Trạng thái: </strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->getGender($contact->gender)['name'] ?? '[N\A]' }}</p>
+                                                <p class="{{ $customer->getStatus($customer->status)['class'] ?? 'badge badge-light' }}">{{ $customer->getStatus($customer->status)['name'] ?? '[N\A]' }}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -92,7 +92,7 @@
                                                         thoại:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->phone ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->phone ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -101,7 +101,7 @@
                                                     class="col-form-label input-label"><strong>Email:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contact->email ?? "[N/A]"}}</p>
+                                                <p class="col-form-label input-label">{{ $customer->email ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
                                        
@@ -115,19 +115,35 @@
                                                     phòng:</strong></label>
                                         </div>
                                         <div class="col-sm-7">
-                                            <p class="col-form-label input-label">{{ $contact->address ?? "[N/A]"}}</p>
+                                            <p class="col-form-label input-label">{{ $customer->address ?? "[N/A]"}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-5">
+                                            <label for="example-text-input" class="col-form-label input-label"><strong>Mô
+                                                    tả:</strong></label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p class="col-form-label input-label">{{ $customer->description ?? "[N/A]"}}</p>
                                         </div>
                                     </div>
                                     
-                                    
-                        
+                                    <div class="row form-group">
+                                        <div class="col-sm-5">
+                                            <label for="example-text-input" class="col-form-label input-label"><strong>Hình ảnh:</strong></label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <img src="{{ pare_url_file($customer->avatar) }}"
+                                            style="width: 60px; height: 60px; border-radius: 10px" alt="">
+                                        </div>
+                                    </div>
                                     <div class="row form-group">
                                         <div class="col-sm-5">
                                             <label for="example-text-input"
                                                 class="col-form-label input-label"><strong>Ngày tạo:</strong></label>
                                         </div>
                                         <div class="col-sm-7">
-                                            <p class="col-form-label input-label">{{ $contact->created_at ?? "[N/A]"}}</p>
+                                            <p class="col-form-label input-label">{{ $customer->created_at ?? "[N/A]"}}</p>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -137,7 +153,7 @@
                                                     nhật:</strong></label>
                                         </div>
                                         <div class="col-sm-7">
-                                            <p class="col-form-label input-label">{{ $contact->updated_at ?? "[N/A]"}}</p>
+                                            <p class="col-form-label input-label">{{ $customer->updated_at ?? "[N/A]"}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,36 +167,27 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="head-title-addbtn">
-                                <h4 class="header-title">Khách hàng</h4>
+                                <h4 class="header-title">Liên hệ</h4>
                             </div>
                             <div class="data-tables datatable-dark">
                                 <table id="dataTable3" class="text-center table-business">
                                     <thead class="text-capitalize">
                                         <tr>
-                                            <th>Mã khách hàng</th>
-                                            <th>Tên khách hàng</th>
-                                            <th>List Khách hàng</th>
-                                            <th>Trạng thái</th>
+                                            <th>Người liên hệ</th>
+                                            <th>Chức vụ</th>
                                             <th>Số điện thoại</th>
                                             <th>Địa chỉ</th>
                                             <th>Email</th>
-                                            <th>Ngày tạo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       
                                         <tr>
-                                            <td>{{ $contact->customer->id }}</td>
-                                            <td>{{ $contact->customer->name }}</td>
-                                            <td>{{ $contact->customer->category->name ?? '[N\A]'}}</td>
-                                            <td>{{ $contact->customer->getStatus($contact->customer->status)['name'] ?? 'Mới'  }}</td>
-                                            <td>{{ $contact->customer->phone }}</td>
-                                            <td>{{ $contact->customer->address }}</td>
-                                            <td>{{ $contact->customer->email }}</td>
-                                            <td>{{ $contact->customer->created_at }}</td>
-
+                                            <td>Lê Minh Thắng</td>
+                                            <td>Kỹ thuật</td>
+                                            <td>0334567878</td>
+                                            <td>...</td>
+                                            <td>thang@gmail.com</td>
                                         </tr>
-                                      
                                     </tbody>
                                 </table>
                             </div>
