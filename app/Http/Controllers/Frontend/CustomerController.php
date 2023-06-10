@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -93,11 +94,12 @@ class CustomerController extends Controller
 
         $customer = Customer::findOrFail($id);
         $categories = Category::all();
+        $contacts = Contact::all();
 
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('frontend.customer.detail', compact('customer', 'categories', 'status'));
+        return view('frontend.customer.detail', compact('customer','contacts' ,'categories', 'status'));
     }
 
     public function update(CustomerRequest $request, $id)
