@@ -1,4 +1,5 @@
-@extends('frontend.layouts.app_frontend')
+{{-- @extends('frontend.layouts.app_frontend') --}}
+@extends('frontend.layouts.contact_customer')
 @section('content')
             <!-- page title area end -->
             <form method="POST" action="" >

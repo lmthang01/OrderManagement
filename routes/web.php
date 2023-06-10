@@ -103,7 +103,7 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
 
 
      // Customer
-     Route::get('', [FrontendCustomerController::class, 'index'])->name('get.index');
+     Route::get('/', [FrontendCustomerController::class, 'index'])->name('get.index');
 
     // Customer
     Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
@@ -119,7 +119,7 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
     // Category (List khách hàng)
-    Route::get('', [FrontendCategoryController::class, 'index'])->name('get.category_index');
+    Route::get('category', [FrontendCategoryController::class, 'index'])->name('get.category_index');
 
     Route::get('category/create', [FrontendCategoryController::class, 'create'])->name('get.category_create');
     Route::post('category/create', [FrontendCategoryController::class, 'store'])->name('get.category_store');

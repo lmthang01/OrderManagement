@@ -1,4 +1,5 @@
-@extends('frontend.layouts.app_frontend')
+{{-- @extends('frontend.layouts.app_frontend') --}}
+@extends('frontend.layouts.list_customer')
 @section('content')
     <div class="login-area login-s2">
         <div class="container">

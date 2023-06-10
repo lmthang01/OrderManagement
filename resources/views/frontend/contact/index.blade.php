@@ -1,4 +1,5 @@
-@extends('frontend.layouts.app_frontend')
+{{-- @extends('frontend.layouts.app_frontend')x --}}
+@extends('frontend.layouts.contact_customer')
 @section('content')
             <!-- page title area end -->
             <div class="main-content-inner">

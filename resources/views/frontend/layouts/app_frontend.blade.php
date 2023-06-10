@@ -69,12 +69,12 @@
                                 <ul class="collapse">
 
                                     <li><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
-                                    <li><a href="../../BusinessManagement/Order/order.php">Đơn hàng</a></li>
+                                    {{-- <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li> --}}
 
-                                    <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li>
+                                    {{-- <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li> --}}
                                     <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
 
-                                    <li><a href="../../BusinessManagement/Contract/contract.php">Hợp đồng bán ra</a></li>
+                                    <li><a href="#">Hợp đồng bán ra</a></li>
                                 </ul>
                             </li>
 
@@ -82,7 +82,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Báo cáo</span></a>
                                 <ul class="collapse">
-                                    <li><a href="../../Report/StatisticalChart/statisticalChart.php">Biểu đồ</a></li>
+                                    <li><a href="#">Biểu đồ</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -277,7 +277,7 @@
                         <div class="breadcrumbs-area clearfix">
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="{{ route('get.index') }}">Khách Hàng</a></li>
                                 <li><span>Khách Hàng</span></li>
                             </ul>
