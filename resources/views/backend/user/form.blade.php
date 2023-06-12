@@ -27,8 +27,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Hình ảnh</label>
-                <input type="file" class="form-control" name="avatar">
+                <label for="exampleInputPassword1">Hình ảnh </label>
+                {{-- <input type="file" class="form-control" name="avatar"> --}}
                 @if (isset($user->avatar) && $user->avatar)
                     <img src="{{ pare_url_file($user->avatar) }}"
                         style="width: 60px; height: 60px; border-radius: 10px; margin-top: 10px" alt="">
@@ -43,14 +43,15 @@
                     @foreach ($usersType ?? [] as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
+                    
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Trạng thái</label>
                 <select name="status" class="form-control" id="">
-                    <option value="-1" {{ ($user->status ?? -1) == -1 ? "selected" : "" }}>Tạm dừng</option>
-                    <option value="1" {{ ($user->status ?? 1) == 1 ? "selected" : "" }}>Chờ kích hoạt</option>
-                    <option value="2" {{ ($user->status ?? 1) == 2 ? "selected" : "" }}>Hoạt động</option>
+                    <option value="-1" {{ ($user->status ?? -1) == -1 ? 'selected' : '' }}>Tạm dừng</option>
+                    <option value="1" {{ ($user->status ?? 1) == 1 ? 'selected' : '' }}>Chờ kích hoạt</option>
+                    <option value="2" {{ ($user->status ?? 1) == 2 ? 'selected' : '' }}>Hoạt động</option>
                 </select>
             </div>
         </div>

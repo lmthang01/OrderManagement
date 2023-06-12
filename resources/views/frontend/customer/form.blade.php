@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Mã số thuế</label>
+                <label for="exampleInputEmail1">Mã số thuế  <span style="color: red">*</span></label>
                 <input type="text" name="tax_code" placeholder="Mã số thuế ..." class="form-control"
                     value="{{ old('tax_code', $customer->tax_code ?? '') }}">
                 @error('tax_code')

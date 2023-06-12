@@ -24,11 +24,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Điện thoại</th>
-                                        <th>Email</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Mã số thuế</th>
                                         <th>Trạng thái</th>
-                                        <th>List khách hàng</th>
-                                        <th>Người tạo</th>
                                         <th>Thao tác</th>
                                         <th>Ngày tạo</th>
                                     </tr>
@@ -38,17 +36,15 @@
                                     @foreach ($customers ?? [] as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>{{ strlen($item->name) > 20 ? mb_substr($item->name,0,15,'UTF-8').'...' : $item->name }}</td>
+                                            <td>{{ $item->address }}</td>
+                                            <td>{{ $item->tax_code }}</td>
                                             <td>
                                                 <span
                                                     class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
                                                     {{ $item->getStatus($item->status)['name'] ?? 'Mới' }}
                                                 </span>
                                             </td>
-                                            <td>{{ $item->category->name ?? '[N\A]' }}</td>
-                                            <td>{{ $item->user->name ?? '[N\A]' }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-2"><a href="{{ route('get.customer_detail', $item->id) }}"

@@ -164,3 +164,6 @@
 - Khai báo env mail
 - 
 
+# Video27 Chat system
+- Cài đặt chatify: composer require munafio/chatify
+- 

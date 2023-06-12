@@ -24,7 +24,8 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>
-                            <img src="{{ pare_url_file($item->avatar) }}" style="width: 60px; height: 60px; border-radius: 10px" alt="">
+                            {{-- <img src="{{ pare_url_file($item->avatar) }}" onerror="this.src='/assets/images/author/avatar.png'" style="width: 60px; height: 60px; border-radius: 10px" alt="avatar"> --}}
+                            <img src="{{ Chatify::getUserWithAvatar($item)->avatar }}" onerror="this.src='/assets/images/author/avatar.png'" style="width: 60px; height: 60px; border-radius: 10px" alt="">
                         </td>  
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>

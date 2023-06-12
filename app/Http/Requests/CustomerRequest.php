@@ -25,6 +25,7 @@ class CustomerRequest extends FormRequest
             'name' => 'required|unique:customers,name,'.$this->id,
             'phone' => 'required',
             'category_id' => 'required',
+            'tax_code' => 'required',
         ];
     }
 
@@ -35,6 +36,7 @@ class CustomerRequest extends FormRequest
             'name.required' => 'Tên khách hàng không được để trống!',
             'phone.required' => 'Số điện thoại không được để trống!',
             'category_id.required' => 'Danh mục khách hàng không được để trống!',
+            'tax_code.required' => 'Mã số thuế không được để trống!',
         ];
     }
 }
