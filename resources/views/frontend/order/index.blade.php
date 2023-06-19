@@ -21,6 +21,7 @@
                                     <table id="dataTable3" class="text-center table-business">
                                         <thead class="text-capitalize">
                                             <tr>
+                                                <th>Thực hiện</th>
                                                 <th>Mã đơn hàng</th>
                                                 <th>Khách hàng</th>
                                                 <th>Ngày đặt</th>
@@ -36,19 +37,26 @@
                                                 <th>Tiền thuế</th>
                                                 <th>Tiền CK</th>
                                                 <th>Tổng tiền</th>
-                                                <th>Thực hiện</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($orders ?? [] as $item)
                                             <tr>
-                                                <td>{{ $item->customer->id }}</td>
+                                                <td>
+                                                    <ul class="d-flex justify-content-center">
+                                                        <li class="mr-2"><a href="{{ route('get.order_detail', $item->id) }}" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                                        <li class="mr-2"><a href="{{ route('get.order_update', $item->id) }}" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                        <li><a href="{{ route('get.order_delete', $item->id) }}" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                                <td>{{ $item->code_order }}</td>
                                                 <td>{{ $item->customer->name }}</td>
                                                 <td>{{ $item->order_date }}</td>
                                                 <td>{{ $item->delivery_time }}</td>
                                                 <td>{{ $item->delivery_address }}</td>
                                                 <td><span class="status-p bg-primary">{{ $item->status }}</span></td>
-                                                <td>{{ $item->deliver }}</td>
+                                                <td>{{ $item->deliver->name }}</td>
                                                 <td>{{ $item->note }}</td>
                                                 <td>{{ $item->payments }}</td>
                                                 <td>{{ $item->contract_id }}</td>
@@ -57,13 +65,7 @@
                                                 <td>0</td>
                                                 <td>0</td>
                                                 <td>1.900.000</td>
-                                                <td>
-                                                    <ul class="d-flex justify-content-center">
-                                                        <li class="mr-2"><a href="{{ route('get.order_detail') }}" class="text-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                                        <li class="mr-2"><a href="{{ route('get.order_update') }}" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    </ul>
-                                                </td>
+                                                
 
                                             </tr>
                                             @endforeach

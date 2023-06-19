@@ -57,7 +57,12 @@ class Order extends Model
 
      public function goods()
      {
-         return $this->belongsTo(Goods::class, 'goods_id');
+         return $this->belongsTo(Goods::class,'order_id');
+     }
+
+     public function deliver()
+     {
+         return $this->belongsTo(Deliver::class, 'deliver_id');
      }
     
 }

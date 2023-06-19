@@ -23,18 +23,42 @@ class DatabaseSeeder extends Seeder
         //     'address' => 'Cần Thơ',
         //     'created_at' => Carbon::now()
         // ]);
-        DB::table('orders')->insert([
-            'code_customer' => 4,
-            'deliver' => 'Huỳnh Nhật Trường',
-            'contact_id' => 2,// Địa chỉ văn phòng
-            'guarantee' =>'NULL',
-            'delivery_address'=> 'Cầu Đỏ - Vĩnh Lộc - Hồng Dân - Bạc Liêu',
-            'payments' => 'Thanh toán khi nhận hàng',
-            'delivery_time'=>  Carbon::now(),
-            'order_date' => Carbon::now(),
-            'note'=>'NULL',
-            'status'=> 1,
-            'user_id' => 1,// Thuộc user nào tạo
+        // DB::table('orders')->insert([
+        //     'code_customer' => 4,
+        //     'deliver' => 'Huỳnh Nhật Trường',
+        //     'contact_id' => 2,// Địa chỉ văn phòng
+        //     'guarantee' =>'NULL',
+        //     'delivery_address'=> 'Cầu Đỏ - Vĩnh Lộc - Hồng Dân - Bạc Liêu',
+        //     'payments' => 'Thanh toán khi nhận hàng',
+        //     'delivery_time'=>  Carbon::now(),
+        //     'order_date' => Carbon::now(),
+        //     'note'=>'NULL',
+        //     'status'=> 1,
+        //     'user_id' => 1,// Thuộc user nào tạo
+
+        //     'created_at' => Carbon::now()
+        // ]);
+
+        DB::table('delivers')->insert([
+          
+            'name' => 'Trần Tuấn Khanh',
+            
+
+            'created_at' => Carbon::now()
+        ]);
+
+        DB::table('delivers')->insert([
+          
+            'name' => 'Lê Đình Phúc',
+            
+
+            'created_at' => Carbon::now()
+        ]);
+
+        DB::table('delivers')->insert([
+          
+            'name' => 'Trần Bảo Châu',
+            
 
             'created_at' => Carbon::now()
         ]);

@@ -37,7 +37,7 @@
                                             <div class="col-6">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Người liên hệ</label>
+                                                    <label for="example-text-input" class="col-form-label input-label">Người liên hệ <span style="color: red">*</span></label>
                                                     <input type="text" name="name" placeholder="Tên người liên hệ ..." class="form-control"
                                                         value="{{ old('name', $contacts->name ?? '') }}">
                                                     @error('name')
@@ -45,7 +45,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="example-search-input" class="col-form-label input-label">Khách hàng</label>
+                                                    <label for="example-search-input" class="col-form-label input-label">Khách hàng<span style="color: red">*</span></label>
                                                     <select name="customer_id" class="custom-select custom-select-height" id="">
                                                         <option value="">----Chọn----</option>
                                                         @foreach ($customers ?? [] as $item)
@@ -60,7 +60,7 @@
                                                     
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-form-label input-label">Chức vụ:</label>
+                                                    <label class="col-form-label input-label">Chức vụ<span style="color: red">*</span></label>
                                                     <select name="position_id" class="custom-select custom-select-height" id="">
                                                         <option value="">----Chọn----</option>
                                                         @foreach ($positions ?? [] as $item)

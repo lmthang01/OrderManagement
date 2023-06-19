@@ -1,7 +1,9 @@
 @extends('frontend.layouts.app_frontend')
 @section('content')
-
+<form method="POST" action="" >
+    @csrf
             <div class="main-content-inner">
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
@@ -12,10 +14,10 @@
                                         <div class="card-header-order">
                                             <h4 class="header-title header-title-main">Thêm mới đơn hàng</h4>
                                             <div class="btn-group-head-order">
-                                                <button type="button" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
-                                                <a href="../Contract/addnewContract.php">
+                                                <button type="submit" name="submit_form_order" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+                                                {{-- <a href="../Contract/addnewContract.php">
                                                     <button type="button" class="btn btn-addorder"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Lưu và sinh hợp đồng</span></button>
-                                                </a>
+                                                </a> --}}
                                                 <a href="{{ route('get.order_index') }}">
                                                     <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                                 </a>
@@ -35,105 +37,21 @@
                                         <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
                                         <div class="btn-load">
                                             <!-- Tùy vào chọn lựa ở mục "Chọn" tiếp theo để quyết định 1 nút active 1 nút disable - Không đồng thời cả 2" -->
-                                            <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3">Chọn Khách Hàng</button>
-                                            <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" disabled>Chọn Hợp Đồng</button>
+                                               <!-- Large modal -->
+                                               <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target=".modal-xl">Chọn khách hàng</button>
+                                               
+                                                @include('frontend.order.select_customer')
+                                           <!-- Extra Large modal modal end -->
+                                            {{-- <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" disabled>Chọn Hợp Đồng</button> --}}
                                             <!-- Sau khi "Chọn Khách Hàng" hoặc "Chọn Hợp Đồng" thì nút "Chọn Liên Hệ" sẽ active -->
+                                            {{-- @if (isset($customer->id) && $customer->id)
+                                            <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target=".modal-xl1" >Chọn Liên Hệ</button>
+                                            @include('frontend.order.select_contact')
+                                            @else
                                             <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" disabled>Chọn Liên Hệ</button>
+                                            @endif --}}
                                         </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Chọn:</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option value="KH" selected="selected">Chọn Khách Hàng</option>
-                                                        <option value="HD">Chọn Hợp Đồng</option>
-                                                        <option value="AddNewKH">Thêm Mới Khách Hàng</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Ngày đặt hàng:</label>
-                                                    <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
-                                                </div>
-
-                                                <!-- Ở mục chọn, khi chọn "Chọn hợp đồng" thì 2 trường dưới mới xuất hiện -->
-
-                                                <!-- <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Mã hợp đồng:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Ngày bắt đầu HĐ:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div> -->
-                                            </div>
-
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Mã khách hàng:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Tên khách hàng:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Địa chỉ:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Email:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Số điện thoại:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Mã số thuế:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Hình thức TT:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Ghi chú:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Người giao:</label>
-                                                    <select class="custom-select custom-select-height">
-                                                        <option selected="selected">--Chọn người giao--</option>
-                                                        <option value="">Hà Trung Nghĩa</option>
-                                                        <option value="">Lê Minh Thắng</option>
-                                                        <option value="">Huỳnh Nhật Trường</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Tên người liên hệ:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Số điện thoại:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Bảo hành:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-text-input" class="col-form-label input-label">Địa chỉ GH:</label>
-                                                    <input class="form-control" type="text" value="" id="example-text-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="example-datetime-local-input" class="col-form-label input-label">Thời gian GH:</label>
-                                                    <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @include('frontend.order.form_order')
                                     </div>
                                 </div>
                             </div>
@@ -259,8 +177,18 @@
                             </div> --}}
                             
                             <!-- Form nhập thông tin hàng hóa end -->
+                        
+                            <!-- Form thông tin khách hàng end -->
+                           
+                          
                             @include('frontend.order.table_goods')
+                            
                         </div>
                     </div>
+                   
                 </div>
+              
+               
+
+            </form>
   @stop
