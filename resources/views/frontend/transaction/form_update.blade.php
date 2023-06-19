@@ -34,15 +34,15 @@
                         </div>
                         <div class="form-group">
                             <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
-                            <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day') }}" id="start_day">
+                            <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day', $transaction->start_day) }}" id="start_day">
                         </div>
                         <div class="form-group">
                             <label for="deadline_date" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
-                            <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
+                            <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date', $transaction->deadline_date) }}" id="deadline_date">
                         </div>
                         <div class="form-group">
                             <label for="finish_day" class="col-form-label input-label">Ngày hoàn thành:</label>
-                            <input class="form-control" type="datetime-local" name="finish_day" value="{{ old('finish_day') }}" id="finish_day">
+                            <input class="form-control" type="datetime-local" name="finish_day" value="{{ old('finish_day', $transaction->finish_day) }}" id="finish_day">
                         </div>
 
                     </div>
@@ -51,11 +51,11 @@
                             <label for="choose_customer" class="input-label">Loại giao dịch<span style="color: red">*</span>:</label>
                             <select name="transaction_type" class="custom-select custom-select-height" id="choose_customer">
                                 <option value="">----Chọn loại giao dịch----</option>
-                                <option value="1" {{ old('transaction_type', $transaction->transaction_type ?? '') == 1 ? 'selected' : '' }}>Giao dịch bán hàng</option>
-                                <option value="2" {{ old('transaction_type', $transaction->transaction_type ?? '') == 2 ? 'selected' : '' }}>Giao dịch cung cấp dịch vụ</option>
-                                <option value="3" {{ old('transaction_type', $transaction->transaction_type ?? '') == 3 ? 'selected' : '' }}>Giao dịch hợp tác đối tác</option>
-                                <option value="4" {{ old('transaction_type', $transaction->transaction_type ?? '') == 4 ? 'selected' : '' }}>Giao dịch mua sắm</option>
-                                <option value="5" {{ old('transaction_type', $transaction->transaction_type ?? '') == 5 ? 'selected' : '' }}>Giao dịch tài chính</option>
+                                <option value="Giao dịch bán hàng" {{ old('transaction_type', $transaction->transaction_type ?? '') == "Giao dịch bán hàng" ? 'selected' : '' }}>Giao dịch bán hàng</option>
+                                <option value="Giao dịch cung cấp dịch vụ" {{ old('transaction_type', $transaction->transaction_type ?? '') == "Giao dịch cung cấp dịch vụ" ? 'selected' : '' }}>Giao dịch cung cấp dịch vụ</option>
+                                <option value="Giao dịch hợp tác đối tác" {{ old('transaction_type', $transaction->transaction_type ?? '') == "Giao dịch hợp tác đối tác" ? 'selected' : '' }}>Giao dịch hợp tác đối tác</option>
+                                <option value="Giao dịch mua sắm" {{ old('transaction_type', $transaction->transaction_type ?? '') == "Giao dịch mua sắm" ? 'selected' : '' }}>Giao dịch mua sắm</option>
+                                <option value="Giao dịch tài chính" {{ old('transaction_type', $transaction->transaction_type ?? '') == "Giao dịch tài chính" ? 'selected' : '' }}>Giao dịch tài chính</option>
                             </select>
                             @error('transaction_type')
                                 <small id="emailHelp" class="form-text text-danger">{{ $errors->first('transaction_type') }}</small>
@@ -79,14 +79,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="choose_customer" class="input-label">Mức ưu tiên:</label>
-                            <select name="priority" class="custom-select custom-select-height" id="choose_customer">
+                            <label for="choose_priority" class="input-label">Mức ưu tiên:</label>
+                            <select name="priority" class="custom-select custom-select-height" id="choose_priority">
                                 <option value="">----Chọn mức ưu tiên----</option>
-                                <option value="1" {{ old('priority') == 1 ? 'selected' : '' }}>1</option>
-                                <option value="2" {{ old('priority') == 2 ? 'selected' : '' }}>2</option>
-                                <option value="3" {{ old('priority') == 3 ? 'selected' : '' }}>3</option>
-                                <option value="4" {{ old('priority') == 4 ? 'selected' : '' }}>4</option>
-                                <option value="5" {{ old('priority') == 5 ? 'selected' : '' }}>5</option>
+                                <option value="1" {{ ($transaction->priority ?? '') == 1 ? 'selected' : '' }}>1</option>
+                                <option value="2" {{ ($transaction->priority ?? '') == 2 ? 'selected' : '' }}>2</option>
+                                <option value="3" {{ ($transaction->priority ?? '') == 3 ? 'selected' : '' }}>3</option>
+                                <option value="4" {{ ($transaction->priority ?? '') == 4 ? 'selected' : '' }}>4</option>
+                                <option value="5" {{ ($transaction->priority ?? '') == 5 ? 'selected' : '' }}>5</option>
                             </select>
                             @error('priority')
                                 <small id="emailHelp" class="form-text text-danger">{{ $errors->first('priority') }}</small>

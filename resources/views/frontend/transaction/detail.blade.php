@@ -81,7 +81,7 @@
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Trạng thái:</strong></label>
                                             </div>
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-7 pt-2">
                                                 <p class="input-label {{ $transaction->getStatus($transaction->status)['class'] ?? 'badge badge-light' }}">{{ $transaction->getStatus($transaction->status)['name'] ?? '[N\A]' }}</p>
                                             </div>
                                         </div>

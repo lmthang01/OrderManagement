@@ -96,8 +96,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 });
 
 
-// User
-Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], function(){
+// User //  'middleware' => 'check.login.user'
+Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('logout', [FrontendAuthController::class, 'logout'])->name('get_user.logout'); // Đăng xuất login
 

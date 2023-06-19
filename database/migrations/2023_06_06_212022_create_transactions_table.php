@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('transaction_type');     // Loại giao dịch
             $table->string('contact_id')->nullable();   // Người liên hệ
             $table->dateTime('start_day')->default(DB::raw('CURRENT_TIMESTAMP'));   // Ngày bắt đầu
-            $table->dateTime('deadline_day')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Hạn hoàn thành
+            $table->dateTime('deadline_date')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Hạn hoàn thành
             $table->dateTime('finish_day')->default(DB::raw('CURRENT_TIMESTAMP'));  // Ngày kết thúc
             $table->integer('status')->default(1);      // Trạng thái
             $table->string('result')->nullable();      // Kết quả

@@ -45,9 +45,10 @@ class ContractTypeController extends Controller
         return redirect()->route('get.contract_type_index');
     }
 
-    public function edit($id){
-
+    public function edit($id)
+    {
         $contract_type = ContractType::findOrFail($id);
+
         return view('frontend.contract_type.update', compact('contract_type'));
     }
 
