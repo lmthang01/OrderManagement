@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2023 at 05:19 PM
+-- Generation Time: Jun 20, 2023 at 05:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,6 +47,65 @@ INSERT INTO `categories` (`id`, `name`, `description`, `avatar`, `slug`, `create
 (3, 'Khác', 'Khách hàng khác', '2023-05-25__category-viettel.png', 'khac', '2023-05-25 02:35:47', '2023-05-25 09:48:54'),
 (4, 'NCTU', 'Khách hàng Nam Cần Thơ', '2023-05-25__caterofy-nctu.png', 'nctu', '2023-05-25 12:16:31', '2023-05-25 12:16:31'),
 (5, 'CRM', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'crm', '2023-05-30 14:18:40', '2023-06-08 14:04:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ch_favorites`
+--
+
+CREATE TABLE `ch_favorites` (
+  `id` char(36) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `favorite_id` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ch_messages`
+--
+
+CREATE TABLE `ch_messages` (
+  `id` char(36) NOT NULL,
+  `from_id` bigint(20) NOT NULL,
+  `to_id` bigint(20) NOT NULL,
+  `body` varchar(5000) DEFAULT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `position_id` int(11) NOT NULL DEFAULT 0,
+  `customer_id` int(11) NOT NULL DEFAULT 0,
+  `birthday` date DEFAULT NULL,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `address`, `phone`, `email`, `gender`, `position_id`, `customer_id`, `birthday`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Hà Trung Nghĩa', 'Phú Tân - An Giang', '0339557875', 'nghiavn@gmail.com', NULL, 1, 2, NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,6 +222,32 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `goods`
+--
+
+CREATE TABLE `goods` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `goods_code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `manufacturer` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
+  `guarantee` varchar(255) DEFAULT NULL,
+  `describe` varchar(255) DEFAULT NULL,
+  `input_price` double DEFAULT NULL,
+  `output_price` double DEFAULT NULL,
+  `warping_ratio` double DEFAULT NULL,
+  `tax` double DEFAULT NULL,
+  `total` double DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -205,7 +290,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2023_06_06_212022_create_transactions_table', 5),
 (36, '2023_06_07_200414_create_contract_table', 5),
 (37, '2023_06_07_211747_create_contract_types_table', 6),
-(38, '2023_06_07_212407_create_contract_types_table', 7);
+(38, '2023_06_07_212407_create_contract_types_table', 7),
+(39, '2023_06_06_235451_create_positions_table', 8),
+(40, '2023_06_08_185551_create_contacts_table', 8),
+(41, '2023_06_09_162426_create_orders_table', 8),
+(42, '2023_06_09_171839_create_goods_table', 8),
+(43, '2023_06_11_999999_add_active_status_to_users', 8),
+(44, '2023_06_11_999999_add_avatar_to_users', 8),
+(45, '2023_06_11_999999_add_dark_mode_to_users', 8),
+(46, '2023_06_11_999999_add_messenger_color_to_users', 8),
+(47, '2023_06_11_999999_create_chatify_favorites_table', 8),
+(48, '2023_06_11_999999_create_chatify_messages_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code_customer` int(11) DEFAULT NULL,
+  `deliver` varchar(255) DEFAULT NULL,
+  `contact_id` int(11) DEFAULT NULL,
+  `guarantee` varchar(255) DEFAULT NULL,
+  `delivery_address` varchar(255) DEFAULT NULL,
+  `payments` varchar(255) DEFAULT NULL,
+  `delivery_time` date DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -241,6 +359,28 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `positions`
+--
+
+CREATE TABLE `positions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Giám đốc', NULL, NULL),
+(2, 'Kỹ thuật', NULL, NULL),
+(3, 'Trưởng phòng', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transactions`
 --
 
@@ -253,7 +393,7 @@ CREATE TABLE `transactions` (
   `transaction_type` varchar(255) DEFAULT NULL,
   `contact_id` varchar(255) DEFAULT NULL,
   `start_day` datetime DEFAULT current_timestamp(),
-  `deadline_day` datetime DEFAULT current_timestamp(),
+  `deadline_date` datetime DEFAULT current_timestamp(),
   `finish_day` datetime DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 1,
   `result` varchar(255) DEFAULT NULL,
@@ -268,9 +408,9 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id`, `transaction_type`, `contact_id`, `start_day`, `deadline_day`, `finish_day`, `status`, `result`, `priority`, `transaction_address`, `document`, `created_at`, `updated_at`) VALUES
+INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id`, `transaction_type`, `contact_id`, `start_day`, `deadline_date`, `finish_day`, `status`, `result`, `priority`, `transaction_address`, `document`, `created_at`, `updated_at`) VALUES
 (1, 'Đăng ký Gói DV01', 'Đăng ký sử dụng gói dịch vụ 01 trong 1 tháng tới.', 1, 3, 'Giao dịch cung cấp dịch vụ', NULL, '2023-06-06 00:19:34', '2023-06-07 00:19:34', '2023-06-06 00:19:34', 1, 'Thành công', 3, 'Cần Thơ', NULL, '2023-06-05 17:19:34', '2023-06-05 17:19:34'),
-(12, 'Test', 'sdadsad', NULL, 2, 'Giao dịch hợp tác đối tác', NULL, '2023-06-04 22:12:00', '2023-06-09 22:12:24', '2023-06-08 22:12:00', 3, 'OK', 2, NULL, 'documents/hello.txt', '2023-06-09 15:12:24', '2023-06-09 15:12:24');
+(12, 'Test', 'Chỉnh sửa final', NULL, 2, 'Giao dịch mua sắm', NULL, '2023-06-04 22:12:00', '2023-06-09 22:12:24', '2023-06-08 22:12:00', 3, 'OK', 2, NULL, 'documents/hello.txt', '2023-06-09 15:12:24', '2023-06-20 15:45:18');
 
 -- --------------------------------------------------------
 
@@ -291,18 +431,21 @@ CREATE TABLE `users` (
   `status` tinyint(4) DEFAULT 0,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` tinyint(1) NOT NULL DEFAULT 0,
+  `dark_mode` tinyint(1) NOT NULL DEFAULT 0,
+  `messenger_color` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `gender`, `phone`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Lê Minh Thắng', 'thang@gmail.com', NULL, '$2y$10$bY8N540QNNgvsp8.qCYSs.Nt4oa.VCQFWZoJXSajc8yjywd.DgfFG', NULL, NULL, '0869859434', '2023-05-25__avata-2.jpg', 1, NULL, '2023-05-25 15:12:48', '2023-05-26 01:01:06'),
-(2, 'Huỳnh Nhật Trường', 'truong@gmail.com', NULL, '$2y$10$v55ze6Zb3e.VEnkrb9SEsOlI6AXNgroCcF30NqjoV6v4RY7vaZo.O', NULL, NULL, '0869859434', '2023-05-25__avata-3.jpg', 2, NULL, '2023-05-25 15:52:46', '2023-05-25 16:24:28'),
-(5, 'Lê Thắng', 'admin@gmail.com', NULL, '$2y$10$UM/UghIrzA5wQw6ef307ruRqQn0rQcEan7J2YrbjWyz3vKFo5AR4e', 'Cần Thơ', NULL, '0869888999', NULL, 2, NULL, '2023-05-26 02:38:04', NULL),
-(16, 'Lê Minh Thắng', 'thang259a3@gmail.com', NULL, '$2y$10$uHg7JjROxIYErGcsHniKBeCPH3QGedCEQlmdeA726O9mt3.qauxVi', NULL, NULL, '0869859434', '2023-05-29__z3256462162898-65a4e92d8293f141153ad646073ee509.jpg', 2, NULL, '2023-05-29 15:04:34', '2023-05-29 15:05:06');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `gender`, `phone`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`, `active_status`, `dark_mode`, `messenger_color`) VALUES
+(1, 'Lê Minh Thắng', 'thang@gmail.com', NULL, '$2y$10$bY8N540QNNgvsp8.qCYSs.Nt4oa.VCQFWZoJXSajc8yjywd.DgfFG', NULL, NULL, '0869859434', '2023-05-25__avata-2.jpg', 1, NULL, '2023-05-25 15:12:48', '2023-05-26 01:01:06', 0, 0, NULL),
+(2, 'Huỳnh Nhật Trường', 'truong@gmail.com', NULL, '$2y$10$v55ze6Zb3e.VEnkrb9SEsOlI6AXNgroCcF30NqjoV6v4RY7vaZo.O', NULL, NULL, '0869859434', '2023-05-25__avata-3.jpg', 2, NULL, '2023-05-25 15:52:46', '2023-05-25 16:24:28', 0, 0, NULL),
+(5, 'Lê Thắng', 'admin@gmail.com', NULL, '$2y$10$UM/UghIrzA5wQw6ef307ruRqQn0rQcEan7J2YrbjWyz3vKFo5AR4e', 'Cần Thơ', NULL, '0869888999', NULL, 2, NULL, '2023-05-26 02:38:04', NULL, 0, 0, NULL),
+(16, 'Lê Minh Thắng', 'thang259a3@gmail.com', NULL, '$2y$10$uHg7JjROxIYErGcsHniKBeCPH3QGedCEQlmdeA726O9mt3.qauxVi', NULL, NULL, '0869859434', '2023-05-29__z3256462162898-65a4e92d8293f141153ad646073ee509.jpg', 2, NULL, '2023-05-29 15:04:34', '2023-05-29 15:05:06', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -363,6 +506,24 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
 
 --
+-- Indexes for table `ch_favorites`
+--
+ALTER TABLE `ch_favorites`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ch_messages`
+--
+ALTER TABLE `ch_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contracts`
 --
 ALTER TABLE `contracts`
@@ -389,6 +550,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `goods`
+--
+ALTER TABLE `goods`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -399,6 +566,12 @@ ALTER TABLE `jobs`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -414,6 +587,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `positions`
+--
+ALTER TABLE `positions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `transactions`
@@ -452,6 +631,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contracts`
 --
 ALTER TABLE `contracts`
@@ -476,6 +661,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `goods`
+--
+ALTER TABLE `goods`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -485,13 +676,25 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `positions`
+--
+ALTER TABLE `positions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transactions`

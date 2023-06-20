@@ -95,7 +95,7 @@
         <!-- Main content area start -->
         <div class="main-content">
             <!-- Header area start -->
-            <div class="header-area">
+            {{-- <div class="header-area">
                 <div class="row align-items-center">
                     <!-- Nav and Search button -->
                     <div class="col-md-6 col-sm-8 clearfix">
@@ -103,12 +103,6 @@
                             <span></span>
                             <span></span>
                             <span></span>
-                        </div>
-                        <div class="search-box pull-left">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="Search..." required>
-                                <i class="ti-search"></i>
-                            </form>
                         </div>
                     </div>
                     <!-- Profile info & Task notification -->
@@ -267,14 +261,20 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Header area end -->
 
             <!-- Page title area start -->
-            <div class="page-title-area">
+            {{-- Thêm pt-3 và pb-3 --}}
+            <div class="page-title-area pt-3 pb-3">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
+                            <div id="btn-sidebar" class="nav-btn pull-left nav-btn-click" style="border-right: 2px solid #44444445 !important; padding-right: 26px !important; margin-top: 3px !important; height: 25px;">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
@@ -284,10 +284,15 @@
                         </div>
                     </div>
 
+                    <style>
+                        #dataTable3 {
+                            width: 100% !important;
+                        }
+                    </style>
                     <!-- Profile Info -->
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="{{ pare_url_file(Auth::user()->avatar) }}" onerror="this.src='/assets/images/author/avatar.png'"alt="avatar">
+                            {{-- <img class="avatar user-thumb" src="{{ pare_url_file(Auth::user()->avatar) }}" onerror="this.src='/assets/images/author/avatar.png'"alt="avatar"> --}}
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name ?? "[N\A]" }}<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item profile-option" href="#">Hướng dẫn sử dụng</a>

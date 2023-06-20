@@ -20,6 +20,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    {{-- Xử lý Modal --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.min.js"></script>
     <!-- Style css -->
     <link rel="stylesheet" href="../../../assets/css/typography.css">
     <link rel="stylesheet" href="../../../assets/css/default-css.css">
@@ -287,7 +292,7 @@
                     <!-- Profile Info -->
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="{{ pare_url_file(Auth::user()->avatar) }}" onerror="this.src='/assets/images/author/avatar.png'"alt="avatar">
+                            {{-- <img class="avatar user-thumb" src="{{ pare_url_file(Auth::user()->avatar) }}" onerror="this.src='/assets/images/author/avatar.png'"alt="avatar"> --}}
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name ?? "[N\A]" }}<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item profile-option" href="#">Hướng dẫn sử dụng</a>
@@ -509,6 +514,9 @@
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    {{-- Xử lý Modal --}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- others plugins -->
     <script src="../../../assets/js/plugins.js"></script>
     <script src="../../../assets/js/scripts.js"></script>

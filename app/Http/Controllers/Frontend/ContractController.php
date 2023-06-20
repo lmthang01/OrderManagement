@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
 use App\Models\Customer;
+use App\Models\Contact;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -26,7 +27,7 @@ class ContractController extends Controller
 
         $viewData = [
             'contracts' => $contracts,
-            'contract_status' => $status
+            'contract_status' => $status,
         ];
 
         return view('frontend.contract.index', $viewData);
@@ -35,11 +36,12 @@ class ContractController extends Controller
     public function create()
     {
         $customers = Customer::all();
+        $contacts = Contact::all();
 
         $model = new Contract();
         $status = $model->getStatus();
 
-        return view('frontend.contract.create', compact('customers', 'status'));
+        return view('frontend.contract.create', compact('customers', 'status', 'contacts'));
     }
 
     public function store(ContractRequest $request)
