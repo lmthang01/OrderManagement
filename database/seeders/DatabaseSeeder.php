@@ -39,29 +39,60 @@ class DatabaseSeeder extends Seeder
         //     'created_at' => Carbon::now()
         // ]);
 
-        DB::table('delivers')->insert([
+        DB::table('units')->insert([
           
-            'name' => 'Trần Tuấn Khanh',
+            'name' => 'Gam',
             
 
             'created_at' => Carbon::now()
         ]);
-
-        DB::table('delivers')->insert([
+        DB::table('units')->insert([
           
-            'name' => 'Lê Đình Phúc',
+            'name' => 'Mét',
             
 
             'created_at' => Carbon::now()
         ]);
-
-        DB::table('delivers')->insert([
+        DB::table('units')->insert([
           
-            'name' => 'Trần Bảo Châu',
+            'name' => 'Chiếc',
+            
+
+            'created_at' => Carbon::now()
+        ]); DB::table('units')->insert([
+          
+            'name' => 'Bộ',
             
 
             'created_at' => Carbon::now()
         ]);
+        DB::table('units')->insert([
+          
+            'name' => 'Gói',
+            
+
+            'created_at' => Carbon::now()
+        ]);
+        DB::table('units')->insert([
+          
+            'name' => 'Hộp',
+            
+
+            'created_at' => Carbon::now()
+        ]); DB::table('units')->insert([
+          
+            'name' => 'Thùng',
+            
+
+            'created_at' => Carbon::now()
+        ]); DB::table('units')->insert([
+          
+            'name' => 'Lít',
+            
+
+            'created_at' => Carbon::now()
+        ]);
+       
         
     }
 }

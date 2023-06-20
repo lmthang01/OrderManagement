@@ -6,9 +6,10 @@
        
         <div class="card-body">
             <div class="head-title-btn">
-                  
-                <button type="button" class="btn btn-primary btn-addtrans mb-3" data-toggle="modal" data-target=".modal-xl2"><i class="fa fa-plus-circle" aria-hidden="true"></i></i><span>Thêm hàng hóa</span></button>
-                @include('frontend.order.form_goods') 
+                <a href="{{ route ('get.goods_create') }}">
+                    <button type="button" class="btn btn-primary btn-addtrans mb-3" ><i class="fa fa-plus-circle" aria-hidden="true"></i></i><span>Thêm hàng hóa</span></button>
+                    {{-- @include('frontend.order.form_goods')  --}}
+                </a>
                 </div>
             <div class="head-title-addbtn">
                 
@@ -35,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($goods2 ?? [] as $item)
+                        @foreach ($goods1 ?? [] as $item)
                         <tr>
                           
                             <td>
@@ -49,14 +50,15 @@
                             <td><input type="text" value="{{ $item->origin }}"></td>
                             <td><input type="text" value="{{ $item->manufacturer }}"></td>
                             <td><input type="text" value="{{ $item->guarantee }}"></td>
-                            <td><input type="text" value="{{ $item->describe }}"></td>
+                            <td><input type="text" value="{{ $item->unit->name }}"></td>
                             <td><input type="text" value="{{ $item->input_price }}"></td>
                             <td><input type="text" value="{{ $item->output_price }}"></td>
                             <td><input type="text" value="{{ $item->warping_ratio }}"></td>
                             <td><input type="text" value="{{ $item->tax }}"></td>
                             <td><input type="text" value="{{ $item->total }}"></td>
                         </tr>
-                        @endforeach                      
+                        @endforeach      
+
                     </tbody>
                 </table>
             </div>

@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('code_order')->nullable();
             $table->integer('code_customer')->nullable();
-            $table->string('deliver')->nullable();
-            $table->integer('contact_id')->nullable(); // Địa chỉ văn phòng
+            $table->integer('deliver_id')->nullable();
+            $table->string('contact_id')->nullable(); // Địa chỉ văn phòng
             $table->string('guarantee')->nullable();
+            $table->string('phone')->nullable();
             $table->string('delivery_address')->nullable();
             $table->string('payments')->nullable();
             $table->date('delivery_time')->nullable();
@@ -24,6 +26,7 @@ return new class extends Migration
             $table->string('note')->nullable();
             $table->integer('status')->default(1);
             $table->integer('user_id')->default(0); // Thuộc user nào tạo
+            $table->integer('test')->default(0); // Thuộc user nào tạo
 
             $table->timestamps();
         });

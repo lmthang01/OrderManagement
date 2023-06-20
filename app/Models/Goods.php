@@ -15,5 +15,9 @@ class Goods extends Model
     // {
     //     return $this->belongsTo(Order::class, 'order_id','code_order'); // Liên kết 1-1, 1 hàng hóa thuộc 1 đơn hàng
     // }
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 
 }

@@ -260,7 +260,7 @@
                                                         <td>{{ $item->origin }}</td>
                                                         <td>{{ $item->manufacturer }}</td>
                                                         <td>{{ $item->guarantee }}</td>
-                                                        <td>{{ $item->unit }}</td>
+                                                        <td>{{ $item->unit->name }}</td>
                                                         <td>{{ $item->input_price }}</td>
                                                         <td>{{ $item->output_price }}</td>
                                                         <td>{{ $item->tax }}</td>

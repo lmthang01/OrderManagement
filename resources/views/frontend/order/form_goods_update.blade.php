@@ -3,94 +3,52 @@
 <form method="POST" action="" >
     @csrf
             <div class="main-content-inner">
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-                            <!-- Tiêu đề -->
-                            <div class="col-12 mt-5">
-                                <div class="card card-header-main">
-                                    <div class="card-body">
-                                        <div class="card-header-order">
-                                            <h4 class="header-title header-title-main">Thêm mới đơn hàng</h4>
-                                            <div class="btn-group-head-order">
-                                                <button type="submit" name="submit_form_order" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
-                                                {{-- <a href="../Contract/addnewContract.php">
-                                                    <button type="button" class="btn btn-addorder"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Lưu và sinh hợp đồng</span></button>
-                                                </a> --}}
-                                                <a href="{{ route('get.order_index') }}">
-                                                    <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- EnD -->
-                            <!-- Form nhập thông tin cơ bản -->
+                           
+                           
+                            <!-- Form nhập thông tin hàng hóa start-->
+                            
                             <div class="col-12 mt-2">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-header-order">
-                                            <h4 class="header-title">Thông tin cơ bản</h4>
+                                            <h4 class="header-title header-title-main">Hàng Hóa</h4>
+                                            <div class="btn-group-head-order">
+                                                <button type="submit" class="btn btn-addorder"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm Hàng Hóa</span></button>
+                                                {{-- <button onclick="window.location.href='{{ route ('get.customer_selecttion_update') }}'" type="button" class="btn btn-addorder btn-back">Trở về</button> --}}
+                                        </div>
                                         </div>
                                         <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
-                                        <div class="btn-load">
-                                            <!-- Tùy vào chọn lựa ở mục "Chọn" tiếp theo để quyết định 1 nút active 1 nút disable - Không đồng thời cả 2" -->
-                                               <!-- Large modal -->
-                                               <a href="{{ route('get.customer_selecttion_create') }}">
-                                                <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3">Chọn khách hàng</button>
-                                            </a>
-                                           <!-- Extra Large modal modal end -->
-                                            {{-- <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" disabled>Chọn Hợp Đồng</button> --}}
-                                            <!-- Sau khi "Chọn Khách Hàng" hoặc "Chọn Hợp Đồng" thì nút "Chọn Liên Hệ" sẽ active -->
-                                            {{-- @if (isset($customer->id) && $customer->id)
-                                            <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target=".modal-xl1" >Chọn Liên Hệ</button>
-                                            @include('frontend.order.select_contact')
-                                            @else
-                                            <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" disabled>Chọn Liên Hệ</button>
-                                            @endif --}}
-                                        </div>
-                                        @include('frontend.order.form_order')
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form nhập thông tin cơ bản end -->
-                            <!-- Form nhập thông tin hàng hóa start-->
-                            
-                            {{-- <div class="col-12 mt-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-header-order">
-                                            <h4 class="header-title">Thông tin hàng hóa</h4>
-                                        </div>
-                                        <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
-                                        <form method="POST" action="" >
-                                            @csrf
+                                        
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="example-text-input"  class="col-form-label input-label">Mã hàng hóa:</label>
                                                     <input class="form-control" name="goods_code" type="text"  id="example-text-input"
-                                                   value="{{ old('goods_code', $goods->goods_code ?? '') }}">
+                                                    value="{{ old('goods_code', $goods->goods_code ?? '') }}">
+                                                    @error('goods_code')
+                                                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('goods_code') }}</small>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-text-input"  class="col-form-label input-label">Tên hàng hóa:</label>
                                                     <input class="form-control" name="name" type="text"  id="example-text-input"
                                                     value="{{ old('name', $goods->name ?? '') }}">
+                                                    @error('name')
+                                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('name') }}</small>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Đơn vị:</label>
-                                                    <select name="unit" class="custom-select custom-select-height">
-                                                        <option value="">--Chọn đơn vị--</option>
-                                                        <option value="Gam">Gam</option>
-                                                        <option value="Mét">Mét</option>
-                                                        <option value="Chiếc">Chiếc</option>
-                                                        <option value="Bộ">Bộ</option>
-                                                        <option value="Gói">Gói</option>
-                                                        <option value="Hộp">Hộp</option>
-                                                        <option value="Thùng">Thùng</option>
-                                                        <option value="Lít">Lít</option>
+                                                    <select name="unit_id" class="custom-select custom-select-height" id="">
+                                                        <option value="">---Chọn đơn vị---</option>
+                                                        @foreach ($unit ?? [] as $goods1)
+                                                        <option value="{{ $goods1->id }}"
+                                                            {{ ($goods1->unit_id ?? 0) == $goods1->id ? 'selected' : '' }}>{{ $goods1->name }}
+                                                        </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
@@ -124,73 +82,69 @@
                                             </div>
 
                                             <div class="col-6">
+                                                
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Đơn giá nhập:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="input_price" type="text" id="example-text-input"
+                                                        <input class="form-control" name="input_price" type="number" id="example-text-input"
                                                         value="{{ old('input_price', $goods->input_price ?? '') }}" >
                                                         <span class="unit-price">0</span>
+                                                        @error('input_price')
+                                                            <small id="emailHelp" class="form-text text-danger">{{ $errors->first('input_price') }}</small>
+                                                        @enderror
                                                     </div>
+                                                
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Tỷ lệ vênh:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="warping_ratio" type="text" id="example-text-input"
+                                                        <input class="form-control" name="warping_ratio" type="number" id="example-text-input"
                                                          value="{{ old('warping_ratio', $goods->warping_ratio ?? '') }}" >
                                                         <span class="unit-price">%</span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                            
+                                                {{-- <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Đơn giá xuất:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="output_price" type="text" id="example-text-input"
+                                                        <input class="form-control" name="output_price" type="number" id="example-text-input"
                                                         value="{{ old('output_price', $goods->output_price ?? '') }}" >
-                                                        <span class="unit-price">0</span>
+                                                        <span class="unit-price">0</span>                                                        
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Thuế:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="tax" type="text" id="example-text-input"
+                                                        <input class="form-control" name="tax" type="number" id="example-text-input"
                                                         value="{{ old('tax', $goods->tax ?? '') }}" >
 
                                                         <span class="unit-price">%</span>
                                                     </div>
                                                 </div>
                                                 <!-- Sau khi tính toán thuế và tất cả tính toán liên quan -->
-                                                <div class="form-group">
+                                                {{-- <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Tổng tiền đơn hàng:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="total" type="text" id="example-text-input"
+                                                        <input class="form-control" name="total" type="number" id="example-text-input"
                                                         value="{{ old('total', $goods->total ?? '') }}" >
                                                         <span class="unit-price">0</span>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
-                                        <div class="btn-group-head-order">
+                                        {{-- <div class="btn-group-head-order">
                                             <button type="submit" class="btn btn-addorder"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm Hàng Hóa</span></button>
-                                        </div>
-                                    </form>
+                                            <button onclick="window.location.href='{{ route ('get.contact_index') }}'" type="button" class="btn btn-addorder btn-back">Trở về</button>
+                                        </div> --}}
+                                 
                                     </div>
                                 </div>
-                            </div> --}}
-                            
+                            </div>
+                       
                             <!-- Form nhập thông tin hàng hóa end -->
-                        
-                            <!-- Form thông tin khách hàng end -->
                            
-                          
-                            @include('frontend.order.table_goods')
-                            
                         </div>
                     </div>
-                   
                 </div>
-              
-               
-
             </form>
-
-            
   @stop

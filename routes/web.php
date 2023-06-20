@@ -147,9 +147,20 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
     Route::get('order/create', [FrontendOrderController::class, 'create'])->name('get.order_create');
     Route::post('order/create', [FrontendOrderController::class, 'store_order'])->name('get.order_create');
   
+    // // Customer_selection (Chọn khách hàng)
+    Route::get('order/select_customer_update', [FrontendOrderController::class, 'customer_selecttion_create'])->name('get.customer_selecttion_create');
+    Route::post('order/select_customer_update', [FrontendOrderController::class, 'customer_selecttion_store'])->name('get.customer_selecttion_create');
+    
+    Route::get('order/select_customer_update/{id}', [FrontendOrderController::class, 'customer_selecttion_update'])->name('get.customer_selecttion_update');
+    Route::post('order/select_customer_update/{id}', [FrontendOrderController::class, 'customer_selecttion_store_update'])->name('get.customer_selecttion_update');
+
+
     // // Goods (Hàng hóa)
     Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');
     Route::post('order/form_goods', [FrontendOrderController::class, 'goods_store'])->name('get.goods_create');
+    
+    Route::get('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_update'])->name('get.goods_update');
+    Route::post('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_store_update'])->name('get.goods_update');
 
     Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.goods_delete');
     //

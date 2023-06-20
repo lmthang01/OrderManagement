@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('order_id')->nullable();
             $table->string('goods_code')->nullable();
             $table->string('name')->nullable();
-            $table->string('unit')->nullable(); // Địa chỉ văn phòng
+            $table->integer('unit_id')->nullable(); // Địa chỉ văn phòng
             $table->string('manufacturer')->nullable();
             $table->string('origin')->nullable();
             $table->string('guarantee')->nullable();

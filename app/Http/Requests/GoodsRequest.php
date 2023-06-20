@@ -19,27 +19,27 @@ class GoodsRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    // public function rules(): array
-    // {
-    //     return [
-    //         'goods_code' => 'required|unique:goods,goods_code,'.$this->id,
-    //         'name' => 'required',
+    public function rules(): array
+    {
+        return [
+            'goods_code' => 'required|unique:goods,goods_code,'.$this->id,
+            'name' => 'required',
             
-    //         'input_price' => 'required',
+            'input_price' => 'required',
 
-    //     ];
-    // }
+        ];
+    }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'goods_code.unique' => 'Mã hàng hóa đã tồn tại!',
-    //         'goods_code.required' => 'Mã hàng hóa không được để trống!',
+    public function messages()
+    {
+        return [
+            'goods_code.unique' => 'Mã hàng hóa đã tồn tại!',
+            'goods_code.required' => 'Mã hàng hóa không được để trống!',
 
-    //         'name.required' => 'Tên hàng hóa không được để trống!',
+            'name.required' => 'Tên hàng hóa không được để trống!',
            
-    //         'input_price.required' => 'Giá nhập không được để trống!',
+            'input_price.required' => 'Giá nhập không được để trống!',
             
-    //     ];
-    // }
+        ];
+    }
 }
