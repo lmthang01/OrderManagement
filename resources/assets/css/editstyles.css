@@ -72,6 +72,7 @@
 .btn-back:hover {
     background-color: #444444;
     opacity: 0.95;
+    color: #fff !important;
 }
 
 .card-header-order {
@@ -98,6 +99,7 @@
 .btn-addorder:hover {
     background-color: #444444;
     opacity: 0.95;
+    color: #fff !important;
 }
 /* End */
 
