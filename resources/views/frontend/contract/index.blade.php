@@ -1,5 +1,5 @@
 @extends('frontend.layouts.business_contract')
-<@php
+@php
     setlocale(LC_MONETARY, 'vi_VN');    // Thiết lập locale cho tiền tệ (cần có extension intl)
     $totalDebt = 0;                     // Biến lưu tổng nợ
     $totalPaid = 0;                     // Biến lưu tổng đã thanh toán

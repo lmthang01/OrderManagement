@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2023 at 05:46 PM
+-- Generation Time: Jun 21, 2023 at 08:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -121,7 +121,6 @@ CREATE TABLE `contracts` (
   `value` decimal(10,2) DEFAULT 0.00,
   `start_day` datetime NOT NULL,
   `finish_day` datetime NOT NULL,
-  `effective_date` datetime DEFAULT NULL,
   `status` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `contract_type` varchar(255) NOT NULL,
@@ -141,9 +140,9 @@ CREATE TABLE `contracts` (
 -- Dumping data for table `contracts`
 --
 
-INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `effective_date`, `status`, `name`, `contract_type`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, NULL, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', NULL, 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
-(2, 2, 4, NULL, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', NULL, 3, 'Hợp đồng lắp đặt wifi theo năm.', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
+INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `status`, `name`, `contract_type`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, NULL, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
+(2, 2, 4, NULL, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 3, 'Hợp đồng lắp đặt wifi theo năm.', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -228,6 +227,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `goods` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `order_id` int(11) DEFAULT NULL,
+  `contract_id` int(11) DEFAULT NULL,
   `goods_code` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE `goods` (
   `describe` varchar(255) DEFAULT NULL,
   `input_price` double DEFAULT NULL,
   `output_price` double DEFAULT NULL,
-  `warping_ratio` double DEFAULT NULL,
+  `markup_ratio` double DEFAULT NULL,
   `tax` double DEFAULT NULL,
   `total` double DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,

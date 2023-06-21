@@ -11,9 +11,14 @@
                                     <h4 class="header-title header-title-main">Thêm mới hợp đồng bán ra</h4>
                                     <div class="btn-group-head-order">
                                         <button type="button" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
-                                        <a href="../Contract/contract.php">
+                                        <a href="{{ route('get.contract_index') }}">
                                             <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                         </a>
+                                        <style>
+                                            .btn:hover {
+                                                color: #fff !important;
+                                            }
+                                        </style>
                                     </div>
                                 </div>
                             </div>
