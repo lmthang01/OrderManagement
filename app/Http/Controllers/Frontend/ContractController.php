@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
+use App\Models\ContractType;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\Contact;
 use Exception;
@@ -35,13 +37,15 @@ class ContractController extends Controller
 
     public function create()
     {
+        $users = User::all();
         $customers = Customer::all();
         $contacts = Contact::all();
+        $contract_types = ContractType::all();
 
         $model = new Contract();
         $status = $model->getStatus();
 
-        return view('frontend.contract.create', compact('customers', 'status', 'contacts'));
+        return view('frontend.contract.create', compact('status', 'users', 'customers', 'contacts', 'contract_types'));
     }
 
     public function store(ContractRequest $request)
