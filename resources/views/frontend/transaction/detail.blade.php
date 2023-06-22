@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Tên giao dịch:</strong></label>
                                             </div>
@@ -37,7 +37,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Người phụ trách:</strong></label>
                                             </div>
@@ -45,7 +45,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->user->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Ngày bắt đầu:</strong></label>
                                             </div>
@@ -53,7 +53,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->start_day ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Hạn hoàn thành:</strong></label>
                                             </div>
@@ -61,7 +61,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->deadline_day ?? "[N/A]" }}<br></p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Ngày hoàn thành:</strong></label>
                                             </div>
@@ -69,7 +69,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->finish_day }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Loại giao dịch:</strong></label>
                                             </div>
@@ -77,7 +77,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->transaction_type }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Trạng thái:</strong></label>
                                             </div>
@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Mức ưu tiên:</strong></label>
                                             </div>
@@ -96,7 +96,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->priority }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Mô tả:</strong></label>
                                             </div>
@@ -104,15 +104,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->description }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col-sm-5">
-                                                <label for="example-text-input" class="col-form-label input-label"><strong>Đánh giá:</strong></label>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $transaction->assessment }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Người liên hệ:</strong></label>
                                             </div>
@@ -120,15 +112,15 @@
                                                 <p class="col-form-label input-label">{{ $transaction->contact->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Chức vụ:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $transaction->contact->role ?? "[N/A]" }}</p>
+                                                <p class="col-form-label input-label">{{ $transaction->contact->position->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Kết quả:</strong></label>
                                             </div>
@@ -136,7 +128,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->result }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Địa chỉ giao dịch:</strong></label>
                                             </div>
@@ -144,11 +136,11 @@
                                                 <p class="col-form-label input-label">{{ $transaction->transaction_address }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group detail_frame_right">
                                             <div class="col-sm-5">
                                                 <label for="example-text-input" class="col-form-label input-label"><strong>Tài liệu liên quan:</strong></label>
                                             </div>
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-7" style="padding-top: 5px !important;}">
                                                 @if (isset($transaction->document) && $transaction->document)
                                                     <p>{{ $transaction->document }}</p>
                                                 @endif
@@ -173,10 +165,10 @@
                                             <tr>
                                                 <th>Mã khách hàng</th>
                                                 <th>Tên khách hàng</th>
-                                                <th>Địa chỉ văn phòng</th>
                                                 <th>Điện thoại</th>
-                                                <th>Mô tả</th>
-                                                <th>Ngày tạo</th>
+                                                <th>Địa chỉ văn phòng</th>
+                                                <th>Mã số thuế</th>
+                                                <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -185,10 +177,15 @@
                                                     <tr>
                                                         <td>{{ $item->id }}</td>
                                                         <td>{{ $item->name }}</td>
-                                                        <td>{{ $item->address }}</td>
                                                         <td>{{ $item->phone }}</td>
-                                                        <td>{{ $item->description }}</td>
-                                                        <td>{{ $item->created_at }}</td>
+                                                        <td>{{ $item->address }}</td>
+                                                        <td>{{ $item->tax_code }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
+                                                                {{ $item->getStatus($item->status)['name'] ?? 'Mới' }}
+                                                            </span>
+                                                        </td>
                                                     </tr>
                                                 @endif
                                             @endforeach

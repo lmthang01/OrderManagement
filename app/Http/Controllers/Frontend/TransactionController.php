@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use App\Models\Customer;
+use App\Models\Contact;
+use App\Models\Position;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,10 +19,10 @@ use Psy\Readline\Hoa\Console;
 class TransactionController extends Controller
 {
     public function index(){
-        $transactions = Transaction::with('customer:id,name','user:id,name');
+        $transactions = Transaction::with('customer:id,name','user:id,name','contact:id,name');
         $transactions = $transactions
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(10);
 
         $model = new Transaction();
         $status = $model->getStatus();
@@ -35,24 +37,20 @@ class TransactionController extends Controller
 
     public function create()
     {
-        // Truy xuất dữ liệu của Customer, Contact
         $customers = Customer::all();
-        // Đợi thêm Contact
-        // $contact = Contact::all();
-
+        $contacts = Contact::all();
         $model = new Transaction();
         $status = $model->getStatus();
 
-        return view('frontend.transaction.create', compact('customers', 'status'));
+        return view('frontend.transaction.create', compact('customers', 'contacts', 'status'));
     }
 
     public function store(TransactionRequest $request)
     {
         try {
             $data = $request->all();
-            // Thêm đoạn code sau để lấy thông tin khách hàng từ request và gán vào các field tương ứng
             $customers = Customer::findOrFail($data['customer_id']);
-
+            $contacts = Contact::findOrFail($data['contact_id']);
             // Lưu tệp tin vào thư mục lưu trữ
             if ($request->hasFile('document')) {
                 $file = $request->file('document');
@@ -78,21 +76,24 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($id);
         $customer = Customer::all();
+        $contact = Contact::all();
 
         $model = new Transaction();
         $status = $model->getStatus();
 
-        return view('frontend.transaction.detail', compact('transaction', 'customer', 'status'));
+        return view('frontend.transaction.detail', compact('transaction', 'customer', 'status', 'contact'));
     }
 
     public function edit($id){
 
         $transaction = Transaction::findOrFail($id);
         $customers = Customer::all();
+        $contacts = Contact::all();
+        $positions = Position::all();
         $model = new Transaction();
         $status = $model->getStatus();
 
-        return view('frontend.transaction.update', compact('transaction', 'customers', 'status'));
+        return view('frontend.transaction.update', compact('transaction', 'customers', 'status', 'contacts', 'positions'));
     }
 
     public function update(TransactionRequest $request, $id)

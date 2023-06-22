@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 class ContactController extends Controller
 {
     public function index(){
-        $customers = Customer::all(); 
+        $customers = Customer::all();
         $positions = Position::all();
 
         $contacts = Contact::with('customer:id,name', 'position:id,name');
@@ -32,11 +32,11 @@ class ContactController extends Controller
 
     public function create(){
 
-        $customers = Customer::all(); 
+        $customers = Customer::all();
         $positions = Position::all();
         $model = new Contact();
-        $gender = $model->getGender(); 
-        
+        $gender = $model->getGender();
+
         return view('frontend.contact.create', compact('customers', 'positions', 'gender'));
     }
 
@@ -54,12 +54,12 @@ public function store(ContactRequest $request)
                 'gender' => $request->gender,
                 'phone' => $request->phone,
                 'birthday' => $request->birthday
-        ]; 
+        ];
             $data['created_at'] = Carbon::now();
             $data['user_id'] = Auth::user()->id; // Hiển thị name người tạo contact
 
             $contact = Contact::create($data);
-            
+
         } catch (\Exception $exception) {
             Log::error("ERROR => ContactController@store => " . $exception->getMessage());
             toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
@@ -89,7 +89,7 @@ public function store(ContactRequest $request)
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('frontend.contact.customer_update', compact('customer', 'categories', 'status')); 
+        return view('frontend.contact.customer_update', compact('customer', 'categories', 'status'));
     }
     public function customer_update(CustomerRequest $request, $id)
     {
@@ -120,8 +120,8 @@ public function store(ContactRequest $request)
     public function detail($id){
 
         $contact = Contact::findOrFail($id);
-        
-        $customers = Customer::all(); 
+
+        $customers = Customer::all();
 
         $model = new Contact();
         $gender = $model->getGender();
@@ -139,7 +139,7 @@ public function store(ContactRequest $request)
         $model = new Contact();
         $gender = $model->getGender();
 
-        return view('frontend.contact.update', compact('contact','customers', 'positions', 'gender')); 
+        return view('frontend.contact.update', compact('contact','customers', 'positions', 'gender'));
     }
 
     public function update(ContactRequest $request, $id){
@@ -155,7 +155,7 @@ public function store(ContactRequest $request)
                 'gender' => $request->gender,
                 'phone' => $request->phone,
                 'birthday' => $request->birthday
-        ]; 
+        ];
                 $data['updated_at'] = Carbon::now();
                 Contact::find($id)->update($data);
             } catch (\Exception $exception) {
@@ -166,7 +166,7 @@ public function store(ContactRequest $request)
             toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
             return redirect()->route('get.contact_index');
 
-              
+
             }
 
     public function delete(Request $request, $id)

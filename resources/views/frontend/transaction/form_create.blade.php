@@ -4,7 +4,7 @@
         <div class="col-sm-6">
             {{-- Tên giao dịch --}}
             <div class="form-group">
-                <label for="transaction_name" class="input-label">Tên giao dịch<span style="color: red">*</span>:</label>
+                <label for="transaction_name" class="col-form-label input-label">Tên giao dịch<span style="color: red">*</span>:</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name', $transaction->name ?? '') }}" id="transaction_name">
                 @error('name')
                     <small id="" class="form-text text-danger">{{ $errors->first('name') }}</small>
@@ -12,14 +12,14 @@
             </div>
             {{-- Mô tả giao dịch --}}
             <div class="form-group">
-                <label for="transaction_des" class="input-label">Mô tả:</label>
+                <label for="transaction_des" class="col-form-label input-label">Mô tả:</label>
                 <textarea name="description" id="transaction_des" class="form-control" cols="30" rows="2">{{ old('description', $transaction->description ?? '') }}</textarea>
                 @error('description')
                     <small id="" class="form-text text-danger">{{ $errors->first('description') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="choose_customer" class="input-label">Khách hàng<span style="color: red">*</span>:</label>
+                <label for="choose_customer" class="col-form-label input-label">Khách hàng<span style="color: red">*</span>:</label>
                 <select name="customer_id" class="custom-select custom-select-height" id="choose_customer">
                     <option value="">----Chọn khách hàng----</option>
                     @foreach ($customers ?? [] as $item)
@@ -32,36 +32,36 @@
                     <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
                 @enderror
             </div>
-            {{-- <div class="form-group">
-                <label for="exampleInputEmail1" class="input-label">Liên hệ:</label>
-                <select name="category_id" class="custom-select custom-select-height" id="">
+            <div class="form-group">
+                <label for="" class="col-form-label input-label">Liên hệ:</label>
+                <select name="contact_id" class="custom-select custom-select-height" id="">
                     <option value="">----Chọn liên hệ----</option>
-                    @foreach ($contact ?? [] as $item)
+                    @foreach ($contacts ?? [] as $item)
                         <option value="{{ $item->id }}"
                             {{ ($contact->contact_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
                         </option>
                     @endforeach
                 </select>
-                @error('category_id')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
+                @error('contact_id')
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('contact_id') }}</small>
                 @enderror
-            </div> --}}
+            </div>
             <div class="form-group">
-                <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
+                <label for="start_day" class="col-form-label col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
                 <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day') }}" id="start_day">
                 @error('start_day')
                     <small id="" class="form-text text-danger">{{ $errors->first('start_day') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="deadline_date" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
+                <label for="deadline_date" class="col-form-label col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
                 <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
                 @error('deadline_date')
                     <small id="" class="form-text text-danger">{{ $errors->first('deadline_date') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="finish_day" class="col-form-label input-label">Ngày hoàn thành:</label>
+                <label for="finish_day" class="col-form-label col-form-label input-label">Ngày hoàn thành:</label>
                 <input class="form-control" type="datetime-local" name="finish_day" value="{{ old('finish_day') }}" id="finish_day">
                 @error('finish_day')
                     <small id="" class="form-text text-danger">{{ $errors->first('finish_day') }}</small>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="choose_transaction" class="input-label">Loại giao dịch<span style="color: red">*</span>:</label>
+                <label for="choose_transaction" class="col-form-label input-label">Loại giao dịch<span style="color: red">*</span>:</label>
                 <select name="transaction_type" class="custom-select custom-select-height" id="choose_transaction">
                     <option value="">----Chọn loại giao dịch----</option>
                     <option value="Giao dịch bán hàng" {{ old('transaction_type') == 1 ? 'selected' : '' }}>Giao dịch bán hàng</option>
@@ -87,7 +87,7 @@
                  @enderror
             </div>
             <div class="form-group">
-                <label for="" class="input-label">Trạng thái:</label>
+                <label for="" class="col-form-label input-label">Trạng thái:</label>
                 <select name="status" class="custom-select custom-select-height" >
                     @foreach ($status ?? [] as $key => $item)
                         <option value="{{ $key }}" {{ ($transaction->status ?? 0) == $key ? 'selected' : '' }}>
@@ -96,7 +96,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="result_trans" class="input-label">Kết quả:</label>
+                <label for="result_trans" class="col-form-label input-label">Kết quả:</label>
                 <input type="text" id="result_trans" name="result" class="form-control"
                     value="{{ old('result', $transaction->result ?? '') }}">
                 @error('result')
@@ -104,7 +104,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="choose_priority" class="input-label">Mức ưu tiên:</label>
+                <label for="choose_priority" class="col-form-label input-label">Mức ưu tiên:</label>
                 <select name="priority" class="custom-select custom-select-height" id="choose_priority">
                     <option value="">----Chọn mức ưu tiên----</option>
                     <option value="1" {{ old('priority') == 1 ? 'selected' : '' }}>1</option>
@@ -118,14 +118,14 @@
                  @enderror
             </div>
             <div class="form-group">
-                <label for="transaction_address" class="input-label">Địa chỉ giao dịch:</label>
+                <label for="transaction_address" class="col-form-label input-label">Địa chỉ giao dịch:</label>
                 <textarea name="address" id="transaction_address" class="form-control" cols="30" rows="2">{{ old('address', $transaction->transaction_address ?? '') }}</textarea>
                 @error('transaction_address')
                     <small id="" class="form-text text-danger">{{ $errors->first('transaction_address') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label class="input-label" for="">Tài liệu giao dịch:</label>
+                <label class="col-form-label input-label" for="">Tài liệu giao dịch:</label>
                 <input type="file" class="form-control" name="document">
 
                 @if (isset($transaction->document) && $transaction->document)
@@ -135,7 +135,7 @@
         </div>
     </div>
     <div class="form-group btn-group-savetrans">
-        <button type="submit" onclick="setSelectedDates()" class="btn btn-primary btn-savetrans mt-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+        <button type="submit" onclick="setSelectedDates()" class="btn btn-primary btn-savetrans mt-3 pl-3 pr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu & Thêm Mới</span></button>
     </div>
     <script>
         function setSelectedDates() {

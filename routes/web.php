@@ -16,6 +16,8 @@ use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractType
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 
+use App\Models\Position;
+
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
@@ -141,6 +143,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::post('transaction/update/{id}', [FrontendTransactionController::class, 'update'])->name('get.transaction_update');
 
     Route::get('transaction/delete/{id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
+
 
     // Contract (Hợp đồng bán ra)
     Route::get('contract/index', [FrontendContractController::class, 'index'])->name('get.contract_index');

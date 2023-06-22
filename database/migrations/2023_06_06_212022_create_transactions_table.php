@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('user_id')->nullable();      // Người phụ trách (tài khoản đang đăng nhập)
             $table->integer('customer_id')->nullable();  // Khách hàng
             $table->string('transaction_type');     // Loại giao dịch
-            $table->string('contact_id')->nullable();   // Người liên hệ
+            $table->integer('contact_id')->nullable();   // Người liên hệ
             $table->dateTime('start_day')->default(DB::raw('CURRENT_TIMESTAMP'));   // Ngày bắt đầu
             $table->dateTime('deadline_date')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Hạn hoàn thành
             $table->dateTime('finish_day')->default(DB::raw('CURRENT_TIMESTAMP'));  // Ngày kết thúc

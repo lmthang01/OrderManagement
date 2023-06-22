@@ -169,4 +169,12 @@
     display: flex;
     justify-content: space-between;
 }
-/*  */
+/* Khung Detail */
+.detail_frame {
+    border-bottom: 1px solid #f3eeff;
+}
+
+.detail_frame_right {
+    border-bottom: 1px solid #f3eeff;
+    border-left: 1px solid #f3eeff;
+}
