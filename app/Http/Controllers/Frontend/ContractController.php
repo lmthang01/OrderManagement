@@ -19,10 +19,10 @@ use Illuminate\Support\Str;
 class ContractController extends Controller
 {
     public function index(){
-        $contracts = Contract::with('customer:id,name','user:id,name');
+        $contracts = Contract::with('customer:id,name','user:id,name','contact:id,name');
         $contracts = $contracts
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(10);
 
         $model = new Contract();
         $status = $model->getStatus();

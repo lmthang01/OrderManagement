@@ -65,8 +65,8 @@
                                 <a href="javascript:void(0)" aria-expanded="true">
                                 <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
                                 <ul class="collapse">
-                                    <li class="active"><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
-                                    <li><a href="{{ route ('get.goods_index') }}">Hàng hóa</a></li>
+                                    <li><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
+                                    <li class="active"><a href="{{ route ('get.goods_index') }}">Hàng hóa</a></li>
                                     <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
                                     <li><a href="{{ route('get.contract_index') }}">Hợp đồng bán ra</a></li>
                                 </ul>
@@ -108,7 +108,7 @@
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
                                 <li><a href="{{ route('get.transaction_index') }}">Kinh Doanh</a></li>
-                                <li><span>Giao Dịch Với Khách Hàng</span></li>
+                                <li><span>Hàng Hóa</span></li>
                             </ul>
                         </div>
                     </div>

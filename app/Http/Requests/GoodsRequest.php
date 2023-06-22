@@ -26,7 +26,7 @@ class GoodsRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên giao dịch không được để trống!',
+            'name.required' => 'Tên hàng hóa không được để trống!',
         ];
     }
 }

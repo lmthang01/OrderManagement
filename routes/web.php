@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerControll
 use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionController;
 use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
 use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractTypeController;
+use App\Http\Controllers\Frontend\GoodsController as FrontendGoodsController;
 
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -144,7 +145,6 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('transaction/delete/{id}', [FrontendTransactionController::class, 'delete'])->name('get.transaction_delete');
 
-
     // Contract (Hợp đồng bán ra)
     Route::get('contract/index', [FrontendContractController::class, 'index'])->name('get.contract_index');
 
@@ -193,17 +193,30 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('order/create', [FrontendOrderController::class, 'create'])->name('get.order_create');
     Route::post('order/create', [FrontendOrderController::class, 'store'])->name('get.order_store');
-        // Goods (Hàng hóa)
-    Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');
-    Route::post('order/form_goods', [FrontendOrderController::class, 'goods_store'])->name('get.goods_store');
 
-    Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.goods_delete');
+    // Goods (Hàng hóa)
+    // Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');
+    // Route::post('order/form_goods', [FrontendOrderController::class, 'goods_store'])->name('get.goods_store');
 
-    Route::get('order/update', [FrontendOrderController::class, 'update'])->name('get.order_update');
-    Route::post('order/update', [FrontendOrderController::class, 'store'])->name('get.order_store');
+    // Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.goods_delete');
 
+    // Route::get('order/update', [FrontendOrderController::class, 'update'])->name('get.order_update');
+    // Route::post('order/update', [FrontendOrderController::class, 'store'])->name('get.order_store');
 
-    Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
+    // Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
+
+    // Goods (Hàng Hóa) - Nghĩa
+    Route::get('goods/index', [FrontendGoodsController::class, 'index'])->name('get.goods_index');
+
+    Route::get('goods/create', [FrontendGoodsController::class, 'create'])->name('get.goods_create');
+    Route::post('goods/create', [FrontendGoodsController::class, 'store'])->name('get.goods_store');
+
+    Route::get('goods/detail/{id}', [FrontendGoodsController::class, 'detail'])->name('get.goods_detail');
+
+    Route::get('goods/update/{id}', [FrontendGoodsController::class, 'edit'])->name('get.goods_update');
+    Route::post('goods/update/{id}', [FrontendGoodsController::class, 'update'])->name('get.goods_update');
+
+    Route::get('goods/delete/{id}', [FrontendGoodsController::class, 'delete'])->name('get.goods_delete');
 });
 
 

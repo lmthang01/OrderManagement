@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2023 at 02:27 PM
+-- Generation Time: Jun 22, 2023 at 08:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -107,7 +107,7 @@ CREATE TABLE `contacts` (
 INSERT INTO `contacts` (`id`, `name`, `address`, `phone`, `email`, `gender`, `position_id`, `customer_id`, `birthday`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'Hà Trung Nghĩa', 'Phú Tân - An Giang', '0339557875', 'nghiavn@gmail.com', NULL, 1, 2, NULL, 1, NULL, NULL),
 (2, 'Huỳnh Nhật Trường', 'Ninh Kiều - Cần Thơ', '0335648586', 'truong@gmail.com', 'Nam', 3, 4, NULL, 5, NULL, NULL),
-(3, 'Cao Như Thuần', NULL, NULL, 'thuan@gmail.com', NULL, 2, 5, NULL, 0, '2023-06-22 11:32:04', '2023-06-22 11:32:04');
+(3, 'Cao Như Thuần', NULL, '0325658959', 'thuan@gmail.com', NULL, 2, 5, NULL, 0, '2023-06-22 11:32:04', '2023-06-22 11:32:04');
 
 -- --------------------------------------------------------
 
@@ -143,8 +143,22 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `status`, `name`, `contract_type`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, NULL, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
-(2, 2, 4, NULL, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 3, 'Hợp đồng lắp đặt wifi theo năm.', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
+(1, 1, 3, 2, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 0, 'Hợp đồng đăng ký gói dịch vụ 01', 'Gói dịch vụ', 'Trả trước', NULL, '0339557475', NULL, 'ATM', '2000000', '', NULL, NULL, NULL),
+(2, 2, 4, 3, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 3, 'Hợp đồng lắp đặt wifi theo năm', 'Gói dịch vụ', NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_goods_detail`
+--
+
+CREATE TABLE `contract_goods_detail` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `contract_id` bigint(20) UNSIGNED NOT NULL,
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -165,7 +179,7 @@ CREATE TABLE `contract_types` (
 --
 
 INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình, dịch vụ hoặc ứng dụng đã được công ty cung cấp', NULL, '2023-06-08 14:29:54'),
+(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình hoặc ứng dụng đã được cung cấp', NULL, '2023-06-22 16:08:34'),
 (3, 'Gói dịch vụ', 'Đăng ký sử dụng các gói dịch vụ được cung cấp', NULL, '2023-06-09 09:55:52'),
 (4, 'Đóng gói', 'Đóng gói các loại hàng hóa, tính phí theo kích thước và cân nặng,...', '2023-06-08 13:47:27', '2023-06-08 13:47:27'),
 (5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00');
@@ -229,7 +243,6 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `goods` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `order_id` int(11) DEFAULT NULL,
-  `contract_id` int(11) DEFAULT NULL,
   `goods_code` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
@@ -246,6 +259,14 @@ CREATE TABLE `goods` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `goods`
+--
+
+INSERT INTO `goods` (`id`, `order_id`, `goods_code`, `name`, `unit`, `manufacturer`, `origin`, `guarantee`, `describe`, `input_price`, `output_price`, `markup_ratio`, `tax`, `total`, `avatar`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Gói DV03', NULL, 'VNPT', 'Cần Thơ', NULL, NULL, 1000000, 1250000, 25, 5, 1187500, NULL, NULL, '2023-06-22 18:25:22'),
+(4, NULL, NULL, 'Gói DV02', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 2000000, 2400000, 20, 5, 2280000, NULL, '2023-06-22 18:16:58', '2023-06-22 18:16:58');
 
 -- --------------------------------------------------------
 
@@ -302,7 +323,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (45, '2023_06_11_999999_add_dark_mode_to_users', 8),
 (46, '2023_06_11_999999_add_messenger_color_to_users', 8),
 (47, '2023_06_11_999999_create_chatify_favorites_table', 8),
-(48, '2023_06_11_999999_create_chatify_messages_table', 8);
+(48, '2023_06_11_999999_create_chatify_messages_table', 8),
+(49, '2023_06_23_004640_create_contract_goods_detail_table', 9);
 
 -- --------------------------------------------------------
 
@@ -412,7 +434,7 @@ CREATE TABLE `transactions` (
 
 INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id`, `transaction_type`, `contact_id`, `start_day`, `deadline_date`, `finish_day`, `status`, `result`, `priority`, `transaction_address`, `document`, `created_at`, `updated_at`) VALUES
 (1, 'Đăng ký Gói DV01', 'Đăng ký sử dụng gói dịch vụ 01 trong 1 tháng tới.', 1, 3, 'Giao dịch cung cấp dịch vụ', 1, '2023-06-06 00:19:34', '2023-06-07 00:19:34', '2023-06-06 00:19:34', 1, 'Thành công', 3, 'Cần Thơ', NULL, '2023-06-05 17:19:34', '2023-06-05 17:19:34'),
-(14, 'Test2', 'aaaa', NULL, 4, 'Giao dịch cung cấp dịch vụ', 2, '2023-06-05 16:45:00', '2023-06-20 16:45:00', NULL, 0, NULL, 1, NULL, 'C:\\xampp\\tmp\\phpCD80.tmp', '2023-06-22 09:46:01', '2023-06-22 12:25:02');
+(14, 'Test2', 'aaaa', NULL, 4, 'Giao dịch cung cấp dịch vụ', 2, '2023-06-05 16:45:00', '2023-06-20 16:45:00', NULL, 0, NULL, 1, NULL, 'C:\\xampp\\tmp\\phpCD80.tmp', '2023-06-22 09:46:01', '2023-06-22 14:01:42');
 
 -- --------------------------------------------------------
 
@@ -532,6 +554,14 @@ ALTER TABLE `contracts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contract_goods_detail`
+--
+ALTER TABLE `contract_goods_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contract_goods_detail_contract_id_foreign` (`contract_id`),
+  ADD KEY `contract_goods_detail_goods_id_foreign` (`goods_id`);
+
+--
 -- Indexes for table `contract_types`
 --
 ALTER TABLE `contract_types`
@@ -645,6 +675,12 @@ ALTER TABLE `contracts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `contract_goods_detail`
+--
+ALTER TABLE `contract_goods_detail`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `contract_types`
 --
 ALTER TABLE `contract_types`
@@ -666,7 +702,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -678,7 +714,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -721,6 +757,17 @@ ALTER TABLE `user_has_types`
 --
 ALTER TABLE `user_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contract_goods_detail`
+--
+ALTER TABLE `contract_goods_detail`
+  ADD CONSTRAINT `contract_goods_detail_contract_id_foreign` FOREIGN KEY (`contract_id`) REFERENCES `contracts` (`id`),
+  ADD CONSTRAINT `contract_goods_detail_goods_id_foreign` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

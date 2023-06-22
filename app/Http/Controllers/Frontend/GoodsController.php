@@ -21,12 +21,12 @@ class GoodsController extends Controller
             ->orderByDesc('id')
             ->paginate(10);
 
-        return view('frontend.contract.create', compact('goods'));
+        return view('frontend.goods.index', compact('goods'));
     }
 
     public function create()
     {
-        return view('frontend.contract.create');
+        return view('frontend.goods.create');
     }
 
     public function store(GoodsRequest $request)
@@ -41,51 +41,54 @@ class GoodsController extends Controller
         } catch (\Exception $exception) {
             Log::error("ERROR => GoodsController@store => " . $exception->getMessage());
             toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
-            return redirect()->route('get.contract_create');
+            return redirect()->route('get.goods_create');
         }
-        return redirect()->route('get.contract_create');
+        return redirect()->route('get.goods_index');
     }
 
-    // public function edit($id){
+    public function detail($id)
+    {
+        $goods = Goods::findOrFail($id);
 
-    //     $transaction = Transaction::findOrFail($id);
-    //     $customers = Customer::all();
-    //     $model = new Transaction();
-    //     $status = $model->getStatus();
+        return view('frontend.goods.detail', compact('goods'));
+    }
 
-    //     return view('frontend.transaction.update', compact('transaction', 'customers', 'status'));
-    // }
+    public function edit($id){
 
-    // public function update(GoodsRequest $request, $id)
-    // {
-    //     try {
-    //         $data = $request->all();
-    //         $data['updated_at'] = Carbon::now();
+        $goods = Goods::findOrFail($id);
 
-    //         // $customer = Customer::findOrFail($data['customer_id']);
+        return view('frontend.goods.update', compact('goods'));
+    }
 
-    //         Transaction::find($id)->update($data);
+    public function update(GoodsRequest $request, $id)
+    {
+        try {
+            $data = $request->all();
+            $data['updated_at'] = Carbon::now();
 
-    //     } catch (\Exception $exception) {
-    //         Log::error("ERROR => TransactionController@update => " . $exception->getMessage());
-    //         toastr()->error('Cập nhật giao dịch thất bại!', 'Thông báo', ['timeOut' => 2000]);
-    //         return redirect()->route('get.transaction_update', $id);
-    //     }
+            Goods::find($id)->update($data);
 
-    //     toastr()->success('Cập nhật giao dịch thành công!', 'Thông báo', ['timeOut' => 2000]);
-    //     return redirect()->route('get.transaction_index');
-    // }
+        } catch (\Exception $exception) {
+            Log::error("ERROR => GoodsController@update => " . $exception->getMessage());
+            toastr()->error('Cập nhật giao dịch thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            return redirect()->route('get.goods_update', $id);
+        }
+
+        toastr()->success('Cập nhật giao dịch thành công!', 'Thông báo', ['timeOut' => 2000]);
+        return redirect()->route('get.goods_index');
+    }
 
     public function delete(Request $request, $id)
     {
         try {
             $goods = Goods::findOrFail($id);
             if ($goods) $goods->delete();
+
         } catch (\Exception $exception) {
             toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => GoodsController@delete => " . $exception->getMessage());
         }
         toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
-        return redirect()->route('get.contract_create');
+        return redirect()->route('get.goods_index');
     }
 }

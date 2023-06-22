@@ -170,11 +170,11 @@
     justify-content: space-between;
 }
 /* Khung Detail */
-.detail_frame {
+.detail-frame {
     border-bottom: 1px solid #f3eeff;
 }
 
-.detail_frame_right {
+.detail-frame-right {
     border-bottom: 1px solid #f3eeff;
     border-left: 1px solid #f3eeff;
 }
