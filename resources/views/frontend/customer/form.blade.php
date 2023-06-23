@@ -62,8 +62,47 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Địa chỉ văn phòng</label>
-                <textarea name="address" id="" class="form-control" placeholder="Địa chỉ văn phòng ..." cols="30"
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tỉnh thành</label>
+                            <select name="province_id" class="form-control" id="loadDistrict">
+                                <option value="">Chọn tỉnh thành</option>
+                                @foreach ($provinces ?? [] as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ ($customer->province_id ?? 0) == $item->id ? 'selected' : '' }}>
+                                        {{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Quận huyện</label>
+                            <select name="district_id" class="form-control" id="districtsData">
+                                <option value="">Chọn quận huyện</option>
+                                @foreach ($activeDistricts ?? [] as $key => $item)
+                                    <option value="{{ $key }}" selected>{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phường xã</label>
+                            <select name="ward_id" class="form-control" id="wardData">
+                                <option value="">Chọn phường xã</option>
+                                @foreach ($activeWards ?? [] as $key => $item)
+                                    <option value="{{ $key }}" selected>{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Địa chỉ cụ thể</label>
+                <textarea name="address" id="" class="form-control" placeholder="Địa chỉ cụ thể ..." cols="30"
                     rows="2">{{ old('address', $customer->address ?? '') }}</textarea>
                 @error('address')
                     <small id="" class="form-text text-danger">{{ $errors->first('address') }}</small>

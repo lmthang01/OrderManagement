@@ -7,17 +7,19 @@ use App\Http\Requests\CustomerRequest;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Contact;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
     public function index(){
 
-        $customers = Customer::with('category:id,name', 'user:id,name');
+        $customers = Customer::with('category:id,name', 'user:id,name', 'province:id,name', 'district:id,name', 'ward:id,name');
 
         // if ($name = $request->n) // Tìm bằng tên
         //     $customers->where('name', 'like', '%' . $name . '%');
@@ -46,8 +48,9 @@ class CustomerController extends Controller
 
         $model = new Customer();
         $status = $model->getStatus();
+        $provinces = Province::all();
 
-        return view('frontend.customer.create', compact('categories', 'status'));
+        return view('frontend.customer.create', compact('categories', 'status', 'provinces'));
     }
 
     public function store(CustomerRequest $request)
@@ -87,12 +90,20 @@ class CustomerController extends Controller
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('frontend.customer.update', compact('customer', 'categories', 'status'));
+        $provinces = Province::all();
+
+        // Hiển thị district
+        $activeDistricts = DB::table('districts')->where('id', $customer->district_id)->pluck('name', 'id')->toArray();
+
+        $activeWards = DB::table('wards')->where('id', $customer->ward_id)->pluck('name', 'id')->toArray();
+
+        return view('frontend.customer.update', compact('customer', 'categories', 'status', 'provinces', 'activeDistricts', 'activeWards'));
     }
 
     public function detail($id){
 
         $customer = Customer::findOrFail($id);
+
         $categories = Category::all();
         $contacts = Contact::all();
 

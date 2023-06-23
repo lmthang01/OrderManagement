@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="../../../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../../assets/css/slicknav.min.css">
     <!-- Amcharts css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
     <!-- Start datatable css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
     <!-- Style css -->
     <link rel="stylesheet" href="../../../assets/css/typography.css">
     <link rel="stylesheet" href="../../../assets/css/default-css.css">
@@ -42,7 +45,10 @@
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <!-- Logo -->
-                <div class="logo"><a id="logo" href="#" title="CRMVIET"><img class="logo-main scale-with-grid" src="https://crmviet.vn/wp-content/uploads/2020/04/logo-crmviet.png" alt="logo crmviet"></a></div>
+                <div class="logo"><a id="logo" href="#" title="CRMVIET"><img
+                            class="logo-main scale-with-grid"
+                            src="https://crmviet.vn/wp-content/uploads/2020/04/logo-crmviet.png" alt="logo crmviet"></a>
+                </div>
                 <!-- <div class="logo">
                     <a href="index.html"><img src="../../../assets/images/icon/logo.png" alt="logo"></a>
                 </div> -->
@@ -54,7 +60,7 @@
                             <!-- Khách hàng -->
                             <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                <i class="ti-user"></i><span>Khách hàng</span></a>
+                                    <i class="ti-user"></i><span>Khách hàng</span></a>
                                 <ul class="collapse">
                                     <li class="active"><a href="{{ route('get.index') }}">Khách hàng</a></li>
                                     <li><a href="{{ route('get.contact_index') }}">Liên hệ với khách hàng</a></li>
@@ -65,11 +71,11 @@
                             <!-- Kinh doanh -->
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
+                                    <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
                                 <ul class="collapse">
 
                                     <li><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
-                                    <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
+                                    <li><a href="{{ route('get.order_index') }}">Đơn hàng</a></li>
 
                                     {{-- <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li> --}}
                                     {{-- <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li> --}}
@@ -80,15 +86,17 @@
 
                             <!-- Báo cáo -->
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Báo cáo</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-bar-chart"
+                                        aria-hidden="true"></i> <span>Báo cáo</span></a>
                                 <ul class="collapse">
                                     <li><a href="#">Biểu đồ</a></li>
                                 </ul>
                             </li>
-                            
-                             <!-- Chat -->
+
+                            <!-- Chat -->
                             <li>
-                                <a href="{{ url('').'/'.config('chatify.routes.prefix') }}" aria-expanded="true"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Chat</span></a>
+                                <a href="{{ url('') . '/' . config('chatify.routes.prefix') }}" aria-expanded="true"><i
+                                        class="fa fa-bar-chart" aria-hidden="true"></i> <span>Chat</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -130,7 +138,8 @@
                                     <span>2</span>
                                 </i>
                                 <div class="dropdown-menu bell-notify-box notify-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                    <span class="notify-title">You have 3 new notifications <a href="#">view
+                                            all</a></span>
                                     <div class="nofity-list">
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
@@ -140,7 +149,8 @@
                                             </div>
                                         </a>
                                         <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i>
+                                            </div>
                                             <div class="notify-text">
                                                 <p>New Commetns On Post</p>
                                                 <span>30 Seconds ago</span>
@@ -154,7 +164,8 @@
                                             </div>
                                         </a>
                                         <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i>
+                                            </div>
                                             <div class="notify-text">
                                                 <p>New Commetns On Post</p>
                                                 <span>30 Seconds ago</span>
@@ -189,11 +200,13 @@
                             <li class="dropdown">
                                 <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
                                 <div class="dropdown-menu notify-box nt-enveloper-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                    <span class="notify-title">You have 3 new notifications <a href="#">view
+                                            all</a></span>
                                     <div class="nofity-list">
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img1.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img1.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -203,7 +216,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img2.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img2.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -213,7 +227,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img3.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img3.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -223,7 +238,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img4.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img4.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -233,7 +249,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img2.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img2.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -243,7 +260,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img1.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img1.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -253,7 +271,8 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="../../../assets/images/author/author-img3.jpg" alt="image">
+                                                <img src="../../../assets/images/author/author-img3.jpg"
+                                                    alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -292,15 +311,19 @@
                     <!-- Profile Info -->
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="{{ Chatify::getUserWithAvatar(Auth::user())->avatar }}" onerror="this.src='/assets/images/author/avatar.png'" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name ?? "[N\A]" }}<i class="fa fa-angle-down"></i></h4>
+                            <img class="avatar user-thumb"
+                                src="{{ Chatify::getUserWithAvatar(Auth::user())->avatar }}"
+                                onerror="this.src='/assets/images/author/avatar.png'" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
+                                {{ Auth::user()->name ?? '[N\A]' }}<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item profile-option" href="#">Hướng dẫn sử dụng</a>
                                 <a class="dropdown-item profile-option" href="#">Thông tin cá nhân</a>
                                 <a class="dropdown-item profile-option" href="#">Cài đặt Email</a>
                                 <a class="dropdown-item profile-option" href="#">Hòm thư</a>
                                 <a class="dropdown-item profile-option" href="#">Trợ giúp</a>
-                                <a class="dropdown-item profile-option" href="{{ route ('get_user.logout') }}">Thoát</a>
+                                <a class="dropdown-item profile-option"
+                                    href="{{ route('get_user.logout') }}">Thoát</a>
                             </div>
                         </div>
                     </div>
@@ -517,6 +540,72 @@
     <!-- others plugins -->
     <script src="../../../assets/js/plugins.js"></script>
     <script src="../../../assets/js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Locations -->
+    <script>
+        // feather.replace();
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+
+        $(function() {
+            $("#loadDistrict").change(function() {
+                console.log("------LOAD----------");
+                let province_id = $(this).find(":selected").val();
+                console.log("------province_id: ", province_id);
+
+                $.ajax({
+
+                        url: "/location/district",
+                        data: {
+
+                            province_id: province_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn quận huyện---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#districtsData").html(dataOptions);
+                    });
+            });
+
+            $("#loadDistrict").change(function() {
+
+                let district_id = $(this).find(":selected").val();
+
+                $.ajax({
+
+                        url: "/location/district",
+                        data: {
+
+                            district_id: district_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn phường xã---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#wardData").html(dataOptions);
+                    });
+            });
+        })
+    </script>
 </body>
 
 </html>
