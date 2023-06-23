@@ -53,7 +53,7 @@
                             <td><input type="text" value="{{ $item->unit->name }}"></td>
                             <td><input type="text" value="{{ $item->input_price }}"></td>
                             <td><input type="text" value="{{ $item->output_price }}"></td>
-                            <td><input type="text" value="{{ $item->warping_ratio }}"></td>
+                            <td><input type="text" value="{{ $item->markup_ratio }}"></td>
                             <td><input type="text" value="{{ $item->tax }}"></td>
                             <td><input type="text" value="{{ $item->total }}"></td>
                         </tr>

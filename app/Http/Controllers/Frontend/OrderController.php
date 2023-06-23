@@ -143,11 +143,11 @@ class OrderController extends Controller
                 'gender' => $request->gender,
                 'describe' => $request->describe,
                 'input_price' => $request->input_price,
-                'output_price' => $request->input_price + $request->input_price * $request-> warping_ratio / 100,
+                'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
                 // 'output_price' => $request->output_price,
-                'warping_ratio' => $request->warping_ratio,
+                'markup_ratio' => $request->markup_ratio,
                 'tax' => $request->tax,
-                'total' => ($request->input_price + $request->input_price * $request-> warping_ratio / 100) * $request->tax
+                'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
         ]; 
             if ($request->avatar) {
                 $file = upload_image('avatar');
@@ -188,11 +188,11 @@ class OrderController extends Controller
                 'gender' => $request->gender,
                 'describe' => $request->describe,
                 'input_price' => $request->input_price,
-                'output_price' => $request->input_price + $request->input_price * $request-> warping_ratio / 100,
+                'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
                 // 'output_price' => $request->output_price,
-                'warping_ratio' => $request->warping_ratio,
+                'markup_ratio' => $request->markup_ratio,
                 'tax' => $request->tax,
-                'total' => ($request->input_price + $request->input_price * $request-> warping_ratio / 100) * $request->tax
+                'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
         ]; 
         if ($request->avatar) {
             $file = upload_image('avatar');

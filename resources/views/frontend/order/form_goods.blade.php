@@ -98,8 +98,8 @@
                                                 <div class="form-group">
                                                     <label for="example-text-input" class="col-form-label input-label">Tỷ lệ vênh:</label>
                                                     <div class="textbox-unitprice">
-                                                        <input class="form-control" name="warping_ratio" type="number" id="example-text-input"
-                                                         value="{{ old('warping_ratio', $goods->warping_ratio ?? '') }}" >
+                                                        <input class="form-control" name="markup_ratio" type="number" id="example-text-input"
+                                                         value="{{ old('markup_ratio', $goods->markup_ratio ?? '') }}" >
                                                         <span class="unit-price">%</span>
                                                     </div>
                                                 </div>

@@ -15,12 +15,12 @@
                                                 <a href="{{ route('get.order_update', $orders->id ) }}">
                                                     <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-edit"></i></i><span>Sửa</span></button>
                                                 </a>
-                                                <a href="">
+                                                <a href="{{ route('get.order_print') }}">
                                                     <button type="button" class="btn btn-addorder"><i class="fa fa-print" aria-hidden="true"></i><span>In đơn hàng</span></button>
                                                 </a>
-                                                <a href="../Contract/addnewContract.php">
+                                                {{-- <a href="../Contract/addnewContract.php">
                                                     <button type="button" class="btn btn-addorder"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Sinh hợp đồng</span></button>
-                                                </a>
+                                                </a> --}}
                                                 <a href="{{ route('get.order_index') }}">
                                                     <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                                 </a>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerControll
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
 use Illuminate\Support\Facades\Route;
@@ -168,8 +169,8 @@ Route::group(['namespace' => 'Frontend',  'middleware' => 'check.login.user'], f
     Route::post('order/update/{id}', [FrontendOrderController::class, 'update'])->name('get.order_update');
 
     Route::get('order/delete/{id}', [FrontendOrderController::class, 'delete'])->name('get.order_delete');
-
-
+    
+    Route::get('/export-pdf', 'PDFController@exportPDF')->name('get.order_print');
 });
 
 
