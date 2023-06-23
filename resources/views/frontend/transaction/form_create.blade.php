@@ -29,7 +29,7 @@
                     @endforeach
                 </select>
                 @error('customer_id')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
+                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
                 @enderror
             </div>
             <div class="form-group">

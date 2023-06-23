@@ -158,6 +158,8 @@ Route::group(['namespace' => 'Frontend'], function(){
 
     Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
+    // Route::get('/contract/{id}/pdf', 'FrontendContractController@generatePDF')->name('contract.pdf');
+
     // ContractType (Loại hợp đồng)
     Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');
 

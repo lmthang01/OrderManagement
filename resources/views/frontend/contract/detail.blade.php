@@ -15,6 +15,7 @@
                                             <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-edit"></i></i><span>Sửa</span></button>
                                         </a>
                                         <a href="#">
+                                            {{-- {{ route('contract.pdf', ['id' => $contract->id]) }} --}}
                                             <button type="button" class="btn btn-addorder"><i class="fa fa-print" aria-hidden="true"></i><span>Xuất file PDF</span></button>
                                         </a>
                                         <a href="{{ route('get.contract_index') }}">

@@ -9,6 +9,7 @@ use App\Models\ContractType;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Contact;
+use Dompdf\Dompdf;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -95,5 +96,29 @@ class ContractController extends Controller
         }
         toastr()->success('Xóa hợp đồng thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get.contract_index');
+    }
+
+    public function generatePDF($contractId)
+    {
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        $contract = Contract::findOrFail($contractId);
+
+        // Tạo một đối tượng Dompdf
+        $dompdf = new Dompdf();
+
+        // Render template PDF từ dữ liệu
+        $html = view('pdf.contract', compact('contract'));
+
+        // Gán HTML vào Dompdf
+        $dompdf->loadHtml($html);
+
+        // Cấu hình Dompdf (tuỳ chọn)
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Xuất file PDF
+        $dompdf->stream('contract.pdf');
     }
 }

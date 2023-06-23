@@ -10,7 +10,13 @@
                                 <div class="card-header-order">
                                     <h4 class="header-title header-title-main">Thêm mới hợp đồng bán ra</h4>
                                     <div class="btn-group-head-order">
-                                        <button type="button" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+                                        <button type="button" onclick="submitForm()" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+                                        <script>
+                                            function submitForm() {
+                                                var form = document.getElementById('contractForm');
+                                                form.submit();
+                                            }
+                                        </script>
                                         <a href="{{ route('get.contract_index') }}">
                                             <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                         </a>
@@ -163,11 +169,13 @@
                                         // Lắng nghe sự kiện nhấp chuột vào hàng trong bảng
                                         $('#dataTable2 tbody tr').click(function() {
                                             // Lấy giá trị trong các ô dữ liệu của hàng được nhấp
+                                            var contactId = $(this).find('td:nth-child(1)').text();
                                             var contactName = $(this).find('td:nth-child(2)').text();
                                             var contactPosition = $(this).find('td:nth-child(3)').text();
                                             var contactPhone = $(this).find('td:nth-child(5)').text();
 
                                             // Hiển thị thông tin khách hàng được chọn vào các box
+                                            $('#contact_id').val(contactId);
                                             $('#contact_name').val(contactName);
                                             $('#contact_position').val(contactPosition);
                                             $('#contact_phone').val(contactPhone);
@@ -191,54 +199,66 @@
                                 {{-- End --}}
                             {{-- End Modal Liên hệ --}}
                                 <div class="btn-load">
-                                    <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-customer">Chọn Khách Hàng</button>
-                                    <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-contact">Chọn Liên Hệ</button>
+                                    <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-customer"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Khách Hàng</button>
+                                    <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-contact"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Liên Hệ</button>
                                 </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="customer_id" class="col-form-label input-label">Mã khách hàng:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_id" disabled>
+                                <form method="POST" action="" id="contractForm" autocomplete="off" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="customer_id" class="col-form-label input-label">Mã khách hàng:</label>
+                                                <input type="text" name="customer_id" class="form-control" value="{{ old('customer_id', $contract->customer_id ?? '') }}" id="customer_id" readonly>
+                                                @error('customer_id')
+                                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="customer_name" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer_address_office" class="col-form-label input-label">Địa chỉ:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="customer_address_office" readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_name" disabled>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="customer_email" class="col-form-label input-label">Email:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="customer_email" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer_phone" class="col-form-label input-label">Số điện thoại KH:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="customer_phone" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer_tax_code" class="col-form-label input-label">Mã số thuế:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="customer_tax_code" readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="customer_address_office" class="col-form-label input-label">Địa chỉ:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_address_office" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="customer_email" class="col-form-label input-label">Email:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_email" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="customer_phone" class="col-form-label input-label">Số điện thoại KH:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_phone" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="customer_tax_code" class="col-form-label input-label">Mã số thuế:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="customer_tax_code" disabled>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="contact_name" class="col-form-label input-label">Người đại diện:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="contact_name" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="contact_position" class="col-form-label input-label">Chức vụ:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="contact_position" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="contact_phone" class="col-form-label input-label">Số điện thoại LH:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="contact_phone" disabled>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="contact_id" class="col-form-label input-label">Mã đại diện:</label>
+                                                <input type="text" name="contact_id" class="form-control" value="{{ old('contact_id', $contract->contact_id ?? '') }}" id="contact_id" readonly>
+                                                @error('contact_id')
+                                                    <small id="" class="form-text text-danger">{{ $errors->first('contact_id') }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact_name" class="col-form-label input-label">Người đại diện:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="contact_name" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact_position" class="col-form-label input-label">Chức vụ:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="contact_position" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact_phone" class="col-form-label input-label">Số điện thoại LH:</label>
+                                                <input class="form-control custom-select-height" type="text" value="" id="contact_phone" readonly>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -284,9 +304,12 @@
                                         <div class="form-group">
                                             <label for="contract_value" class="col-form-label input-label">Giá trị hợp đồng:</label>
                                             <div class="textbox-unitprice">
-                                                <input class="form-control custom-select-height" type="text" value="" id="contract_value" style="border-radius: 3px 0 0 3px !important;">
+                                                <input class="form-control custom-select-height" name="value" type="text" value="{{ old('value', $contract->value ?? '') }}" id="contract_value" style="border-radius: 3px 0 0 3px !important;">
                                                 <span id="unit-price-ctrvalue" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
                                             </div>
+                                            @error('value')
+                                                    <small id="" class="form-text text-danger">{{ $errors->first('value') }}</small>
+                                            @enderror
                                         </div>
                                         {{-- Xử lý tự động load giá trị hợp đồng --}}
                                         <script>
@@ -302,14 +325,14 @@
                                         {{-- Xử lý thời gian --}}
                                         <div class="form-group">
                                             <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
-                                            <input class="form-control custom-select-height" type="datetime-local" name="start_day" value="{{ old('start_day') }}" id="start_day">
+                                            <input class="form-control custom-select-height" type="datetime-local" name="start_day" value="{{ old('start_day', $contract->start_day ?? '') }}" id="start_day">
                                             @error('start_day')
                                                 <small id="" class="form-text text-danger">{{ $errors->first('start_day') }}</small>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="finish_day" class="col-form-label input-label">Ngày kết thúc<code>*</code>:</label>
-                                            <input class="form-control custom-select-height" type="datetime-local" name="finish_day" value="{{ old('finish_day') }}" id="finish_day">
+                                            <input class="form-control custom-select-height" type="datetime-local" name="finish_day" value="{{ old('finish_day', $contract->finish_day ?? '') }}" id="finish_day">
                                             @error('finish_day')
                                                 <small id="" class="form-text text-danger">{{ $errors->first('finish_day') }}</small>
                                             @enderror
@@ -325,13 +348,19 @@
                                                         {{ $item['name'] }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('status')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('status') }}</small>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="contract_name" class="col-form-label input-label">Tên hợp đồng:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="contract_name">
+                                            <input class="form-control custom-select-height" name="contract_name" type="text" value="{{ old('contract_name', $contract->name ?? '') }}" id="contract_name">
+                                            @error('contract_name')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('contract_name') }}</small>
+                                            @enderror
                                         </div>
                                         {{-- Xử lý loại hợp đồng --}}
                                         <div class="form-group">
@@ -343,6 +372,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('contract_type')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('contract_type') }}</small>
+                                            @enderror
                                         </div>
                                         {{-- End --}}
                                         <div class="form-group">
@@ -373,14 +405,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="user_phone" class="col-form-label input-label">SĐT Chủ sở hữu:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="user_phone">
+                                            <input class="form-control custom-select-height" name="user_phone" type="text" value="{{ old('user_phone', $contract->phone ?? '') }}" id="user_phone">
+                                            @error('user_phone')
+                                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('user_phone') }}</small>
+                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="payment_date" class="col-form-label input-label">Ngày thanh toán:</label>
-                                            <input class="form-control custom-select-height" type="datetime-local" name="payment_date" value="{{ old('payment_date') }}" id="payment_date">
+                                            <input class="form-control custom-select-height" type="datetime-local" name="payment_date" value="{{ old('payment_date', $contract->payment_date ?? '') }}" id="payment_date">
                                             @error('payment_date')
                                                 <small id="" class="form-text text-danger">{{ $errors->first('payment_date') }}</small>
                                             @enderror
@@ -400,16 +435,22 @@
                                         <div class="form-group">
                                             <label for="percentage_value" class="col-form-label input-label">% Giá trị HĐ:</label>
                                             <div class="textbox-unitprice">
-                                                <input class="form-control custom-select-height" type="text" value="" id="percentage_value" style="border-radius: 3px 0 0 3px !important;">
+                                                <input class="form-control custom-select-height" name="percentage_value" type="text" value="{{ old('percentage_value', $contract->percentage_value ?? '') }}" id="percentage_value" style="border-radius: 3px 0 0 3px !important;">
                                                 <span class="unit-price" style="border-radius: 0 3px 3px 0 !important;">%</span>
                                             </div>
+                                            @error('percentage_value')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('percentage_value') }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="payment" class="col-form-label input-label">Tiền thanh toán:</label>
+                                            <label for="payment_amount" class="col-form-label input-label">Tiền thanh toán:</label>
                                             <div class="textbox-unitprice">
-                                                <input class="form-control custom-select-height" type="text" value="" id="payment" style="border-radius: 3px 0 0 3px !important;">
-                                                <span id="unit-price-payment" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
+                                                <input class="form-control custom-select-height" name="payment_amount" type="text" value="{{ old('payment_amount', $contract->payment_amount ?? '') }}" id="payment_amount" style="border-radius: 3px 0 0 3px !important;">
+                                                <span id="unit-price-payment_amount" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
                                             </div>
+                                            @error('payment_amount')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('payment_amount') }}</small>
+                                            @enderror
                                         </div>
                                         {{-- Xử lý tự động load dữ liệu lên ô "Tiền thanh toán" = "Giá trị HĐ" x "% Giá trị HĐ" --}}
                                         <script>
@@ -420,23 +461,23 @@
                                                     var percentageValue = parseFloat($(this).val()); // Lấy giá trị từ ô % Giá trị HĐ
                                                     var payment = contractValue * (percentageValue / 100); // Tính toán giá trị tiền thanh toán
                                                     var formattedPayment = parseFloat(payment).toLocaleString('vi-VN'); // Định dạng giá trị số thành chuỗi với phân cách hàng nghìn
-                                                    $('#payment').val(payment); // Cập nhật giá trị vào ô Tiền thanh toán và giới hạn số lẻ thành 2 chữ số
-                                                    $('#unit-price-payment').text(formattedPayment); // Đồng thời cập nhật vào ô nổi bật nối sau
+                                                    $('#payment_amount').val(payment); // Cập nhật giá trị vào ô Tiền thanh toán và giới hạn số lẻ thành 2 chữ số
+                                                    $('#unit-price-payment_amount').text(formattedPayment); // Đồng thời cập nhật vào ô nổi bật nối sau
                                                 });
                                                 // Xử lý tự load tiền thanh toán khi nhập trực tiếp vào ô tiền thanh toán
-                                                $('#payment').on('input', function() {
+                                                $('#payment_amount').on('input', function() {
                                                     var inputValue = $(this).val();
                                                     var formattedValue = parseFloat(inputValue).toLocaleString('vi-VN');
                                                     var contractValue = parseFloat($('#contract_value').val());
                                                     var percentageValue = inputValue / contractValue * 100;
                                                     $('#percentage_value').val(percentageValue);
-                                                    $('#unit-price-payment').text(formattedValue);
+                                                    $('#unit-price-payment_amount').text(formattedValue);
                                                 });
                                             });
                                         </script>
                                         {{-- End --}}
                                         <div class="form-group">
-                                            <label for="choose_user_revenue" class="col-form-label input-label">Doanh số tính cho<span style="color: red">*</span>:</label>
+                                            <label for="choose_user_revenue" class="col-form-label input-label">Doanh số tính cho:</label>
                                             <select name="user_id" class="custom-select custom-select-height" id="choose_user_revenue" style="font-size: 14px !important;">
                                                 <option value="">---- Chọn ----</option>
                                                 @foreach ($users ?? [] as $item)
@@ -451,36 +492,27 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="contract_note" class="col-form-label input-label">Ghi chú:</label>
-                                            <input class="form-control custom-select-height" type="text" value="" id="contract_note">
+                                            <input class="form-control custom-select-height" name="note" type="text" value="{{ old('note', $contract->note ?? '') }}" id="contract_note">
+                                            @error('note')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('note') }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </form>
                     <!-- Form nhập thông tin Hợp đồng end -->
-                    <!-- Form nhập thông tin Hàng hóa start -->
-                    <div class="col-12 mt-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-header-order">
-                                    <h4 class="header-title">Thông tin hàng hóa</h4>
-                                </div>
-                                <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
-                                <div class="btn-load">
-                                    <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3">Chọn Hàng Hóa</button>
-                                </div>
-                                @include('frontend.contract.form_goods')
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Form nhập thông tin Hàng hóa end -->
                     <!-- Bảng thông tin hàng hóa start -->
                     <div class="col-12 mt-2">
                         <div class="card">
                             <div class="card-body">
                                 <div class="head-title-addbtn">
                                     <h4 class="header-title">Hàng hóa</h4>
+                                    <div class="btn-load">
+                                        <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Hàng Hóa</button>
+                                    </div>
                                 </div>
                                 <div class="data-tables datatable-dark">
                                     <table id="dataTable" class="text-center table-business">
