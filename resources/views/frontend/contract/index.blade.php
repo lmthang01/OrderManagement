@@ -1,5 +1,5 @@
 @extends('frontend.layouts.business_contract')
-<@php
+@php
     setlocale(LC_MONETARY, 'vi_VN');    // Thiết lập locale cho tiền tệ (cần có extension intl)
     $totalDebt = 0;                     // Biến lưu tổng nợ
     $totalPaid = 0;                     // Biến lưu tổng đã thanh toán
@@ -29,39 +29,33 @@
                             <table id="dataTable3" class="text-center table-business">
                                 <thead class="text-capitalize">
                                     <tr>
-                                        <th>Mã hợp đồng</th>
                                         <th>Tên hợp đồng</th>
                                         <th>Giá trị HĐ</th>
                                         <th>Đã thanh toán</th>
                                         <th>Nợ</th>
                                         <th>Khách hàng</th>
                                         <th>Chủ sở hữu</th>
-                                        <th>Loại hợp đồng</th>
+                                        <th>Người liên hệ</th>
                                         <th>Trạng thái</th>
-                                        <th>Thời gian thực hiện</th>
-                                        <th>Ghi chú</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($contracts ?? [] as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ number_format($item->value, 0, ',', '.') }}</td>
                                             <td>{{ number_format($item->payment_amount, 0, ',', '.') }}</td>
                                             <td>{{ number_format($item->value - $item->payment_amount, 0, ',', '.')  ?? "[N/A]" }}</td>  {{-- Nợ = Giá trị - Tiền đã thanh toán --}}
                                             <td>{{ $item->customer->name ?? '[N/A]'}}</td>
                                             <td>{{ $item->user->name ?? '[N/A]' }}</td>
-                                            <td>{{ $item->contract_type }}</td>
+                                            <td>{{ $item->contact->name ?? '[N/A]' }}</td>
                                             <td>
                                                 <span
                                                     class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
                                                     {{ $item->getStatus($item->status)['name'] ?? 'Hợp đồng mới lập' }}
                                                 </span>
                                             </td>
-                                            <td style="white-space: pre-line;">{{ $item->start_day }}<br>{{ $item->finish_day }}</td>
-                                            <td>{{ $item->note }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-2"><a href="{{ route('get.contract_detail', $item->id) }}"

@@ -93,7 +93,10 @@
                                 </ul>
                             </li>
 
+                             <!-- Chat -->
+
                             <!-- Chat -->
+
                             <li>
                                 <a href="{{ url('') . '/' . config('chatify.routes.prefix') }}" aria-expanded="true"><i
                                         class="fa fa-bar-chart" aria-hidden="true"></i> <span>Chat</span></a>
@@ -311,11 +314,16 @@
                     <!-- Profile Info -->
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
+
+                            {{-- <img class="avatar user-thumb" src="{{ Chatify::getUserWithAvatar(Auth::user())->avatar }}" onerror="this.src='/assets/images/author/avatar.png'" alt="avatar"> --}}
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name ?? "[N\A]" }}<i class="fa fa-angle-down"></i></h4>
+
                             <img class="avatar user-thumb"
                                 src="{{ Chatify::getUserWithAvatar(Auth::user())->avatar }}"
                                 onerror="this.src='/assets/images/author/avatar.png'" alt="avatar">
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
                                 {{ Auth::user()->name ?? '[N\A]' }}<i class="fa fa-angle-down"></i></h4>
+
                             <div class="dropdown-menu">
                                 <a class="dropdown-item profile-option" href="#">Hướng dẫn sử dụng</a>
                                 <a class="dropdown-item profile-option" href="#">Thông tin cá nhân</a>

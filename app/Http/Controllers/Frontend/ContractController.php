@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
+use App\Models\ContractType;
+use App\Models\User;
 use App\Models\Customer;
+use App\Models\Contact;
+use Dompdf\Dompdf;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -16,17 +20,17 @@ use Illuminate\Support\Str;
 class ContractController extends Controller
 {
     public function index(){
-        $contracts = Contract::with('customer:id,name','user:id,name');
+        $contracts = Contract::with('customer:id,name','user:id,name','contact:id,name');
         $contracts = $contracts
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(10);
 
         $model = new Contract();
         $status = $model->getStatus();
 
         $viewData = [
             'contracts' => $contracts,
-            'contract_status' => $status
+            'contract_status' => $status,
         ];
 
         return view('frontend.contract.index', $viewData);
@@ -34,12 +38,15 @@ class ContractController extends Controller
 
     public function create()
     {
+        $users = User::all();
         $customers = Customer::all();
+        $contacts = Contact::all();
+        $contract_types = ContractType::all();
 
         $model = new Contract();
         $status = $model->getStatus();
 
-        return view('frontend.contract.create', compact('customers', 'status'));
+        return view('frontend.contract.create', compact('status', 'users', 'customers', 'contacts', 'contract_types'));
     }
 
     public function store(ContractRequest $request)
@@ -89,5 +96,29 @@ class ContractController extends Controller
         }
         toastr()->success('Xóa hợp đồng thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get.contract_index');
+    }
+
+    public function generatePDF($contractId)
+    {
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        $contract = Contract::findOrFail($contractId);
+
+        // Tạo một đối tượng Dompdf
+        $dompdf = new Dompdf();
+
+        // Render template PDF từ dữ liệu
+        $html = view('pdf.contract', compact('contract'));
+
+        // Gán HTML vào Dompdf
+        $dompdf->loadHtml($html);
+
+        // Cấu hình Dompdf (tuỳ chọn)
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Xuất file PDF
+        $dompdf->stream('contract.pdf');
     }
 }

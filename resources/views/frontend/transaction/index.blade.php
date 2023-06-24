@@ -20,36 +20,33 @@
                                 <thead class="text-capitalize">
                                     <tr>
                                         <th>Tên giao dịch</th>
-                                        <th>Mô tả</th>
-                                        <th>Người phụ trách</th>
                                         <th>Khách hàng</th>
-                                        <th>Loại giao dịch</th>
                                         <th>Người liên hệ</th>
-                                        <th>Thời gian thực hiện</th>
+                                        <th>Người phụ trách</th>
                                         <th>Trạng thái</th>
-                                        <th>Kết quả</th>
                                         <th>Ưu tiên</th>
+                                        <th>Loại giao dịch</th>
                                         <th>Thao tác</th>
+                                        {{-- <th>Mô tả</th>
+                                        <th>Thời gian thực hiện</th>
+                                        <th>Kết quả</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($transactions ?? [] as $item)
                                         <tr>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->description }}</td>
-                                            <td>{{ $item->user->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->customer->name ?? '[N\A]' }}</td>
-                                            <td>{{ $item->transaction_type }}</td>
                                             <td>{{ $item->contact->name ?? '[N\A]' }}</td>
-                                            <td style="white-space: pre-line;">{{ $item->start_day }}<br>{{ $item->deadline_day }}<br>{{ $item->finish_day }}</td>
+                                            <td>{{ $item->user->name ?? '[N\A]' }}</td>
                                             <td>
                                                 <span
                                                     class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
                                                     {{ $item->getStatus($item->status)['name'] ?? 'Mới' }}
                                                 </span>
                                             </td>
-                                            <td>{{ $item->result }}</td>
                                             <td>{{ $item->priority }}</td>
+                                            <td>{{ $item->transaction_type }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-2"><a href="{{ route('get.transaction_detail', $item->id) }}"
@@ -61,6 +58,9 @@
                                                             class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>
+                                            {{-- <td>{{ $item->description }}</td> style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" --}}
+                                            {{-- <td style="white-space: pre-line;">{{ $item->start_day }}<br>{{ $item->deadline_date }}<br>{{ $item->finish_day }}</td> --}}
+                                            {{-- <td>{{ $item->result }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
