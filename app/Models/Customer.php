@@ -56,4 +56,18 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+     // Location
+     public function province()
+     {
+         return $this->belongsTo(Province::class, 'province_id');
+     }
+     public function district()
+     {
+         return $this->belongsTo(District::class, 'district_id');
+     }
+     public function ward()
+     {
+         return $this->belongsTo(Ward::class, 'ward_id');
+     }
 }

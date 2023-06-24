@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\HomeController as BackendHomeController;
+use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Models\Position;
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\LocationController as FrontendLocationController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +83,13 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         Route::get('delete/{id}', [CustomerController::class, 'delete'])->name('get_admin.customer.delete');
     });
 
+    // Location 
+    Route::group(['prefix' => 'location'], function(){
+        Route::get('district', [LocationController::class, 'district'])->name('get_admin.location.district');
+        Route::get('ward', [LocationController::class, 'ward'])->name('get_admin.location.ward');
+    });
+
+
     // User
         // Customer
         Route::group(['prefix' => 'user'], function(){
@@ -99,8 +108,13 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 });
 
 
-// User //  'middleware' => 'check.login.user'
-Route::group(['namespace' => 'Frontend'], function(){
+
+// User
+Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
+
+// User
+Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
+
 
     Route::get('logout', [FrontendAuthController::class, 'logout'])->name('get_user.logout'); // Đăng xuất login
 
@@ -120,6 +134,12 @@ Route::group(['namespace' => 'Frontend'], function(){
      Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
+
+     // Location 
+     Route::group(['prefix' => 'location'], function(){
+        Route::get('district', [FrontendLocationController::class, 'district'])->name('get_customer.location.district');
+        Route::get('ward', [FrontendLocationController::class, 'ward'])->name('get_customer.location.ward');
+    });
 
     // Category (List khách hàng)
     Route::get('category', [FrontendCategoryController::class, 'index'])->name('get.category_index');

@@ -111,9 +111,32 @@
                                 <div class="col-6">
                                     <div class="row form-group">
                                         <div class="col-sm-5">
+                                            <label for="example-text-input" class="col-form-label input-label"><strong>Tỉnh thành:</strong></label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p class="col-form-label input-label">{{ $customer->province->name ?? '...' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-5">
+                                            <label for="example-text-input" class="col-form-label input-label"><strong>Quận huyện:</strong></label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p class="col-form-label input-label">{{ $customer->district->name ?? '...' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-5">
+                                            <label for="example-text-input" class="col-form-label input-label"><strong>Phường xã:</strong></label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p class="col-form-label input-label">{{ $customer->ward->name ?? '...' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-5">
                                             <label for="example-text-input" class="col-form-label input-label"><strong>Địa
-                                                    chỉ văn
-                                                    phòng:</strong></label>
+                                                    chỉ cụ thể:</strong></label>
                                         </div>
                                         <div class="col-sm-7">
                                             <p class="col-form-label input-label">{{ $customer->address ?? "[N/A]"}}</p>

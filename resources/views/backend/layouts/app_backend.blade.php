@@ -21,7 +21,7 @@
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Admin - {{ Auth::user()->name ?? "[N\A]" }}</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Admin - {{ Auth::user()->name ?? '[N\A]' }}</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -131,7 +131,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <script>
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
     </script>
@@ -175,6 +177,70 @@
             }
         });
     </script> --}}
+    <script>
+        feather.replace();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(function() {
+            $("#loadDistrict").change(function() {
+                console.log("------LOAD----------");
+                let province_id = $(this).find(":selected").val();
+                console.log("------province_id: ", province_id);
+
+                $.ajax({
+
+                        url: "/admin/location/district",
+                        data: {
+
+                            province_id: province_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn quận huyện---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#districtsData").html(dataOptions);
+                    });
+            });
+
+            $("#loadDistrict").change(function() {
+
+                let district_id = $(this).find(":selected").val();
+
+                $.ajax({
+
+                        url: "/admin/location/district",
+                        data: {
+
+                            district_id: district_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn phường xã---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#wardData").html(dataOptions);
+                    });
+            });
+        })
+    </script>
+    
 </body>
 
 </html>

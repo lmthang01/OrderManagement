@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -16,7 +18,7 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        $customers = Customer::with('category:id,name', 'user:id,name');
+        $customers = Customer::with('category:id,name', 'user:id,name', 'province:id,name', 'district:id,name', 'ward:id,name');
 
         if ($name = $request->n) // Tìm bằng tên
             $customers->where('name', 'like', '%' . $name . '%');
@@ -45,9 +47,9 @@ class CustomerController extends Controller
 
         $model = new Customer();
         $status = $model->getStatus(); // Hiển thị chọn trạng thái
-        // dd($status);
-
-        return view('backend.customer.create', compact('categories', 'status'));
+        $provinces = Province::all();
+        
+        return view('backend.customer.create', compact('categories', 'status', 'provinces'));
     }
 
     public function store(CustomerRequest $request)
@@ -65,6 +67,7 @@ class CustomerController extends Controller
                     $data['avatar'] = $file['name'];
                 }
             }
+
 
             $data['user_id'] = Auth::user()->id; // Hiển thị name người tạo customer
 
@@ -88,7 +91,14 @@ class CustomerController extends Controller
         $model = new Customer();
         $status = $model->getStatus();
 
-        return view('backend.customer.update', compact('customer', 'categories', 'status')); // compact(): Tạo mảng với giá trị 'customer'
+        $provinces = Province::all();
+
+         // Hiển thị district
+         $activeDistricts = DB::table('districts')->where('id', $customer->district_id)->pluck('name', 'id')->toArray();
+
+         $activeWards = DB::table('wards')->where('id', $customer->ward_id)->pluck('name', 'id')->toArray();
+
+        return view('backend.customer.update', compact('customer', 'categories', 'status', 'provinces', 'activeDistricts', 'activeWards')); // compact(): Tạo mảng với giá trị 'customer'
     }
 
     public function update(CustomerRequest $request, $id)

@@ -49,7 +49,10 @@
                             <img src="{{ pare_url_file($item->avatar) }}"
                                 style="width: 60px; height: 60px; border-radius: 10px" alt="">
                         </td>
-                        <td>{{ strlen($item->name) > 20 ? mb_substr($item->name,0,15,'UTF-8').'...' : $item->name }}</td>
+                        <td>{{ strlen($item->name) > 20 ? mb_substr($item->name, 0, 15, 'UTF-8') . '...' : $item->name }} <br>
+                            <span> {{ $item->province->name ?? '...' }} - {{ $item->district->name ?? '...' }} -
+                                {{ $item->ward->name ?? '...' }}</span>
+                        </td>
                         <td>{{ $item->phone }}</td>
                         <td>{{ $item->email }}</td>
                         <td>
