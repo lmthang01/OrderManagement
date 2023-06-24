@@ -109,8 +109,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 
 
 
-// User
-Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
+// // User
+// Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
 
 // User
 Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
@@ -251,6 +251,3 @@ Route::group(['namespace' => 'Frontend', 'prefix' => 'authuser'], function(){
 // Route::get('login', function(){
 //     return view('frontend/loginuser/login');
 // });
-
-
-
