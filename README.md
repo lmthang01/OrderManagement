@@ -166,4 +166,6 @@
 
 # Video27 Chat system
 - Cài đặt chatify: composer require munafio/chatify
-- 
+
+# Video28 Chat system
+- Tổng hợp code báo cáo tuần 6
