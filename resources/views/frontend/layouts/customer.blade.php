@@ -209,13 +209,13 @@
                     });
             });
 
-            $("#loadDistrict").change(function() {
+            $("#districtsData").change(function() {
 
                 let district_id = $(this).find(":selected").val();
 
                 $.ajax({
 
-                        url: "/location/district",
+                        url: "/location/ward",
                         data: {
 
                             district_id: district_id
