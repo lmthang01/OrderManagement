@@ -33,7 +33,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Mã hợp đồng:</strong></label>
                                             </div>
@@ -41,7 +41,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->id ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tên hợp đồng:</strong></label>
                                             </div>
@@ -49,15 +49,15 @@
                                                 <p class="col-form-label input-label">{{ $contract->name ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Loại hợp đồng:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $contract->contract_type }}</p>
+                                                <p class="col-form-label input-label">{{ $contract->contract_type->name }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Chủ sở hữu:</strong></label>
                                             </div>
@@ -65,7 +65,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->user->name}}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Ngày bắt đầu:</strong></label>
                                             </div>
@@ -73,7 +73,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->start_day ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Ngày kết thúc:</strong></label>
                                             </div>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Người đại diện:</strong></label>
                                             </div>
@@ -91,7 +91,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->contact->name ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Chức vụ:</strong></label>
                                             </div>
@@ -99,7 +99,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->contact->position->name ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>SĐT đại diện:</strong></label>
                                             </div>
@@ -107,7 +107,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->contact->phone ?? '[N/A]' }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Ghi chú:</strong></label>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->note }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Hình thức thanh toán:</strong></label>
                                             </div>
@@ -123,7 +123,7 @@
                                                 <p class="col-form-label input-label">{{ $contract->payments }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Trạng thái:</strong></label>
                                             </div>
@@ -131,7 +131,7 @@
                                                 <p class="input-label {{ $contract->getStatus($contract->status)['class'] ?? 'badge badge-light' }}">{{ $contract->getStatus($contract->status)['name'] ?? '[N\A]' }}</p>
                                             </div>
                                         </div>
-                                        {{-- <div class="row form-group detail-frame-right">
+                                        {{-- <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Địa chỉ giao hàng:</strong></label>
                                             </div>
@@ -142,7 +142,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Thuế:</strong></label>
                                             </div>
@@ -150,7 +150,7 @@
                                                 <p class="col-form-label input-label"></p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Phí vận chuyển:</strong></label>
                                             </div>
@@ -158,7 +158,7 @@
                                                 <p class="col-form-label input-label"></p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Giá trị hợp đồng:</strong></label>
                                             </div>
@@ -166,7 +166,7 @@
                                                 <p class="col-form-label input-label">{{ number_format($contract->value, 0, ',', '.') }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Đã thanh toán:</strong></label>
                                             </div>
@@ -174,7 +174,7 @@
                                                 <p class="col-form-label input-label">{{ number_format($contract->payment_amount, 0, ',', '.') }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Nợ:</strong></label>
                                             </div>
@@ -182,7 +182,7 @@
                                                 <p class="col-form-label input-label">{{ number_format(floatval($contract->value) - floatval($contract->payments), 0, ',', '.') }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Giá nhập vào:</strong></label>
                                             </div>

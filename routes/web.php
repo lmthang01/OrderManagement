@@ -83,7 +83,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         Route::get('delete/{id}', [CustomerController::class, 'delete'])->name('get_admin.customer.delete');
     });
 
-    // Location 
+    // Location
     Route::group(['prefix' => 'location'], function(){
         Route::get('district', [LocationController::class, 'district'])->name('get_admin.location.district');
         Route::get('ward', [LocationController::class, 'ward'])->name('get_admin.location.ward');
@@ -106,11 +106,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
             // Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
         });
 });
-
-
-
-// User
-Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
 
 // User
 Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
@@ -135,7 +130,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
-     // Location 
+     // Location
      Route::group(['prefix' => 'location'], function(){
         Route::get('district', [FrontendLocationController::class, 'district'])->name('get_customer.location.district');
         Route::get('ward', [FrontendLocationController::class, 'ward'])->name('get_customer.location.ward');
@@ -178,7 +173,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
     Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
-    // Route::get('/contract/{id}/pdf', 'FrontendContractController@generatePDF')->name('contract.pdf');
+    // Route::get('contract/pdf/{id}', [FrontendContractController::class, 'pdf'])->name('get.contract_pdf');
 
     // ContractType (Loại hợp đồng)
     Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');

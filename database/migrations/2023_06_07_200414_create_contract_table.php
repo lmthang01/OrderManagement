@@ -19,10 +19,9 @@ return new class extends Migration
             $table->decimal('value', 10, 2)->default(0)->nullable();    // Giá trị hợp đồng
             $table->dateTime('start_day');  // Ngày bắt đầu
             $table->dateTime('finish_day');  // Ngày kết thúc
-            $table->dateTime('effective_date')->nullable();  // Ngày hiệu lực
             $table->integer('status');  // Trạng thái
             $table->string('name'); //Tên hợp đồng
-            $table->string('contract_type');    //Loại hợp đồng
+            $table->int('contract_type_id')->nullable();    //Loại hợp đồng
             $table->string('payments')->nullable();     //Hình thức thanh toán
             $table->string('transportation')->nullable();     //Hình thức vận chuyển
             $table->string('phone')->nullable();    // Số điện thoại hiện tại của user (có thể sửa 1 số khác ko nhất thiết số đã lưu trong csdl)

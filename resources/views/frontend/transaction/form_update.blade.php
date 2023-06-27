@@ -135,33 +135,38 @@
                                 <small id="" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="customer_id" class="col-form-label input-label">Mã khách hàng:</label>
-                            <input type="text" name="customer_id" class="form-control" value="{{ old('customer_id', $transaction->customer->id ?? '') }}" id="customer_id" readonly>
-                            @error('customer_id')
-                                <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
-                            @enderror
+
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <label for="customer_id" class="col-form-label input-label">Mã khách hàng:</label>
+                                <input type="text" name="customer_id" class="form-control" value="{{ old('customer_id', $transaction->customer->id ?? '') }}" id="customer_id" readonly>
+                                @error('customer_id')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
+                                <input type="text" name="customer_name" class="form-control" value="{{ old('customer_name', $transaction->customer->name ?? '') }}" id="customer_name" readonly>
+                                @error('customer_name')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_name') }}</small>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
-                            <input type="text" name="customer_name" class="form-control" value="{{ old('customer_name', $transaction->customer->name ?? '') }}" id="customer_name" readonly>
-                            @error('customer_name')
-                                <small id="" class="form-text text-danger">{{ $errors->first('customer_name') }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="customer_address" class="col-form-label input-label">Địa chỉ khách hàng:</label>
-                            <input type="text" name="customer_address" class="form-control" value="{{ old('customer_address', $transaction->customer->address ?? '') }}" id="customer_address" readonly>
-                            @error('customer_address')
-                                <small id="" class="form-text text-danger">{{ $errors->first('customer_address') }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="customer_phone" class="col-form-label input-label">Số điện thoại khách hàng:</label>
-                            <input type="text" name="customer_phone" class="form-control" value="{{ old('customer_phone', $transaction->customer->phone ?? '') }}" id="customer_phone" readonly>
-                            @error('customer_phone')
-                                <small id="" class="form-text text-danger">{{ $errors->first('customer_phone') }}</small>
-                            @enderror
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <label for="customer_phone" class="col-form-label input-label">SĐT Khách hàng:</label>
+                                <input type="text" name="customer_phone" class="form-control" value="{{ old('customer_phone', $transaction->customer->phone ?? '') }}" id="customer_phone" readonly>
+                                @error('customer_phone')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_phone') }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="customer_tax_code" class="col-form-label input-label">Mã số thuế:</label>
+                                <input type="text" name="customer_tax_code" class="form-control" value="{{ old('customer_tax_code', $transaction->customer->tax_code ?? '') }}" id="customer_tax_code" readonly>
+                                @error('customer_tax_code')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_tax_code') }}</small>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="customer_email" class="col-form-label input-label">Email khách hàng:</label>
@@ -171,10 +176,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="customer_tax_code" class="col-form-label input-label">Mã số thuế:</label>
-                            <input type="text" name="customer_tax_code" class="form-control" value="{{ old('customer_tax_code', $transaction->customer->tax_code ?? '') }}" id="customer_tax_code" readonly>
-                            @error('customer_tax_code')
-                                <small id="" class="form-text text-danger">{{ $errors->first('customer_tax_code') }}</small>
+                            <label for="customer_address" class="col-form-label input-label">Địa chỉ khách hàng:</label>
+                            <input type="text" name="customer_address" class="form-control" value="{{ old('customer_address', $transaction->customer->address ?? '') }}" id="customer_address" readonly>
+                            @error('customer_address')
+                                <small id="" class="form-text text-danger">{{ $errors->first('customer_address') }}</small>
                             @enderror
                         </div>
                         <script>
@@ -232,7 +237,7 @@
                         </script>
                         <div class="form-group">
                             <label for="contact_id" class="col-form-label input-label">Mã liên hệ:</label>
-                            <input type="text" name="contact_id" class="form-control" value="{{ old('contact_id', $transaction->contact->id ?? '') }}" id="contact_id">
+                            <input type="text" name="contact_id" class="form-control" value="{{ old('contact_id', $transaction->contact->id ?? '') }}" id="contact_id" readonly>
                             @error('contact_id')
                                 <small id="" class="form-text text-danger">{{ $errors->first('contact_id') }}</small>
                             @enderror

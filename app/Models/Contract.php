@@ -91,4 +91,9 @@ class Contract extends Model
     {
         return $this->belongsTo(Goods::class, 'goods_id');
     }
+
+    public function contract_type()
+    {
+        return $this->belongsTo(ContractType::class, 'contract_type_id');
+    }
 }
