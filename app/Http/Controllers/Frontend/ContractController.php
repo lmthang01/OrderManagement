@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
 use App\Models\ContractType;
+use App\Models\ContractGoodsDetail;
+use App\Models\Goods;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Contact;
@@ -130,6 +132,17 @@ class ContractController extends Controller
         toastr()->success('Xóa hợp đồng thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get.contract_index');
     }
+
+    // public function addGoodsToContract(Request $request)
+    // {
+    //     // Logic để thêm hàng hóa vào hợp đồng
+
+    //     // Sau khi thêm hàng hóa, tính toán tổng giá trị hợp đồng
+    //     $contract = Contract::find($id);
+    //     $contract->calculateTotalValue();
+
+    //     // Redirect hoặc thực hiện các tác vụ khác
+    // }
 
     // public function generatePDF($contractId)
     // {

@@ -20,7 +20,6 @@ class ContractRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'value' => 'required',
             'start_day' => 'required',
             'finish_day' => 'required',
             'contract_type' => 'required',
@@ -36,7 +35,6 @@ class ContractRequest extends FormRequest
             'name.required' => 'Tên hợp đồng không được để trống!',
             'start_day.required' => 'Hãy chọn ngày bắt đầu hợp đồng!',
             'finish_day.required' => 'Hãy chọn ngày kết thúc hợp đồng!',
-            'value.required' => 'Giá trị hợp đồng không thể trống!',
             'contract_type.required' => 'Hãy chọn loại hợp đồng!',
             'user_id.required' => 'Hãy chọn chủ sở hữu!',
             'customer_id.required' => 'Hãy chọn khách hàng bằng cách nhấn nút "Chọn Khách Hàng" phía trên!',

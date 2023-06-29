@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 09:43 PM
+-- Generation Time: Jun 29, 2023 at 09:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -143,9 +143,10 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `status`, `name`, `contract_type_id`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 2, 12000000.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 0, 'Hợp đồng đăng ký gói dịch vụ 01', 2, 'Trả trước', 'J&T', '0339557475', NULL, 'Nhận tiền mặt', '2000000', '', NULL, NULL, NULL),
-(2, 2, 4, 3, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 3, 'Hợp đồng lắp đặt wifi theo năm', 3, NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, NULL),
-(3, 2, 4, 2, 12000000.00, '2023-06-04 23:28:00', '2023-06-20 23:28:00', -2, 'Test', 5, NULL, NULL, NULL, '2023-06-19 23:28:00', NULL, '2400000', NULL, 'Haizzz', '2023-06-27 16:28:57', '2023-06-27 19:31:23');
+(1, 1, 3, 2, 5842500.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 1, 'Hợp đồng đăng ký gói dịch vụ 01', 2, 'Trả trước', 'J&T', '0339557475', NULL, 'Nhận tiền mặt', '2000000', '', NULL, NULL, '2023-06-29 17:34:32'),
+(2, 2, 4, 3, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 0, 'Hợp đồng lắp đặt wifi theo năm', 3, NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, '2023-06-29 17:34:17'),
+(3, 2, 4, 2, 12000000.00, '2023-06-04 23:28:00', '2023-06-20 23:28:00', -2, 'Test', 5, NULL, NULL, NULL, '2023-06-19 23:28:00', NULL, '2400000', NULL, 'Haizzz', '2023-06-27 16:28:57', '2023-06-27 19:31:23'),
+(8, 1, 2, 1, 23275000.00, '2023-06-04 01:04:00', '2023-06-29 01:04:00', 1, 'Test Hàng hóa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-29 18:05:06', '2023-06-29 18:05:06');
 
 -- --------------------------------------------------------
 
@@ -155,12 +156,30 @@ INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, 
 
 CREATE TABLE `contract_goods_detail` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `contract_id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `contract_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `goods_id` bigint(20) UNSIGNED DEFAULT NULL,
   `quantity` int(11) DEFAULT 1,
+  `total_value` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contract_goods_detail`
+--
+
+INSERT INTO `contract_goods_detail` (`id`, `contract_id`, `goods_id`, `quantity`, `total_value`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 1, 2280000, '2023-06-29 17:09:41', '2023-06-29 17:09:41'),
+(2, 1, 1, 2, 2375000, '2023-06-29 17:10:12', '2023-06-29 17:10:12'),
+(3, 8, 4, 2, 4560000, '2023-06-29 19:07:15', '2023-06-29 19:07:15'),
+(4, 8, 4, 1, 2280000, '2023-06-29 19:09:27', '2023-06-29 19:09:27'),
+(5, 8, 1, 3, 3562500, '2023-06-29 19:13:06', '2023-06-29 19:13:06'),
+(6, 8, 1, 4, 4750000, '2023-06-29 19:20:15', '2023-06-29 19:20:15'),
+(7, 8, 1, 1, 1187500, '2023-06-29 19:27:52', '2023-06-29 19:27:52'),
+(8, 8, 1, 1, 1187500, '2023-06-29 19:38:17', '2023-06-29 19:38:17'),
+(9, 8, 1, 1, 1187500, '2023-06-29 19:40:36', '2023-06-29 19:40:36'),
+(10, 8, 4, 2, 4560000, '2023-06-29 19:45:15', '2023-06-29 19:45:15'),
+(11, 1, 1, 1, 1187500, '2023-06-29 19:46:59', '2023-06-29 19:46:59');
 
 -- --------------------------------------------------------
 
@@ -170,7 +189,7 @@ CREATE TABLE `contract_goods_detail` (
 
 CREATE TABLE `contract_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -183,7 +202,6 @@ CREATE TABLE `contract_types` (
 INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình hoặc ứng dụng đã được cung cấp', NULL, '2023-06-22 16:08:34'),
 (3, 'Gói dịch vụ', 'Đăng ký sử dụng các gói dịch vụ được cung cấp', NULL, '2023-06-09 09:55:52'),
-(4, 'Đóng gói', 'Đóng gói các loại hàng hóa, tính phí theo kích thước và cân nặng,...', '2023-06-08 13:47:27', '2023-06-08 13:47:27'),
 (5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00');
 
 -- --------------------------------------------------------
@@ -268,7 +286,8 @@ CREATE TABLE `goods` (
 
 INSERT INTO `goods` (`id`, `order_id`, `goods_code`, `name`, `unit`, `manufacturer`, `origin`, `guarantee`, `describe`, `input_price`, `output_price`, `markup_ratio`, `tax`, `total`, `avatar`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'Gói DV03', NULL, 'VNPT', 'Cần Thơ', NULL, NULL, 1000000, 1250000, 25, 5, 1187500, NULL, NULL, '2023-06-22 18:25:22'),
-(4, NULL, NULL, 'Gói DV02', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 2000000, 2400000, 20, 5, 2280000, NULL, '2023-06-22 18:16:58', '2023-06-22 18:16:58');
+(4, NULL, NULL, 'Gói DV02', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 2000000, 2400000, 20, 5, 2280000, NULL, '2023-06-22 18:16:58', '2023-06-22 18:16:58'),
+(5, NULL, NULL, 'Gói DV04', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 100000000000, 105000000000, 5, 1, 103950000000, NULL, '2023-06-29 15:00:55', '2023-06-29 15:00:55');
 
 -- --------------------------------------------------------
 
@@ -676,13 +695,13 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `contract_goods_detail`
 --
 ALTER TABLE `contract_goods_detail`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `contract_types`
@@ -706,7 +725,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jobs`

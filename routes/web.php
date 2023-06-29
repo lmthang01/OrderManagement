@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionCo
 use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
 use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractTypeController;
 use App\Http\Controllers\Frontend\GoodsController as FrontendGoodsController;
+use App\Http\Controllers\Frontend\ContractGoodsDetailController as FrontendContractGoodsDetailController;
 
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -184,6 +185,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     Route::get('contract_type/update/{id}', [FrontendContractTypeController::class, 'edit'])->name('get.contract_type_update');
     Route::post('contract_type/update/{id}', [FrontendContractTypeController::class, 'update'])->name('get.contract_type_update');
 
+    Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
+
     // Contact (Liên hệ với khách hàng)
     Route::get('contact/index', [FrontendContactController::class, 'index'])->name('get.contact_index');
 
@@ -234,6 +237,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     Route::post('goods/update/{id}', [FrontendGoodsController::class, 'update'])->name('get.goods_update');
 
     Route::get('goods/delete/{id}', [FrontendGoodsController::class, 'delete'])->name('get.goods_delete');
+
+    // Contract_Goods_Detail (Chi Tiết Hợp Đồng - Thêm Hàng Hóa Vào Hợp Đồng)
+    Route::get('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'create'])->name('get.contract_goods_detail_create');
+    Route::post('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'store'])->name('get.contract_goods_detail_store');
+
 });
 
 

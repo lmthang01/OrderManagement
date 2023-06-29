@@ -272,7 +272,7 @@
                         </script>
                         {{-- End --}}
                         <div class="form-group">
-                            <label for="contract_value" class="col-form-label input-label">Giá trị hợp đồng<code>*</code>:</label>
+                            <label for="contract_value" class="col-form-label input-label">Giá trị hợp đồng:</label>
                             <div class="textbox-unitprice">
                                 <input class="form-control custom-select-height" name="value" type="text" value="{{ old('value', $contract->value ?? '') }}" id="contract_value" style="border-radius: 3px 0 0 3px !important;">
                                 <span id="unit-price-ctrvalue" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
@@ -312,7 +312,8 @@
                         {{-- End --}}
                         <div class="form-group">
                             <label for="" class="col-form-label input-label">Trạng thái:</label>
-                            <select name="status" class="custom-select custom-select-height" style="font-size: 14px !important;">
+                            <input type="hidden" name="status" value="0">
+                            <select name="status_display" class="custom-select custom-select-height" style="font-size: 14px !important;" disabled>
                                 @foreach ($status ?? [] as $key => $item)
                                     <option value="{{ $key }}" {{ ($contract->status ?? 0) == $key ? 'selected' : '' }}>
                                         {{ $item['name'] }}</option>
@@ -469,6 +470,9 @@
                             @enderror
                         </div>
                     </div>
+                </div>
+                <div class="form-group btn-group-savetrans">
+                    <button type="submit" class="btn btn-primary btn-savetrans mt-3 pl-3 pr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu & Thêm Mới</span></button>
                 </div>
             </div>
         </div>
