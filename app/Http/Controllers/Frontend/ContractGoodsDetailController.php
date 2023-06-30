@@ -64,7 +64,8 @@ class ContractGoodsDetailController extends Controller
                 ->where('id', $contractId)
                 ->update([
                     'value' => $total_value->total_value,
-                    'status' => '1'
+                    'status' => '1',
+                    'debt' => $total_value->total_value
                 ]);
 
 
@@ -76,37 +77,25 @@ class ContractGoodsDetailController extends Controller
         return redirect()->route('get.contract_index');
     }
 
-    // public function edit($id)
+    // public function delete(Request $request)
     // {
-    //     $contract_type = ContractType::findOrFail($id);
+    //     $contractId = $request->input('contract_id');
+    //     $goodsId = $request->input('goods_id');
 
-    //     return view('frontend.contract_type.update', compact('contract_type'));
-    // }
-
-    // public function update(ContractTypeRequest $request, $id){
     //     try {
-    //         $data = $request->all();
-    //         $data['updated_at'] = Carbon::now();
-
-    //         ContractType::find($id)->update($data);
-    //         toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
-    //     } catch (\Exception $exception) {
-    //         Log::error("ERROR => ContractTypeController@update => ". $exception->getMessage());
-    //         toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
-    //         return redirect()->route('get.contract_type_update', $id);
-    //     }
-    //     return redirect()->route('get.contract_type_index');
-    // }
-
-    // public function delete(Request $request, $id){
-    //     try {
-    //         $contract_goods_detail = ContractGoodsDetail::findOrFail($id);
-    //         if($contract_goods_detail) $contract_goods_detail->delete();
-    //         toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
+    //         $contract_goods_detail = ContractGoodsDetail::findOrFail($goodsId);
+    //         if ($contract_goods_detail) {
+    //             $contract_goods_detail->delete();
+    //             toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
+    //         } else {
+    //             toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
+    //         }
     //     } catch (\Exception $exception) {
     //         toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
-    //         Log::error("ERROR => ContractGoodsDetailController@delete => ". $exception->getMessage());
+    //         Log::error("ERROR => ContractGoodsDetailController@delete => " . $exception->getMessage());
     //     }
-    //     return redirect()->route('get.contract_goods_detail_index');
+
+    //     return redirect()->route('get.contract_update', ['id' => $contractId]);
     // }
+
 }

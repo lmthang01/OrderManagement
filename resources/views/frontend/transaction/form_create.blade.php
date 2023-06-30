@@ -135,7 +135,7 @@
             </div>
             <div class="form-group">
                 <label for="transaction_address" class="col-form-label input-label">Địa chỉ giao dịch:</label>
-                <textarea name="address" id="transaction_address" class="form-control" cols="30" rows="2">{{ old('address', $transaction->transaction_address ?? '') }}</textarea>
+                <textarea name="transaction_address" id="transaction_address" class="form-control" cols="30" rows="2">{{ old('transaction_address', $transaction->transaction_address ?? '') }}</textarea>
                 @error('transaction_address')
                     <small id="" class="form-text text-danger">{{ $errors->first('transaction_address') }}</small>
                 @enderror

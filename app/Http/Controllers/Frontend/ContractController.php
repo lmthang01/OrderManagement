@@ -26,7 +26,7 @@ class ContractController extends Controller
         $contracts = Contract::with('customer:id,name','user:id,name','contact:id,name');
         $contracts = $contracts
             ->orderByDesc('id')
-            ->paginate(10);
+            ->get();
 
         $model = new Contract();
         $status = $model->getStatus();
@@ -54,12 +54,13 @@ class ContractController extends Controller
 
     public function store(ContractRequest $request)
     {
-        // dd($data);
         try {
             $data = $request->all();
             $data['created_at'] = Carbon::now();
             $customers = Customer::findOrFail($data['customer_id']);
             $contacts = Contact::findOrFail($data['contact_id']);
+            $contract_types = ContractType::findOrFail($data['contract_type_id']);
+
             // $data['user_id'] = Auth::user()->id;
 
             $contracts = Contract::create($data);
@@ -82,7 +83,12 @@ class ContractController extends Controller
         $model = new Contract();
         $status = $model->getStatus();
 
-        return view('frontend.contract.detail', compact('contract', 'customer', 'status', 'contract_type'));
+        $goods = Goods::join('contract_goods_detail', 'goods.id', '=', 'contract_goods_detail.goods_id')
+                ->where('contract_goods_detail.contract_id', $contract->id)
+                ->select('goods.*', 'contract_goods_detail.quantity', 'contract_goods_detail.total_value')
+                ->get();
+
+        return view('frontend.contract.detail', compact('contract', 'customer', 'status', 'contract_type', 'goods'));
     }
 
     public function edit($id){
@@ -96,8 +102,12 @@ class ContractController extends Controller
 
         $model = new Contract();
         $status = $model->getStatus();
+        $goods = Goods::join('contract_goods_detail', 'goods.id', '=', 'contract_goods_detail.goods_id')
+                ->where('contract_goods_detail.contract_id', $contract->id)
+                ->select('goods.*', 'contract_goods_detail.quantity', 'contract_goods_detail.total_value')
+                ->get();
 
-        return view('frontend.contract.update', compact('contract', 'users', 'customers', 'status', 'contacts', 'positions', 'contract_types'));
+        return view('frontend.contract.update', compact('contract', 'users', 'customers', 'status', 'contacts', 'positions', 'contract_types', 'goods'));
     }
 
     public function update(ContractRequest $request, $id)
@@ -105,7 +115,6 @@ class ContractController extends Controller
         try {
             $data = $request->all();
             $data['updated_at'] = Carbon::now();
-
             // $customer = Customer::findOrFail($data['customer_id']);
 
             Contract::find($id)->update($data);
@@ -133,38 +142,29 @@ class ContractController extends Controller
         return redirect()->route('get.contract_index');
     }
 
-    // public function addGoodsToContract(Request $request)
-    // {
-    //     // Logic để thêm hàng hóa vào hợp đồng
+    public function pdf($contractId)
+    {
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        $contract = Contract::findOrFail($contractId);
+        $goods = Goods::all();
+        $contract_goods_detail = ContractGoodsDetail::all();
 
-    //     // Sau khi thêm hàng hóa, tính toán tổng giá trị hợp đồng
-    //     $contract = Contract::find($id);
-    //     $contract->calculateTotalValue();
+        // Tạo một đối tượng Dompdf
+        $dompdf = new Dompdf();
 
-    //     // Redirect hoặc thực hiện các tác vụ khác
-    // }
+        // Render template PDF từ dữ liệu
+        $html = view('frontend.contract.pdf', compact('contract'))->render();
 
-    // public function generatePDF($contractId)
-    // {
-    //     // Lấy dữ liệu từ cơ sở dữ liệu
-    //     $contract = Contract::findOrFail($contractId);
+        // Gán HTML vào Dompdf
+        $dompdf->loadHtml($html);
 
-    //     // Tạo một đối tượng Dompdf
-    //     $dompdf = new Dompdf();
+        // Cấu hình Dompdf (tuỳ chọn)
+        $dompdf->setPaper('A4', 'portrait');
 
-    //     // Render template PDF từ dữ liệu
-    //     $html = view('pdf.contract', compact('contract'));
+        // Render PDF
+        $dompdf->render();
 
-    //     // Gán HTML vào Dompdf
-    //     $dompdf->loadHtml($html);
-
-    //     // Cấu hình Dompdf (tuỳ chọn)
-    //     $dompdf->setPaper('A4', 'portrait');
-
-    //     // Render PDF
-    //     $dompdf->render();
-
-    //     // Xuất file PDF
-    //     $dompdf->stream('contract.pdf');
-    // }
+        // Xuất file PDF
+        $dompdf->stream('contract.pdf');
+    }
 }

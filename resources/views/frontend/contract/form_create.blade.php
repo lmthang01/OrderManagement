@@ -242,7 +242,7 @@
                 </div>
                 <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="form-group">
                             <label for="choose_user" class="col-form-label input-label">Chủ sở hữu<code>*</code>:</label>
                             <select name="user_id" class="custom-select custom-select-height" id="choose_user" style="font-size: 14px !important;" onchange="loadUserPhone()">
@@ -267,19 +267,16 @@
                                     .find(function (user) {
                                         return user.id == selectedUserId;
                                     });
-                                document.getElementById('user_phone').value = selectedUser ? selectedUser.phone : '';
+                                document.getElementById('phone').value = selectedUser ? selectedUser.phone : '';
                             }
                         </script>
                         {{-- End --}}
                         <div class="form-group">
-                            <label for="contract_value" class="col-form-label input-label">Giá trị hợp đồng:</label>
-                            <div class="textbox-unitprice">
-                                <input class="form-control custom-select-height" name="value" type="text" value="{{ old('value', $contract->value ?? '') }}" id="contract_value" style="border-radius: 3px 0 0 3px !important;">
-                                <span id="unit-price-ctrvalue" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
-                            </div>
-                            @error('value')
-                                    <small id="" class="form-text text-danger">{{ $errors->first('value') }}</small>
-                            @enderror
+                            <label for="phone" class="col-form-label input-label">SĐT Chủ sở hữu:</label>
+                            <input class="form-control custom-select-height" name="phone" type="text" value="{{ old('phone', $contract->phone ?? '') }}" id="phone">
+                            @error('phone')
+                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('phone') }}</small>
+                             @enderror
                         </div>
                         {{-- Xử lý tự động load giá trị hợp đồng --}}
                         <script>
@@ -293,25 +290,28 @@
                         </script>
                         {{-- End --}}
                         {{-- Xử lý thời gian --}}
-                        <div class="form-group">
-                            <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
-                            <input class="form-control custom-select-height" type="datetime-local" name="start_day" value="{{ old('start_day', $contract->start_day ?? '') }}" id="start_day">
-                            @error('start_day')
+                        <div class="row">
+
+                            <div class="col-6 form-group">
+                                <label for="start_day" class="col-form-label input-label">Ngày bắt đầu<code>*</code>:</label>
+                                <input class="form-control custom-select-height" type="datetime-local" name="start_day" value="{{ old('start_day', $contract->start_day ?? '') }}" id="start_day">
+                                @error('start_day')
                                 <small id="" class="form-text text-danger">{{ $errors->first('start_day') }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="finish_day" class="col-form-label input-label">Ngày kết thúc<code>*</code>:</label>
-                            <input class="form-control custom-select-height" type="datetime-local" name="finish_day" value="{{ old('finish_day', $contract->finish_day ?? '') }}" id="finish_day">
-                            @error('finish_day')
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <label for="finish_day" class="col-form-label input-label">Ngày kết thúc<code>*</code>:</label>
+                                <input class="form-control custom-select-height" type="datetime-local" name="finish_day" value="{{ old('finish_day', $contract->finish_day ?? '') }}" id="finish_day">
+                                @error('finish_day')
                                 <small id="" class="form-text text-danger">{{ $errors->first('finish_day') }}</small>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
                         <input type="hidden" name="selected_start_day" id="selected_start_day">
                         <input type="hidden" name="selected_finish_day" id="selected_finish_day">
                         {{-- End --}}
                         <div class="form-group">
-                            <label for="" class="col-form-label input-label">Trạng thái:</label>
+                            <label for="" class="col-form-label input-label">Trạng thái HĐ:</label>
                             <input type="hidden" name="status" value="0">
                             <select name="status_display" class="custom-select custom-select-height" style="font-size: 14px !important;" disabled>
                                 @foreach ($status ?? [] as $key => $item)
@@ -323,9 +323,16 @@
                                 <small id="" class="form-text text-danger">{{ $errors->first('status') }}</small>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="contract_note" class="col-form-label input-label">Ghi chú:</label>
+                            <input class="form-control custom-select-height" name="note" type="text" value="{{ old('note', $contract->note ?? '') }}" id="contract_note">
+                            @error('note')
+                                <small id="" class="form-text text-danger">{{ $errors->first('note') }}</small>
+                            @enderror
+                        </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="form-group">
                             <label for="name" class="col-form-label input-label">Tên hợp đồng<code>*</code>:</label>
                             <input class="form-control custom-select-height" name="name" type="text" value="{{ old('name', $contract->name ?? '') }}" id="name">
@@ -334,9 +341,23 @@
                             @enderror
                         </div>
                         {{-- Xử lý loại hợp đồng --}}
+                        {{-- <div class="form-group">
+                            <label for="choose_user" class="col-form-label input-label">Chủ sở hữu<code>*</code>:</label>
+                            <select name="user_id" class="custom-select custom-select-height" id="choose_user" style="font-size: 14px !important;" onchange="loadUserPhone()">
+                                <option value="">----Chọn chủ sở hữu----</option>
+                                @foreach ($users ?? [] as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ ($user->user_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('user_id')
+                                <small id="" class="form-text text-danger">{{ $errors->first('user_id') }}</small>
+                            @enderror
+                        </div> --}}
                         <div class="form-group">
-                            <label for="" class="col-form-label input-label">Loại hợp đồng<code>*</code>:</label>
-                            <select name="contract_type" class="custom-select custom-select-height" style="font-size: 14px !important;">
+                            <label for="choose_contract" class="col-form-label input-label">Loại hợp đồng<code>*</code>:</label>
+                            <select name="contract_type_id" class="custom-select custom-select-height" style="font-size: 14px !important;" id="choose_contract">
                                 <option value="">----Chọn loại hợp đồng----</option>
                                 @foreach ($contract_types ?? [] as $item)
                                     <option value="{{ $item->id }}"
@@ -344,8 +365,8 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('contract_type')
-                                <small id="" class="form-text text-danger">{{ $errors->first('contract_type') }}</small>
+                            @error('contract_type_id')
+                                <small id="" class="form-text text-danger">{{ $errors->first('contract_type_id') }}</small>
                             @enderror
                         </div>
                         {{-- End --}}
@@ -370,109 +391,95 @@
                                 <option value="Viettel Post" {{ old('transportation') == "Viettel Post" ? 'selected' : '' }}>Viettel Post</option>
                                 <option value="J&T" {{ old('transportation') == "J&T" ? 'selected' : '' }}>J&T</option>
                                 <option value="Ninja Van" {{ old('transportation') == "Ninja Van" ? 'selected' : '' }}>Ninja Van</option>
+                                <option value="Loại hàng hóa không vận chuyển" {{ old('transportation') == "Loại hàng hóa không vận chuyển" ? 'selected' : '' }}>Loại hàng hóa không vận chuyển</option>
                             </select>
                             @error('transportation')
                                 <small id="emailHelp" class="form-text text-danger">{{ $errors->first('transportation') }}</small>
                              @enderror
                         </div>
                         <div class="form-group">
-                            <label for="user_phone" class="col-form-label input-label">SĐT Chủ sở hữu:</label>
-                            <input class="form-control custom-select-height" name="user_phone" type="text" value="{{ old('user_phone', $contract->phone ?? '') }}" id="user_phone">
-                            @error('user_phone')
-                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('user_phone') }}</small>
-                             @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="form-group">
-                            <label for="payment_date" class="col-form-label input-label">Ngày thanh toán:</label>
-                            <input class="form-control custom-select-height" type="datetime-local" name="payment_date" value="{{ old('payment_date', $contract->payment_date ?? '') }}" id="payment_date">
-                            @error('payment_date')
-                                <small id="" class="form-text text-danger">{{ $errors->first('payment_date') }}</small>
-                            @enderror
-                        </div>
-                        <input type="hidden" name="selected_payment_date" id="selected_payment_date">
-                        <div class="form-group">
-                            <label for="choose_payment_type" class="col-form-label input-label">Loại thanh toán:</label>
-                            <select name="payment_type" class="custom-select custom-select-height" id="choose_payment_type" style="font-size: 14px !important;">
-                                <option value="">--Chọn loại thanh toán--</option>
-                                <option value="Nhận tiền mặt" {{ old('payment_type') == "Nhận tiền mặt" ? 'selected' : '' }}>Nhận tiền mặt</option>
-                                <option value="Nhận chuyển khoản" {{ old('payment_type') == "Nhận chuyển khoản" ? 'selected' : '' }}>Nhận chuyển khoản</option>
-                            </select>
-                            @error('payment_type')
-                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('payment_type') }}</small>
-                             @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="percentage_value" class="col-form-label input-label">% Giá trị HĐ:</label>
-                            <div class="textbox-unitprice">
-                                <input class="form-control custom-select-height" name="percentage_value" type="text" value="{{ old('percentage_value', $contract->percentage_value ?? '') }}" id="percentage_value" style="border-radius: 3px 0 0 3px !important;">
-                                <span class="unit-price" style="border-radius: 0 3px 3px 0 !important;">%</span>
-                            </div>
-                            @error('percentage_value')
-                                <small id="" class="form-text text-danger">{{ $errors->first('percentage_value') }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="payment_amount" class="col-form-label input-label">Tiền thanh toán:</label>
-                            <div class="textbox-unitprice">
-                                <input class="form-control custom-select-height" name="payment_amount" type="text" value="{{ old('payment_amount', $contract->payment_amount ?? '') }}" id="payment_amount" style="border-radius: 3px 0 0 3px !important;">
-                                <span id="unit-price-payment_amount" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
-                            </div>
-                            @error('payment_amount')
-                                <small id="" class="form-text text-danger">{{ $errors->first('payment_amount') }}</small>
-                            @enderror
-                        </div>
-                        {{-- Xử lý tự động load dữ liệu lên ô "Tiền thanh toán" = "Giá trị HĐ" x "% Giá trị HĐ" --}}
-                        <script>
-                            $(document).ready(function() {
-                                // Lắng nghe sự kiện khi giá trị trong ô % Giá trị HĐ thay đổi
-                                $('#percentage_value').on('input', function() {
-                                    var contractValue = parseFloat($('#contract_value').val()); // Lấy giá trị từ ô Giá trị hợp đồng
-                                    var percentageValue = parseFloat($(this).val()); // Lấy giá trị từ ô % Giá trị HĐ
-                                    var payment = contractValue * (percentageValue / 100); // Tính toán giá trị tiền thanh toán
-                                    var formattedPayment = parseFloat(payment).toLocaleString('vi-VN'); // Định dạng giá trị số thành chuỗi với phân cách hàng nghìn
-                                    $('#payment_amount').val(payment); // Cập nhật giá trị vào ô Tiền thanh toán và giới hạn số lẻ thành 2 chữ số
-                                    $('#unit-price-payment_amount').text(formattedPayment); // Đồng thời cập nhật vào ô nổi bật nối sau
-                                });
-                                // Xử lý tự load tiền thanh toán khi nhập trực tiếp vào ô tiền thanh toán
-                                $('#payment_amount').on('input', function() {
-                                    var inputValue = $(this).val();
-                                    var formattedValue = parseFloat(inputValue).toLocaleString('vi-VN');
-                                    var contractValue = parseFloat($('#contract_value').val());
-                                    var percentageValue = inputValue / contractValue * 100;
-                                    $('#percentage_value').val(percentageValue);
-                                    $('#unit-price-payment_amount').text(formattedValue);
-                                });
-                            });
-                        </script>
-                        {{-- End --}}
-                        {{-- <div class="form-group">
                             <label for="choose_user_revenue" class="col-form-label input-label">Doanh số tính cho:</label>
-                            <select name="user_id" class="custom-select custom-select-height" id="choose_user_revenue" style="font-size: 14px !important;">
-                                <option value="">---- Chọn ----</option>
+                            <select name="revenue_for" class="custom-select custom-select-height" id="choose_user_revenue" style="font-size: 14px !important;">
+                                <option value="">---- Chọn người nhận----</option>
                                 @foreach ($users ?? [] as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ ($user->user_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                    <option value="{{ $item->name }}"
+                                        {{ old('revenue_for') == $item->id ? 'selected' : '' }}>{{ $item->name }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('user_id')
-                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('user_id') }}</small>
-                            @enderror
-                        </div> --}}
-                        <div class="form-group">
-                            <label for="contract_note" class="col-form-label input-label">Ghi chú:</label>
-                            <input class="form-control custom-select-height" name="note" type="text" value="{{ old('note', $contract->note ?? '') }}" id="contract_note">
-                            @error('note')
-                                <small id="" class="form-text text-danger">{{ $errors->first('note') }}</small>
+                            @error('revenue_for')
+                                <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
+
+                    {{-- <div class="form-group">
+                        <label for="payment_date" class="col-form-label input-label">Ngày thanh toán:</label>
+                        <input class="form-control custom-select-height" type="datetime-local" name="payment_date" value="{{ old('payment_date', $contract->payment_date ?? '') }}" id="payment_date">
+                        @error('payment_date')
+                            <small id="" class="form-text text-danger">{{ $errors->first('payment_date') }}</small>
+                        @enderror
+                    </div>
+                    <input type="hidden" name="selected_payment_date" id="selected_payment_date">
+                    <div class="form-group">
+                        <label for="choose_payment_type" class="col-form-label input-label">Loại thanh toán:</label>
+                        <select name="payment_type" class="custom-select custom-select-height" id="choose_payment_type" style="font-size: 14px !important;">
+                            <option value="">--Chọn loại thanh toán--</option>
+                            <option value="Nhận tiền mặt" {{ old('payment_type') == "Nhận tiền mặt" ? 'selected' : '' }}>Nhận tiền mặt</option>
+                            <option value="Nhận chuyển khoản" {{ old('payment_type') == "Nhận chuyển khoản" ? 'selected' : '' }}>Nhận chuyển khoản</option>
+                        </select>
+                        @error('payment_type')
+                            <small id="emailHelp" class="form-text text-danger">{{ $errors->first('payment_type') }}</small>
+                            @enderror
+                    </div> --}}
+                    {{-- <div class="form-group">
+                        <label for="percentage_value" class="col-form-label input-label">% Giá trị HĐ:</label>
+                        <div class="textbox-unitprice">
+                            <input class="form-control custom-select-height" name="percentage_value" type="text" value="{{ old('percentage_value', $contract->percentage_value ?? '') }}" id="percentage_value" style="border-radius: 3px 0 0 3px !important;">
+                            <span class="unit-price" style="border-radius: 0 3px 3px 0 !important;">%</span>
+                        </div>
+                        @error('percentage_value')
+                            <small id="" class="form-text text-danger">{{ $errors->first('percentage_value') }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_amount" class="col-form-label input-label">Tiền thanh toán:</label>
+                        <div class="textbox-unitprice">
+                            <input class="form-control custom-select-height" name="payment_amount" type="text" value="{{ old('payment_amount', $contract->payment_amount ?? '') }}" id="payment_amount" style="border-radius: 3px 0 0 3px !important;">
+                            <span id="unit-price-payment_amount" class="unit-price unit-price-exp" style="border-radius: 0 3px 3px 0 !important;">0</span>
+                        </div>
+                        @error('payment_amount')
+                            <small id="" class="form-text text-danger">{{ $errors->first('payment_amount') }}</small>
+                        @enderror
+                    </div> --}}
+                    {{-- Xử lý tự động load dữ liệu lên ô "Tiền thanh toán" = "Giá trị HĐ" x "% Giá trị HĐ" --}}
+                    <script>
+                        $(document).ready(function() {
+                            // Lắng nghe sự kiện khi giá trị trong ô % Giá trị HĐ thay đổi
+                            $('#percentage_value').on('input', function() {
+                                var contractValue = parseFloat($('#contract_value').val()); // Lấy giá trị từ ô Giá trị hợp đồng
+                                var percentageValue = parseFloat($(this).val()); // Lấy giá trị từ ô % Giá trị HĐ
+                                var payment = contractValue * (percentageValue / 100); // Tính toán giá trị tiền thanh toán
+                                var formattedPayment = parseFloat(payment).toLocaleString('vi-VN'); // Định dạng giá trị số thành chuỗi với phân cách hàng nghìn
+                                $('#payment_amount').val(payment); // Cập nhật giá trị vào ô Tiền thanh toán và giới hạn số lẻ thành 2 chữ số
+                                $('#unit-price-payment_amount').text(formattedPayment); // Đồng thời cập nhật vào ô nổi bật nối sau
+                            });
+                            // Xử lý tự load tiền thanh toán khi nhập trực tiếp vào ô tiền thanh toán
+                            $('#payment_amount').on('input', function() {
+                                var inputValue = $(this).val();
+                                var formattedValue = parseFloat(inputValue).toLocaleString('vi-VN');
+                                var contractValue = parseFloat($('#contract_value').val());
+                                var percentageValue = inputValue / contractValue * 100;
+                                $('#percentage_value').val(percentageValue);
+                                $('#unit-price-payment_amount').text(formattedValue);
+                            });
+                        });
+                    </script>
+                    {{-- End --}}
+
                 </div>
                 <div class="form-group btn-group-savetrans">
-                    <button type="submit" class="btn btn-primary btn-savetrans mt-3 pl-3 pr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu & Thêm Mới</span></button>
+                    <button type="submit" class="btn btn-primary btn-savetrans mt-5 pl-3 pr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu & Thêm Mới</span></button>
                 </div>
             </div>
         </div>

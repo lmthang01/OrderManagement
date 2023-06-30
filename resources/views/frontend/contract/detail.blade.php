@@ -14,8 +14,7 @@
                                         <a href="{{ route('get.contract_update', $contract->id) }}">
                                             <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-edit"></i></i><span>Sửa</span></button>
                                         </a>
-                                        <a href="#">
-                                            {{-- {{ route('contract.pdf', ['id' => $contract->id]) }} --}}
+                                        <a href="{{ route('get.contract_pdf', $contract->id) }}">
                                             <button type="button" class="btn btn-addorder"><i class="fa fa-print" aria-hidden="true"></i><span>Xuất file PDF</span></button>
                                         </a>
                                         <a href="{{ route('get.contract_index') }}">
@@ -28,7 +27,7 @@
                     </div>
                     <!-- End -->
                     <!-- Form thông tin start -->
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -147,7 +146,7 @@
                                                 <label class="col-form-label input-label"><strong>Thuế:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label"></p>
+                                                <p class="col-form-label input-label">...</p>
                                             </div>
                                         </div>
                                         <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
@@ -155,7 +154,7 @@
                                                 <label class="col-form-label input-label"><strong>Phí vận chuyển:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label"></p>
+                                                <p class="col-form-label input-label">...</p>
                                             </div>
                                         </div>
                                         <div class="row form-group" style="border-bottom: 1px solid #f3eeff;border-left: 1px solid #f3eeff;">
@@ -240,6 +239,81 @@
                         </div>
                     </div>
                     <!-- Form thông tin khách hàng end -->
+                    <!-- Form thông tin Hàng hóa start -->
+                    <div class="col-12 mt-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="head-title-addbtn">
+                                    <h4 class="header-title">Hàng Hóa</h4>
+                                </div>
+                                <div class="data-tables datatable-dark">
+                                    <table id="dataTable2" class="text-center table-business">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Mã hàng hóa</th>
+                                                <th>Tên hàng hóa</th>
+                                                <th>Đơn giá nhập</th>
+                                                <th>Tỷ lệ vênh</th>
+                                                <th>Đơn giá xuất</th>
+                                                <th>Số lượng</th>
+                                                <th>Thành tiền</th>
+                                                <th>Tiền thuế</th>
+                                                <th>Nguồn gốc</th>
+                                                <th>Xuất xứ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($goods ?? [] as $item)
+                                                <tr>
+                                                    <td>{{ $item->id }}</td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->input_price }}</td>
+                                                    <td>{{ $item->markup_ratio }}</td>
+                                                    <td>{{ $item->output_price }}</td>
+                                                    <td>{{ $item->quantity }}</td>
+                                                    <td>{{ $item->total_value }}</td>
+                                                    <td>{{ $item->tax_value * $item->quantity}}</td>
+                                                    <td>{{ $item->manufacturer }}</td>
+                                                    <td>{{ $item->origin }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form thông tin Hàng hóa end -->
+                    <!-- Thống kê tổng hợp đồng -->
+                    @php
+                        $totalValue = 0;
+                        $totalInputPrice = 0;
+                        $totalTaxValue = 0;
+
+                        foreach ($goods ?? [] as $item) {
+                            $totalValue += $item->total_value;
+                            $totalInputPrice += $item->input_price * $item->quantity;
+                            $totalTaxValue += $item->tax_value * $item->quantity;
+                        }
+
+                        $profit = $totalValue - $totalInputPrice - $totalTaxValue;
+                    @endphp
+                    <div class="card-body card-body-order">
+                        <div class="statistics-total">
+                            <div class="total-label">
+                                <span>Tổng tiền hàng:</span><br>
+                                <span>Tổng tiền nhập:</span><br>
+                                <span>Tổng tiền thuế:</span><br>
+                                <span>Lợi nhuận:</span>
+                            </div>
+                            <div class="total-money">
+                                <span>{{ number_format($totalValue, 0, ',', '.') }}</span><br>
+                                <span>{{ number_format($totalInputPrice, 0, ',', '.') }}</span><br>
+                                <span>{{ number_format($totalTaxValue, 0, ',', '.') }}</span><br>
+                                <span>{{ number_format($profit, 0, ',', '.') }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

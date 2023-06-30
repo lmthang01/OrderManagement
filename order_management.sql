@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2023 at 09:48 PM
+-- Generation Time: Jun 30, 2023 at 10:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -120,11 +120,11 @@ CREATE TABLE `contracts` (
   `user_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `contact_id` int(11) DEFAULT NULL,
-  `value` decimal(10,2) DEFAULT 0.00,
-  `start_day` datetime NOT NULL,
-  `finish_day` datetime NOT NULL,
-  `status` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `value` varchar(255) DEFAULT '0',
+  `start_day` datetime DEFAULT NULL,
+  `finish_day` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `contract_type_id` int(11) DEFAULT NULL,
   `payments` varchar(255) DEFAULT NULL,
   `transportation` varchar(255) DEFAULT NULL,
@@ -132,7 +132,8 @@ CREATE TABLE `contracts` (
   `payment_date` datetime DEFAULT NULL,
   `payment_type` varchar(255) DEFAULT NULL,
   `payment_amount` varchar(255) DEFAULT '0',
-  `sales_attributed_to` varchar(255) DEFAULT NULL,
+  `debt` varchar(255) DEFAULT '0',
+  `revenue_for` varchar(255) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -142,11 +143,21 @@ CREATE TABLE `contracts` (
 -- Dumping data for table `contracts`
 --
 
-INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `status`, `name`, `contract_type_id`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `sales_attributed_to`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 2, 5842500.00, '2023-06-07 16:31:31', '2023-06-07 16:31:31', 1, 'Hợp đồng đăng ký gói dịch vụ 01', 2, 'Trả trước', 'J&T', '0339557475', NULL, 'Nhận tiền mặt', '2000000', '', NULL, NULL, '2023-06-29 17:34:32'),
-(2, 2, 4, 3, 15000000.00, '2023-06-08 12:25:01', '2023-06-08 12:25:01', 0, 'Hợp đồng lắp đặt wifi theo năm', 3, NULL, NULL, '0335447578', NULL, NULL, '5000000', NULL, NULL, NULL, '2023-06-29 17:34:17'),
-(3, 2, 4, 2, 12000000.00, '2023-06-04 23:28:00', '2023-06-20 23:28:00', -2, 'Test', 5, NULL, NULL, NULL, '2023-06-19 23:28:00', NULL, '2400000', NULL, 'Haizzz', '2023-06-27 16:28:57', '2023-06-27 19:31:23'),
-(8, 1, 2, 1, 23275000.00, '2023-06-04 01:04:00', '2023-06-29 01:04:00', 1, 'Test Hàng hóa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-29 18:05:06', '2023-06-29 18:05:06');
+INSERT INTO `contracts` (`id`, `user_id`, `customer_id`, `contact_id`, `value`, `start_day`, `finish_day`, `status`, `name`, `contract_type_id`, `payments`, `transportation`, `phone`, `payment_date`, `payment_type`, `payment_amount`, `debt`, `revenue_for`, `note`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 2, '5842500.00', '2023-06-07 16:31:31', '2023-06-07 16:31:31', 1, 'Hợp đồng đăng ký gói dịch vụ 01', 2, 'Trả trước', 'J&T', '0339557475', NULL, 'Nhận tiền mặt', '2000000', '0', '', NULL, NULL, '2023-06-29 17:34:32'),
+(3, 2, 4, 2, '12000000.00', '2023-06-04 23:28:00', '2023-06-20 23:28:00', -2, 'Test', 5, NULL, NULL, NULL, '2023-06-19 23:28:00', NULL, '2400000', '0', NULL, 'Haizzz', '2023-06-27 16:28:57', '2023-06-27 19:31:23'),
+(8, 1, 2, 1, '23275000.00', '2023-06-04 01:04:00', '2023-06-29 01:04:00', 1, 'Test Hàng hóa', 2, NULL, NULL, NULL, NULL, NULL, '23275000', '0', NULL, NULL, '2023-06-29 18:05:06', '2023-06-30 08:03:33'),
+(9, 2, 5, 2, '2375000.00', '2023-06-04 15:09:00', '2023-06-30 15:09:00', 1, 'Bảo trì website bán linh kiện điện tử', 3, 'Trả sau', 'Loại hàng hóa không vận chuyển', '0339557475', NULL, NULL, '0', '0', NULL, NULL, '2023-06-30 08:10:19', '2023-06-30 09:11:10'),
+(11, 1, 2, 1, '4655000', '2023-05-28 15:26:00', '2023-06-28 15:26:00', 4, 'aaaaaaa', 3, NULL, NULL, NULL, '2023-06-13 21:45:00', 'Nhận tiền mặt', '4655000', '0', NULL, NULL, '2023-06-30 08:26:52', '2023-06-30 20:02:45'),
+(12, 2, 2, 2, '5842500.00', '2023-06-04 15:29:00', '2023-06-29 15:29:00', 1, 'BBBBB', 2, 'Trả sau', 'Loại hàng hóa không vận chuyển', NULL, NULL, NULL, '0', '0', 'Lê Thắng', NULL, '2023-06-30 08:29:50', '2023-06-30 13:44:49'),
+(13, 1, 5, 3, '0.00', '2023-06-04 16:05:00', '2023-06-29 16:05:00', 0, 'Hợp đồng sử dụng gói DV 01', 2, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, '2023-06-30 09:06:42', '2023-06-30 09:06:42'),
+(14, 5, 5, 1, '4655000', '2023-06-04 17:56:00', '2023-06-29 17:56:00', 1, 'CCCCCC', 3, 'Trả sau', 'Loại hàng hóa không vận chuyển', NULL, '2023-07-18 00:44:00', 'Nhận tiền mặt', '4655000', '0', 'Lê Thắng', NULL, '2023-06-30 10:56:41', '2023-06-30 17:44:17'),
+(15, 1, 2, 1, '0.00', '2023-06-05 18:01:00', '2023-06-29 18:01:00', 0, 'testcontracttypeid', 5, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, '2023-06-30 11:02:00', '2023-06-30 11:02:00'),
+(16, 18, 2, 2, '0.00', '2023-06-01 18:12:00', '2023-06-29 18:12:00', 0, 'ZZZZZZZZZZZA', 3, NULL, NULL, '0869888999', NULL, NULL, '0', '0', 'Lê Thắng', NULL, '2023-06-30 11:12:40', '2023-06-30 17:25:33'),
+(17, 1, 3, 1, '2375000', '2023-06-04 21:50:00', '2023-06-29 21:50:00', 1, 'Hợp đồng test', 2, 'Trả sau', 'Loại hàng hóa không vận chuyển', NULL, NULL, NULL, '2375000', '0', 'Huỳnh Nhật Trường', NULL, '2023-06-30 14:51:44', '2023-06-30 14:55:41'),
+(19, 18, 2, 2, '128155000', '2023-06-04 23:30:00', '2023-06-29 23:30:00', 1, 'Hợp đồng test', 8, 'Trả sau', 'Loại hàng hóa không vận chuyển', '0869888999', NULL, NULL, '0', '128155000', 'Lê Minh Thắng', 'abc', '2023-06-30 16:30:40', '2023-06-30 16:45:01'),
+(20, 1, 2, 1, '0', '2023-06-04 23:48:00', '2023-06-29 23:48:00', 0, 'VVVVVVVVV', 8, NULL, NULL, '0869859555', NULL, NULL, '0', '0', NULL, NULL, '2023-06-30 16:48:56', '2023-06-30 16:52:16'),
+(21, 16, 2, 1, '0', '2023-06-04 23:53:00', '2023-06-22 23:53:00', 0, 'sadasdfasfv', 5, NULL, NULL, '0869859434', NULL, NULL, '0', '0', NULL, NULL, '2023-06-30 16:53:22', '2023-06-30 16:53:22');
 
 -- --------------------------------------------------------
 
@@ -159,7 +170,7 @@ CREATE TABLE `contract_goods_detail` (
   `contract_id` bigint(20) UNSIGNED DEFAULT NULL,
   `goods_id` bigint(20) UNSIGNED DEFAULT NULL,
   `quantity` int(11) DEFAULT 1,
-  `total_value` int(11) NOT NULL,
+  `total_value` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -172,14 +183,24 @@ INSERT INTO `contract_goods_detail` (`id`, `contract_id`, `goods_id`, `quantity`
 (1, 1, 4, 1, 2280000, '2023-06-29 17:09:41', '2023-06-29 17:09:41'),
 (2, 1, 1, 2, 2375000, '2023-06-29 17:10:12', '2023-06-29 17:10:12'),
 (3, 8, 4, 2, 4560000, '2023-06-29 19:07:15', '2023-06-29 19:07:15'),
-(4, 8, 4, 1, 2280000, '2023-06-29 19:09:27', '2023-06-29 19:09:27'),
 (5, 8, 1, 3, 3562500, '2023-06-29 19:13:06', '2023-06-29 19:13:06'),
 (6, 8, 1, 4, 4750000, '2023-06-29 19:20:15', '2023-06-29 19:20:15'),
 (7, 8, 1, 1, 1187500, '2023-06-29 19:27:52', '2023-06-29 19:27:52'),
 (8, 8, 1, 1, 1187500, '2023-06-29 19:38:17', '2023-06-29 19:38:17'),
 (9, 8, 1, 1, 1187500, '2023-06-29 19:40:36', '2023-06-29 19:40:36'),
 (10, 8, 4, 2, 4560000, '2023-06-29 19:45:15', '2023-06-29 19:45:15'),
-(11, 1, 1, 1, 1187500, '2023-06-29 19:46:59', '2023-06-29 19:46:59');
+(11, 1, 1, 1, 1187500, '2023-06-29 19:46:59', '2023-06-29 19:46:59'),
+(12, 12, 1, 2, 2375000, '2023-06-30 08:36:16', '2023-06-30 08:36:16'),
+(13, 12, 4, 1, 2280000, '2023-06-30 08:37:38', '2023-06-30 08:37:38'),
+(14, 12, 1, 1, 1187500, '2023-06-30 09:04:17', '2023-06-30 09:04:17'),
+(15, 9, 1, 2, 2375000, '2023-06-30 09:11:30', '2023-06-30 09:11:30'),
+(16, 11, 1, 2, 2375000, '2023-06-30 11:30:36', '2023-06-30 11:30:36'),
+(17, 11, 4, 1, 2280000, '2023-06-30 11:36:07', '2023-06-30 11:36:07'),
+(18, 17, 1, 2, 2375000, '2023-06-30 14:52:47', '2023-06-30 14:52:47'),
+(19, 14, 1, 2, 2375000, '2023-06-30 17:42:50', '2023-06-30 17:42:50'),
+(20, 14, 4, 1, 2280000, '2023-06-30 17:43:07', '2023-06-30 17:43:07'),
+(22, 19, 1, 2, 2375000, '2023-06-30 18:43:05', '2023-06-30 18:43:05'),
+(23, 19, 4, 1, 2280000, '2023-06-30 19:22:05', '2023-06-30 19:22:05');
 
 -- --------------------------------------------------------
 
@@ -200,9 +221,10 @@ CREATE TABLE `contract_types` (
 --
 
 INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình hoặc ứng dụng đã được cung cấp', NULL, '2023-06-22 16:08:34'),
+(2, 'Hợp đồng bảo trì', 'Thực hiện các công việc bảo trì cho chương trình hoặc ứng dụng truyền thông', NULL, '2023-06-30 15:59:07'),
 (3, 'Gói dịch vụ', 'Đăng ký sử dụng các gói dịch vụ được cung cấp', NULL, '2023-06-09 09:55:52'),
-(5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00');
+(5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00'),
+(8, 'Sử dụng chữ ký số', 'Hợp đồng sử dụng chữ ký số quy mô lớn, cấp doanh nghiệp', '2023-06-30 15:57:41', '2023-06-30 15:57:41');
 
 -- --------------------------------------------------------
 
@@ -223,6 +245,9 @@ CREATE TABLE `customers` (
   `status` int(11) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL DEFAULT 0,
+  `ward_id` int(11) DEFAULT 0,
+  `district_id` int(11) DEFAULT 0,
+  `province_id` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -231,12 +256,28 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, `description`, `avatar`, `slug`, `status`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(2, 'Lê Minh Thắng', 'Cần Thơ', '0869859343', 'thang12@gmail.com', 'T02', NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
-(3, 'Nhật Trường CTU', NULL, '0899555333', NULL, NULL, NULL, '2023-05-25__customer-ctu.png', 'nhat-truong-ctu', 2, 0, 2, '2023-05-25 02:50:54', '2023-05-26 01:56:28'),
-(4, 'Cao Thuần', NULL, '0899666333', 'thuan@gmail.com', NULL, NULL, '2023-05-25__customer-ctu.png', 'cao-thuan', 2, 0, 2, '2023-05-25 12:02:32', '2023-05-26 01:54:43'),
-(5, 'Bá Tùng', NULL, '0899555333', 'truong@gmail.com', NULL, NULL, NULL, 'ba-tung', 3, 0, 3, '2023-05-26 01:55:03', '2023-05-26 01:55:11'),
-(6, 'Khách hàng do Admin - Lê Thắng tạo', NULL, '0899555333', 'truong222@gmail.com', NULL, NULL, NULL, 'khach-hang-do-admin-le-thang-tao', 1, 5, 3, '2023-05-26 03:47:07', '2023-05-26 03:47:07');
+INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, `description`, `avatar`, `slug`, `status`, `user_id`, `category_id`, `ward_id`, `district_id`, `province_id`, `created_at`, `updated_at`) VALUES
+(2, 'Lê Minh Thắng', 'Cần Thơ', '0869859343', 'thang12@gmail.com', 'T02', NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, 0, 0, 0, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
+(3, 'Nhật Trường CTU', NULL, '0899555333', NULL, NULL, NULL, '2023-05-25__customer-ctu.png', 'nhat-truong-ctu', 2, 0, 2, 0, 0, 0, '2023-05-25 02:50:54', '2023-05-26 01:56:28'),
+(4, 'Cao Thuần', NULL, '0899666333', 'thuan@gmail.com', NULL, NULL, '2023-05-25__customer-ctu.png', 'cao-thuan', 2, 0, 2, 0, 0, 0, '2023-05-25 12:02:32', '2023-05-26 01:54:43'),
+(5, 'Bá Tùng', NULL, '0899555333', 'truong@gmail.com', NULL, NULL, NULL, 'ba-tung', 3, 0, 3, 0, 0, 0, '2023-05-26 01:55:03', '2023-05-26 01:55:11'),
+(6, 'Khách hàng do Admin - Lê Thắng tạo', NULL, '0899555333', 'truong222@gmail.com', NULL, NULL, NULL, 'khach-hang-do-admin-le-thang-tao', 1, 5, 3, 0, 0, 0, '2023-05-26 03:47:07', '2023-05-26 03:47:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `districts`
+--
+
+CREATE TABLE `districts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `prefix` varchar(255) DEFAULT NULL,
+  `province_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -274,6 +315,7 @@ CREATE TABLE `goods` (
   `output_price` double DEFAULT NULL,
   `markup_ratio` double DEFAULT NULL,
   `tax` double DEFAULT NULL,
+  `tax_value` varchar(255) DEFAULT '0',
   `total` double DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -284,10 +326,11 @@ CREATE TABLE `goods` (
 -- Dumping data for table `goods`
 --
 
-INSERT INTO `goods` (`id`, `order_id`, `goods_code`, `name`, `unit`, `manufacturer`, `origin`, `guarantee`, `describe`, `input_price`, `output_price`, `markup_ratio`, `tax`, `total`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Gói DV03', NULL, 'VNPT', 'Cần Thơ', NULL, NULL, 1000000, 1250000, 25, 5, 1187500, NULL, NULL, '2023-06-22 18:25:22'),
-(4, NULL, NULL, 'Gói DV02', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 2000000, 2400000, 20, 5, 2280000, NULL, '2023-06-22 18:16:58', '2023-06-22 18:16:58'),
-(5, NULL, NULL, 'Gói DV04', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 100000000000, 105000000000, 5, 1, 103950000000, NULL, '2023-06-29 15:00:55', '2023-06-29 15:00:55');
+INSERT INTO `goods` (`id`, `order_id`, `goods_code`, `name`, `unit`, `manufacturer`, `origin`, `guarantee`, `describe`, `input_price`, `output_price`, `markup_ratio`, `tax`, `tax_value`, `total`, `avatar`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Gói DV03', 'Gói', 'VNPT', 'Cần Thơ', NULL, NULL, 1000000, 1250000, 25, 5, '62500', 1187500, NULL, NULL, '2023-06-22 18:25:22'),
+(4, NULL, NULL, 'Gói DV02', 'Gói', 'VNPT', 'Cần Thơ', '2 tháng', NULL, 2000000, 2400000, 20, 5, '0', 2280000, NULL, '2023-06-22 18:16:58', '2023-06-22 18:16:58'),
+(5, NULL, NULL, 'Gói DV04', 'Gói', 'VNPT', 'Cần Thơ', '2 năm', NULL, 100000000000, 105000000000, 5, 1, '0', 103950000000, NULL, '2023-06-29 15:00:55', '2023-06-30 16:22:13'),
+(7, NULL, NULL, 'Hàng mới', 'Thùng', 'NSG', 'An Giang', '2 tháng', NULL, 100000000, 130000000, 30, 5, '5500000', 123500000, NULL, '2023-06-30 18:35:20', '2023-06-30 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -345,7 +388,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (46, '2023_06_11_999999_add_messenger_color_to_users', 8),
 (47, '2023_06_11_999999_create_chatify_favorites_table', 8),
 (48, '2023_06_11_999999_create_chatify_messages_table', 8),
-(49, '2023_06_23_004640_create_contract_goods_detail_table', 9);
+(49, '2023_06_23_004640_create_contract_goods_detail_table', 9),
+(50, '2023_06_12_213353_create_locations_table', 10),
+(51, '2023_06_12_214131_alter_column_location_in_customer', 10);
 
 -- --------------------------------------------------------
 
@@ -426,12 +471,27 @@ INSERT INTO `positions` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `provinces`
+--
+
+CREATE TABLE `provinces` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -440,7 +500,7 @@ CREATE TABLE `transactions` (
   `start_day` datetime DEFAULT current_timestamp(),
   `deadline_date` datetime DEFAULT current_timestamp(),
   `finish_day` datetime DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) DEFAULT 1,
   `result` varchar(255) DEFAULT NULL,
   `priority` int(11) DEFAULT NULL,
   `transaction_address` varchar(255) DEFAULT NULL,
@@ -454,8 +514,10 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id`, `transaction_type`, `contact_id`, `start_day`, `deadline_date`, `finish_day`, `status`, `result`, `priority`, `transaction_address`, `document`, `created_at`, `updated_at`) VALUES
-(1, 'Đăng ký Gói DV01', 'Đăng ký sử dụng gói dịch vụ 01 trong 1 tháng tới.', 1, 3, 'Giao dịch cung cấp dịch vụ', 1, '2023-06-06 00:19:34', '2023-06-07 00:19:34', '2023-06-06 00:19:34', 1, 'Thành công', 3, 'Cần Thơ', NULL, '2023-06-05 17:19:34', '2023-06-05 17:19:34'),
-(17, 'Test', 'aaaaa', 18, 2, 'Giao dịch hợp tác đối tác', 1, '2023-06-05 20:40:00', '2023-06-21 20:40:00', NULL, 0, NULL, NULL, NULL, NULL, '2023-06-27 13:40:57', '2023-06-27 14:13:12');
+(1, 'Đăng ký Gói DV01', 'Đăng ký sử dụng gói dịch vụ 01 trong 1 tháng tới.', 1, 3, 'Giao dịch cung cấp dịch vụ', 1, '2023-06-06 00:19:34', '2023-06-07 00:19:34', '2023-06-06 00:19:34', 1, 'Thành công', 3, 'An Giang', NULL, '2023-06-05 17:19:34', '2023-06-30 13:13:03'),
+(17, 'Test', 'aaaaa', 18, 2, 'Giao dịch hợp tác đối tác', 1, '2023-06-05 20:40:00', '2023-06-21 20:40:00', NULL, 2, 'Thành công', 1, NULL, NULL, '2023-06-27 13:40:57', '2023-06-30 13:08:21'),
+(18, 'Giao dịch test lần cuối cùng', 'Được tạo ra để test đó', 18, 3, 'Giao dịch mua sắm', 3, '2023-06-05 22:45:00', '2023-06-29 22:45:00', '2023-06-20 22:45:00', 3, 'Okla', 5, 'Cần Thơ', 'C:\\xampp\\tmp\\php706A.tmp', '2023-06-30 15:46:14', '2023-06-30 15:54:34'),
+(19, 'ZZZZZ', NULL, 18, 4, 'Giao dịch mua sắm', 2, '2023-06-04 22:47:00', '2023-06-30 22:47:00', NULL, 0, NULL, 1, 'An Giang', NULL, '2023-06-30 15:48:04', '2023-06-30 15:48:04');
 
 -- --------------------------------------------------------
 
@@ -541,6 +603,23 @@ INSERT INTO `user_types` (`id`, `name`, `description`, `created_at`, `updated_at
 (2, 'ADMIN', 'Admin hệ thống ', '2023-05-25 12:55:58', NULL),
 (3, 'SYSTEM', 'System tài khoản hệ thống', '2023-05-25 12:58:18', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wards`
+--
+
+CREATE TABLE `wards` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `prefix` varchar(255) DEFAULT NULL,
+  `province_id` int(11) NOT NULL DEFAULT 0,
+  `district_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -598,6 +677,12 @@ ALTER TABLE `customers`
   ADD UNIQUE KEY `customers_slug_unique` (`slug`);
 
 --
+-- Indexes for table `districts`
+--
+ALTER TABLE `districts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -650,6 +735,12 @@ ALTER TABLE `positions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `provinces`
+--
+ALTER TABLE `provinces`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -676,6 +767,12 @@ ALTER TABLE `user_types`
   ADD UNIQUE KEY `user_types_name_unique` (`name`);
 
 --
+-- Indexes for table `wards`
+--
+ALTER TABLE `wards`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -695,25 +792,31 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `contract_goods_detail`
 --
 ALTER TABLE `contract_goods_detail`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `contract_types`
 --
 ALTER TABLE `contract_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `districts`
+--
+ALTER TABLE `districts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -725,7 +828,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -737,7 +840,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -758,10 +861,16 @@ ALTER TABLE `positions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `provinces`
+--
+ALTER TABLE `provinces`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -780,6 +889,12 @@ ALTER TABLE `user_has_types`
 --
 ALTER TABLE `user_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `wards`
+--
+ALTER TABLE `wards`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

@@ -23,9 +23,9 @@
                                         <th>Khách hàng</th>
                                         <th>Người liên hệ</th>
                                         <th>Người phụ trách</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ưu tiên</th>
                                         <th>Loại giao dịch</th>
+                                        <th>Ưu tiên</th>
+                                        <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                         {{-- <th>Mô tả</th>
                                         <th>Thời gian thực hiện</th>
@@ -39,14 +39,14 @@
                                             <td>{{ $item->customer->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->contact->name ?? '[N\A]' }}</td>
                                             <td>{{ $item->user->name ?? '[N\A]' }}</td>
+                                            <td>{{ $item->transaction_type }}</td>
+                                            <td>{{ $item->priority }}</td>
                                             <td>
                                                 <span
                                                     class="{{ $item->getStatus($item->status)['class'] ?? 'badge badge-light' }}">
                                                     {{ $item->getStatus($item->status)['name'] ?? 'Mới' }}
                                                 </span>
                                             </td>
-                                            <td>{{ $item->priority }}</td>
-                                            <td>{{ $item->transaction_type }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-2"><a href="{{ route('get.transaction_detail', $item->id) }}"

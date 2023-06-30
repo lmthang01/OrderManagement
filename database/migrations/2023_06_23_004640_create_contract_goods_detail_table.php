@@ -10,8 +10,8 @@ class CreateContractGoodsDetailTable extends Migration
     {
         Schema::create('contract_goods_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contract_id');
-            $table->unsignedBigInteger('goods_id');
+            $table->unsignedBigInteger('contract_id')->nullable();
+            $table->unsignedBigInteger('goods_id')->nullable();
             $table->timestamps();
 
             $table->foreign('contract_id')->references('id')->on('contracts');

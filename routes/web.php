@@ -174,7 +174,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
     Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
-    // Route::get('contract/pdf/{id}', [FrontendContractController::class, 'pdf'])->name('get.contract_pdf');
+    Route::get('contract/pdf/{id}', [FrontendContractController::class, 'pdf'])->name('get.contract_pdf');
 
     // ContractType (Loại hợp đồng)
     Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');
@@ -241,6 +241,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     // Contract_Goods_Detail (Chi Tiết Hợp Đồng - Thêm Hàng Hóa Vào Hợp Đồng)
     Route::get('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'create'])->name('get.contract_goods_detail_create');
     Route::post('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'store'])->name('get.contract_goods_detail_store');
+
+    // Route::get('contract_goods_detail/delete/{id}', [FrontendContractGoodsDetailController::class, 'delete'])->name('get.contract_goods_detail_delete');
 
 });
 

@@ -1,6 +1,6 @@
 <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
     @csrf
-    <div class="col-12 mt-2">
+    <div class="col-12 mt-3">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
@@ -20,14 +20,14 @@
                             <label for="choose_unit" class="col-form-label input-label">Chọn đơn vị:</label>
                             <select name="unit" class="custom-select custom-select-height" id="choose_unit" style="font-size: 14px !important;">
                                 <option value="">----Chọn đơn vị----</option>
-                                <option value="Gam" {{ old('unit') == 'Gam' ? 'selected' : '' }}>Gam</option>
-                                <option value="Mét" {{ old('unit') == 'Mét' ? 'selected' : '' }}>Mét</option>
-                                <option value="Chiếc" {{ old('unit') == 'Chiếc' ? 'selected' : '' }}>Chiếc</option>
-                                <option value="Bộ" {{ old('unit') == 'Bộ' ? 'selected' : '' }}>Bộ</option>
-                                <option value="Gói" {{ old('unit') == 'Gói' ? 'selected' : '' }}>Gói</option>
-                                <option value="Hộp" {{ old('unit') == 'Hộp' ? 'selected' : '' }}>Hộp</option>
-                                <option value="Thùng" {{ old('unit') == 'Thùng' ? 'selected' : '' }}>Thùng</option>
-                                <option value="Lít" {{ old('unit') == 'Lít' ? 'selected' : '' }}>Lít</option>
+                                <option value="Gam" {{ old('unit', $goods->unit) == 'Gam' ? 'selected' : '' }}>Gam</option>
+                                <option value="Mét" {{ old('unit', $goods->unit) == 'Mét' ? 'selected' : '' }}>Mét</option>
+                                <option value="Chiếc" {{ old('unit', $goods->unit) == 'Chiếc' ? 'selected' : '' }}>Chiếc</option>
+                                <option value="Bộ" {{ old('unit', $goods->unit) == 'Bộ' ? 'selected' : '' }}>Bộ</option>
+                                <option value="Gói" {{ old('unit', $goods->unit) == 'Gói' ? 'selected' : '' }}>Gói</option>
+                                <option value="Hộp" {{ old('unit', $goods->unit) == 'Hộp' ? 'selected' : '' }}>Hộp</option>
+                                <option value="Thùng" {{ old('unit', $goods->unit) == 'Thùng' ? 'selected' : '' }}>Thùng</option>
+                                <option value="Lít" {{ old('unit', $goods->unit) == 'Lít' ? 'selected' : '' }}>Lít</option>
                             </select>
                             @error('unit')
                                 <small id="emailHelp" class="form-text text-danger">{{ $errors->first('unit') }}</small>
@@ -174,10 +174,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="btn-group-head-order mt-5">
+                    <button type="submit" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu thay đổi</span></button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="btn-group-head-order mt-3">
-        <button type="submit" class="btn btn-addorder"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm Hàng Hóa</span></button>
     </div>
 </form>

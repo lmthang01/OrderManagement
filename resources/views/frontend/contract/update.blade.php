@@ -33,15 +33,12 @@
                     {{-- ------------------ --}}
                     @include('frontend.contract.form_update')
                     {{-- ------------------ --}}
-                    <!-- Bảng thông tin hàng hóa start -->
+                    <!-- Form thông tin Hàng hóa start -->
                     <div class="col-12 mt-2">
                         <div class="card">
                             <div class="card-body">
                                 <div class="head-title-addbtn">
-                                    <h4 class="header-title">Hàng hóa</h4>
-                                    <div class="btn-load">
-                                        <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Hàng Hóa</button>
-                                    </div>
+                                    <h4 class="header-title">Hàng Hóa</h4>
                                 </div>
                                 <div class="data-tables datatable-dark">
                                     <table id="dataTable" class="text-center table-business">
@@ -49,57 +46,38 @@
                                             <tr>
                                                 <th>Mã hàng hóa</th>
                                                 <th>Tên hàng hóa</th>
-                                                <th>Mô tả</th>
-                                                <th>Xuất xứ</th>
-                                                <th>Hãng SX</th>
-                                                <th>Bảo hành</th>
-                                                <th>Đơn vị tính</th>
-                                                <th>Giá nhập</th>
-                                                <th>Giá xuất</th>
-                                                <th>Thuế</th>
+                                                <th>Đơn giá nhập</th>
+                                                <th>Tỷ lệ vênh</th>
+                                                <th>Đơn giá xuất</th>
+                                                <th>Số lượng</th>
                                                 <th>Thành tiền</th>
+                                                <th>Tiền thuế</th>
+                                                <th>Nguồn gốc</th>
+                                                <th>Xuất xứ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            @foreach ($goods ?? [] as $item)
+                                                <tr>
+                                                    <td>{{ $item->id }}</td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->input_price }}</td>
+                                                    <td>{{ $item->markup_ratio }}</td>
+                                                    <td>{{ $item->output_price }}</td>
+                                                    <td>{{ $item->quantity }}</td>
+                                                    <td>{{ $item->total_value }}</td>
+                                                    <td>{{ $item->tax_value * $item->quantity}}</td>
+                                                    <td>{{ $item->manufacturer }}</td>
+                                                    <td>{{ $item->origin }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Form thông tin khách hàng end -->
-                    <!-- Thống kê tổng đơn hàng -->
-                    <div class="card-body card-body-order">
-                        <div class="statistics-total">
-                            <div class="total-label">
-                                <span>Tổng tiền hàng:</span><br>
-                                <span>Tiền chiết khấu:</span><br>
-                                <span>Tiền thuế:</span><br>
-                                <span>Tổng tiền:</span><br>
-                                <span>Lợi nhuận:</span>
-                            </div>
-                            <div class="total-money">
-                                <span>35.200.000</span><br>
-                                <span>11.000.000</span><br>
-                                <span>11.000.000</span><br>
-                                <span>11.000.000</span><br>
-                                <span>24.200.000</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Form thông tin Hàng hóa end -->
                 {{-- </div> --}}
             </div>
         </div>

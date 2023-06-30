@@ -14,7 +14,7 @@ class ContractTypeController extends Controller
 {
     public function index()
     {
-        $contract_types = ContractType::orderByDesc('id')->paginate(20);
+        $contract_types = ContractType::orderByDesc('id')->get();
         $viewData = [
             'contract_types' => $contract_types
         ];
