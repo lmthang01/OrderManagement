@@ -33,7 +33,7 @@
                                     </ul>
                                 </td>
                                
-                                <td><input name="code_customer" type="text" value="{{  $item->id }}"  ></td>
+                                <td><input name="customer_id" type="text" value="{{  $item->id }}"  ></td>
                                 </form>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->phone }}</td>

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app_frontend')
+@extends('frontend.layouts.business_order')
 @section('content')
 <form method="POST" action="" >
     @csrf

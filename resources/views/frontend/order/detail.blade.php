@@ -49,7 +49,7 @@
                                                         <label for="example-text-input" class="col-form-label input-label"><strong>Trạng thái đơn hàng:</strong></label>
                                                     </div>
                                                     <div class="col-sm-7">
-                                                        <p class="col-form-label input-label">Đang thực hiện</p>
+                                                        <p class="col-form-label input-label">{{ $orders->status_order->name }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row form-group">

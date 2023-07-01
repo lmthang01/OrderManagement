@@ -22,9 +22,9 @@ class GoodsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'goods_code' => 'required|unique:goods,goods_code,'.$this->id,
+            // 'goods_code' => 'required|unique:goods,goods_code,'.$this->id,
             'name' => 'required',
-            
+            'unit_id' => 'required',
             'input_price' => 'required',
 
         ];
@@ -33,11 +33,11 @@ class GoodsRequest extends FormRequest
     public function messages()
     {
         return [
-            'goods_code.unique' => 'Mã hàng hóa đã tồn tại!',
-            'goods_code.required' => 'Mã hàng hóa không được để trống!',
+            // 'goods_code.unique' => 'Mã hàng hóa đã tồn tại!',
+            // 'goods_code.required' => 'Mã hàng hóa không được để trống!',
 
             'name.required' => 'Tên hàng hóa không được để trống!',
-           
+            'unit_id.required' => 'Vui lòng chọn đơn vị',
             'input_price.required' => 'Giá nhập không được để trống!',
             
         ];

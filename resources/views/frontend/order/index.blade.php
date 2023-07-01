@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app_frontend')
+@extends('frontend.layouts.business_order')
 @section('content')
 
             <div class="main-content-inner">
@@ -24,19 +24,19 @@
                                                 <th>Thực hiện</th>
                                                 <th>Mã đơn hàng</th>
                                                 <th>Khách hàng</th>
-                                                <th>Ngày đặt</th>
-                                                <th>Ngày giao</th>
+                                                {{-- <th>Ngày đặt</th>
+                                                <th>Ngày giao</th> --}}
                                                 <th>Địa chỉ giao hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Người giao</th>
-                                                <th>Ghi chú</th>
-                                                <th>Hình thức Thanh toán</th>
-                                                <th>Mã hợp đồng</th>
+                                                {{-- <th>Ghi chú</th> --}}
+                                                {{-- <th>Hình thức Thanh toán</th> --}}
+                                                {{-- <th>Mã hợp đồng</th>
                                                 <th>Người tạo</th>
                                                 <th>Tiền hàng</th>
                                                 <th>Tiền thuế</th>
                                                 <th>Tiền CK</th>
-                                                <th>Tổng tiền</th>
+                                                <th>Tổng tiền</th> --}}
                                                 
                                             </tr>
                                         </thead>
@@ -53,18 +53,18 @@
                                                 <td>{{ $item->code_order }}</td>
                                                 <td>{{ $item->customer->name }}</td>
                                                 <td>{{ $item->order_date }}</td>
-                                                <td>{{ $item->delivery_time }}</td>
-                                                <td>{{ $item->delivery_address }}</td>
-                                                <td><span class="status-p bg-primary">{{ $item->status }}</span></td>
+                                                {{-- <td>{{ $item->delivery_time }}</td> --}}
+                                                {{-- <td>{{ $item->delivery_address }}</td> --}}
+                                                <td><span class="status-p bg-primary">{{ $item->status_order->name }}</span></td>
                                                 <td>{{ $item->deliver->name }}</td>
-                                                <td>{{ $item->note }}</td>
-                                                <td>{{ $item->payments }}</td>
-                                                <td>{{ $item->contract_id }}</td>
-                                                <td>{{ $item->user->name }}</td>
-                                                <td>1.900.000</td>
+                                                {{-- <td>{{ $item->note }}</td> --}}
+                                                {{-- <td>{{ $item->payments }}</td> --}}
+                                                {{-- <td>{{ $item->contract_id }}</td> --}}
+                                                {{-- <td>{{ $item->user->name }}</td> --}}
+                                                {{-- <td>1.900.000</td>
                                                 <td>0</td>
                                                 <td>0</td>
-                                                <td>1.900.000</td>
+                                                <td>1.900.000</td> --}}
                                                 
 
                                             </tr>

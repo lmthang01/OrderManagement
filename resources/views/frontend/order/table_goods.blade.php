@@ -21,7 +21,7 @@
                     <thead class="text-capitalize">
                         <tr>
                             <th>Thao tác</th>
-                            <th>Mã hàng hóa</th>
+                            {{-- <th>Mã hàng hóa</th> --}}
                             <th>Tên hàng hóa</th>
                             <th>Mô tả</th>
                             <th>Xuất xứ</th>
@@ -44,18 +44,18 @@
                                      <li><a href="{{ route('get.goods_delete', $item->id) }}" class="text-danger"><i class="ti-trash"></i></a></li>
                                 </ul>
                             </td>
-                            <td>{{ $item->goods_code }} </td>
-                            <td><input type="text" value="{{  $item->name }}"></td>
-                            <td><input type="text" value="{{ $item->describe }}"></td>
-                            <td><input type="text" value="{{ $item->origin }}"></td>
-                            <td><input type="text" value="{{ $item->manufacturer }}"></td>
-                            <td><input type="text" value="{{ $item->guarantee }}"></td>
-                            <td><input type="text" value="{{ $item->unit->name }}"></td>
-                            <td><input type="text" value="{{ $item->input_price }}"></td>
-                            <td><input type="text" value="{{ $item->output_price }}"></td>
-                            <td><input type="text" value="{{ $item->markup_ratio }}"></td>
-                            <td><input type="text" value="{{ $item->tax }}"></td>
-                            <td><input type="text" value="{{ $item->total }}"></td>
+                            {{-- <td>{{ $item->goods_code }} </td> --}}
+                            <td>{{  $item->name }}</td>
+                            <td>{{ $item->describe }}</td>
+                            <td>{{ $item->origin }}</td>
+                            <td>{{ $item->manufacturer }}</td>
+                            <td>{{ $item->guarantee }}</td>
+                            <td>{{ $item->unit->name }}</td>
+                            <td>{{ $item->input_price }}</td>
+                            <td>{{ $item->output_price }}</td>
+                            <td>{{ $item->markup_ratio }}</td>
+                            <td>{{ $item->tax }}</td>
+                            <td>{{ $item->total }}</td>
                         </tr>
                         @endforeach      
 

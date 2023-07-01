@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="../../../assets/css/styles.css">
     <link rel="stylesheet" href="../../../assets/css/editstyles.css">
     <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Modernizr css -->
     <script src="../../../assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -67,9 +68,9 @@
                                 <a href="javascript:void(0)" aria-expanded="true">
                                 <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
                                 <ul class="collapse">
-                                    <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li>
+                                    {{-- <li><a href="../../BusinessManagement/Transaction/transaction.php">Giao dịch với khách hàng</a></li> --}}
                                     <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
-                                    <li><a href="../../BusinessManagement/Contract/contract.php">Hợp đồng bán ra</a></li>
+                                    {{-- <li><a href="../../BusinessManagement/Contract/contract.php">Hợp đồng bán ra</a></li> --}}
                                 </ul>
                             </li>
                             

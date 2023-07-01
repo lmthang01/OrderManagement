@@ -13,6 +13,7 @@ use App\Models\Position;
 use App\Models\Customer;
 use App\Models\Deliver;
 use App\Models\Unit;
+use App\Models\Status_order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +26,14 @@ class OrderController extends Controller
     // Chi tiết đơn hàng 
     public function detail($id){
         $unit = Unit::all();
+        $status = Status_order::all();
         $orders = Order::findOrFail($id);
         $delivers = Deliver::all();
         $goods= Goods::with('unit:id,name',);
         $goods = Goods::where('order_id', $id)->get();
         $customers = Customer::all(); 
 
-        return view('frontend.order.detail', compact('orders','goods','unit'));
+        return view('frontend.order.detail', compact('orders','goods','unit', 'status'));
     }
 
     // Giao diện trang chủ đơn hàng
@@ -43,6 +45,7 @@ class OrderController extends Controller
         $contacts = Contact::all();
         $delivers = Deliver::all();
         $units = Unit::all();
+        $status_order = Status_order::all();
         $orders = Order::with('customer:id,name', 'contact:id,name', 'deliver:id,name');
         $orders = $orders->orderByDesc('id')->paginate(20); // Phân trang 20 dòng
         $viewData = [
@@ -67,7 +70,7 @@ class OrderController extends Controller
         try {
                 
             $data = $request->except('_token');           
-            $data=['code_customer' => $request->code_customer,];
+            $data=['customer_id' => $request->customer_id,];
             $data['created_at'] = Carbon::now();
             $data['user_id'] = Auth::user()->id; // Hiển thị name người tạo đơn hàng
                 
@@ -123,38 +126,38 @@ class OrderController extends Controller
 
     // Hiển thị giao diện thêm hàng hóa
     public function goods_create(){
-        $unit = Unit::all();
-        $goods1 = Goods::all();
-       return view('frontend.order.form_goods',compact('unit', 'goods1'));
+        $units = Unit::all();
+        $goods= Goods::with('unit:id,name',)->orderByDesc('id')->paginate(20);
+       return view('frontend.order.form_goods',compact('units', 'goods'));
 
     }
 
     // Thêm hàng hóa vào csdl goods
     public function goods_store(GoodsRequest $request){
         try {
-                
-            $data = $request->except('_token','avatar');
-            $data =[
-                'goods_code' => $request->goods_code,
-                'name' => $request->name,
-                'unit_id' => $request->unit_id,
-                'manufacturer' => $request->manufacturer,
-                'origin' => $request->origin,
-                'gender' => $request->gender,
-                'describe' => $request->describe,
-                'input_price' => $request->input_price,
-                'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
-                // 'output_price' => $request->output_price,
-                'markup_ratio' => $request->markup_ratio,
-                'tax' => $request->tax,
-                'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
-        ]; 
-            if ($request->avatar) {
-                $file = upload_image('avatar');
-                if (isset($file['code']) && $file['code'] == 1) {
-                    $data['avatar'] = $file['name'];
-                }
-            }
+                $data = $request->all();
+        //     $data = $request->except('_token','avatar');
+        //     $data =[
+        //      //   'goods_code' => $request->goods_code,
+        //         'name' => $request->name,
+        //         'unit_id' => $request->unit_id,
+        //         'manufacturer' => $request->manufacturer,
+        //         'origin' => $request->origin,
+        //         'gender' => $request->gender,
+        //         'describe' => $request->describe,
+        //         'input_price' => $request->input_price,
+        //         'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
+        //         // 'output_price' => $request->output_price,
+        //         'markup_ratio' => $request->markup_ratio,
+        //         'tax' => $request->tax,
+        //         'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
+        // ]; 
+        //     if ($request->avatar) {
+        //         $file = upload_image('avatar');
+        //         if (isset($file['code']) && $file['code'] == 1) {
+        //             $data['avatar'] = $file['name'];
+        //         }
+        //     }
             $data['created_at'] = Carbon::now();
             $goods = Goods::create($data);
             
@@ -169,37 +172,38 @@ class OrderController extends Controller
 
     // Giao diện thêm hàng hóa theo id đơn hàng
     public function goods_update($id){
-        $unit = Unit::all();
-        $goods1 = Goods::all();
-        return view('frontend.order.form_goods_update',compact('unit', 'goods1'));
+        $units = Unit::all();
+        $goods= Goods::with('unit:id,name',)->orderByDesc('id')->paginate(20);
+
+        return view('frontend.order.form_goods_update',compact('units', 'goods'));
     }
 
     // Thêm hàng hóa theo tương ứng id đơn hàng
     public function goods_store_update(GoodsRequest $request,$id){
         try {
                 
-            $data = $request->except('_token','avatar');
-            $data =[
-                'goods_code' => $request->goods_code,
-                'name' => $request->name,
-                'unit_id' => $request->unit_id,
-                'manufacturer' => $request->manufacturer,
-                'origin' => $request->origin,
-                'gender' => $request->gender,
-                'describe' => $request->describe,
-                'input_price' => $request->input_price,
-                'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
-                // 'output_price' => $request->output_price,
-                'markup_ratio' => $request->markup_ratio,
-                'tax' => $request->tax,
-                'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
-        ]; 
-        if ($request->avatar) {
-            $file = upload_image('avatar');
-            if (isset($file['code']) && $file['code'] == 1) {
-                $data['avatar'] = $file['name'];
-            }
-        }
+            $data = $request->all();
+        //     $data =[
+        //         // 'goods_code' => $request->goods_code,
+        //         'name' => $request->name,
+        //         'unit_id' => $request->unit_id,
+        //         'manufacturer' => $request->manufacturer,
+        //         'origin' => $request->origin,
+        //         'gender' => $request->gender,
+        //         'describe' => $request->describe,
+        //         'input_price' => $request->input_price,
+        //         'output_price' => $request->input_price + $request->input_price * $request-> markup_ratio / 100,
+        //         // 'output_price' => $request->output_price,
+        //         'markup_ratio' => $request->markup_ratio,
+        //         'tax' => $request->tax,
+        //         'total' => ($request->input_price + $request->input_price * $request-> markup_ratio / 100) * $request->tax
+        // ]; 
+        // if ($request->avatar) {
+        //     $file = upload_image('avatar');
+        //     if (isset($file['code']) && $file['code'] == 1) {
+        //         $data['avatar'] = $file['name'];
+        //     }
+        // }
             $data['created_at'] = Carbon::now();
          
 
@@ -258,8 +262,8 @@ class OrderController extends Controller
                 
                 'code_order' => $request->code_order,                
                 'deliver_id' => $request->deliver_id,
-                'contact_id' => $request->contact_id,
-                'phone' => $request->phone,
+                'contact_name' => $request->contact_name,
+                'contact_phone' => $request->contact_phone,
                 'guarantee' => $request->guarantee,
                 'delivery_address' => $request->delivery_address,
                 'delivery_time' => $request->delivery_time,
