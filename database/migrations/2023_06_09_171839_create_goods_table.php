@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id')->nullable();
-            $table->integer('contract_id')->nullable();
-            $table->string('goods_code')->nullable();
+            
+            
             $table->string('name')->nullable();
-            $table->string('unit')->nullable(); // Địa chỉ văn phòng
+            $table->string('unit_id')->nullable(); // Địa chỉ văn phòng
             $table->string('manufacturer')->nullable();
             $table->string('origin')->nullable();
             $table->string('guarantee')->nullable();
