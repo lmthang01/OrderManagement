@@ -17,10 +17,13 @@
                             <!-- AddNew & OtherOptions Btn -->
                             <div class="head-title-btn">
                                 <a href="{{ route('get.contract_create') }}">
-                                    <button type="button" class="btn btn-primary btn-addtrans mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm mới</span></button>
+                                    <button type="button" class="btn btn-primary btn-addtrans mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i><span>Thêm HĐ</span></button>
+                                </a>
+                                <a href="{{ route('get.contract_goods_detail_create') }}">
+                                    <button type="button" class="btn btn-primary btn-addtrans mb-3 ml-2"><i class="fa fa-cart-plus" aria-hidden="true" style="font-size: medium !important"></i><span>Thêm HH vào HĐ</span></button>
                                 </a>
                                 <a href="{{ route('get.contract_type_index') }}">
-                                    <button type="button" class="btn btn-primary btn-addtrans mb-3 ml-2"><i class="fa fa-wrench" aria-hidden="true"></i><span>Loại HĐ</span></button>
+                                    <button type="button" class="btn btn-primary btn-addtrans mb-3 ml-2"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Loại HĐ</span></button>
                                 </a>
                             </div>
                         </div>

@@ -14,19 +14,19 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');                     // Tên giao dịch
+            $table->string('name')->nullable();                     // Tên giao dịch
             $table->string('description')->nullable();  // Mô tả
             $table->integer('user_id')->nullable();      // Người phụ trách (tài khoản đang đăng nhập)
             $table->integer('customer_id')->nullable();  // Khách hàng
-            $table->string('transaction_type');     // Loại giao dịch
+            $table->string('transaction_type')->nullable();     // Loại giao dịch
             $table->integer('contact_id')->nullable();   // Người liên hệ
             $table->dateTime('start_day')->default(DB::raw('CURRENT_TIMESTAMP'));   // Ngày bắt đầu
             $table->dateTime('deadline_date')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Hạn hoàn thành
             $table->dateTime('finish_day')->default(DB::raw('CURRENT_TIMESTAMP'));  // Ngày kết thúc
-            $table->integer('status')->default(1);      // Trạng thái
+            $table->integer('status')->default(1)->nullable();      // Trạng thái
             $table->string('result')->nullable();      // Kết quả
-            $table->integer('priority');    // Ưu tiên
-            $table->string('transaction_address');    // Địa chỉ giao dịch
+            $table->integer('priority')->nullable();    // Ưu tiên
+            $table->string('transaction_address')->nullable();    // Địa chỉ giao dịch
             $table->string('document')->nullable(); // Tài liệu liên quan
             $table->timestamps();
         });

@@ -15,6 +15,25 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // DB::table('users')->insert([
+
+        //     'name' => 'Hà Trung Nghĩa',
+        //     'email' => 'nghiauser@gmail.com',
+        //     'password' => bcrypt('123456789'),
+        //     'phone' => '0339557275',
+        //     'status' => 1, // Type USER
+        //     'address' => 'An Giang',
+        //     'created_at' => Carbon::now()
+        // ]);
+        DB::table('users')->insert([
+            'name' => 'Lê Trường',
+            'email' => 'truong123@gmail.com',
+            'password' => bcrypt('123456789'),
+            'phone' => '0869888999',
+            'status' => 1, // Type ADMIN
+            'address' => 'Cần Thơ',
+            'created_at' => Carbon::now()
+        ]);
+
         //     'name' => 'Lê Trường',
         //     'email' => 'truong123@gmail.com',
         //     'password' => bcrypt('123456789'),
@@ -23,6 +42,7 @@ class DatabaseSeeder extends Seeder
         //     'address' => 'Cần Thơ',
         //     'created_at' => Carbon::now()
         // ]);
+
         // DB::table('orders')->insert([
         //     'code_customer' => 4,
         //     'deliver' => 'Huỳnh Nhật Trường',
@@ -38,6 +58,7 @@ class DatabaseSeeder extends Seeder
 
         //     'created_at' => Carbon::now()
         // ]);
+
 
           DB::table('status_order')->insert([
             'name' => 'Chờ xử lý',
@@ -70,6 +91,6 @@ class DatabaseSeeder extends Seeder
             
         //     'created_at' => Carbon::now()
         // ]);
-        
+
     }
 }
