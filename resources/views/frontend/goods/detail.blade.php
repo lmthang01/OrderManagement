@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Mã hàng hóa:</strong></label>
                                             </div>
@@ -37,7 +37,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->id ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tên hàng hóa:</strong></label>
                                             </div>
@@ -45,7 +45,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Đơn vị:</strong></label>
                                             </div>
@@ -53,7 +53,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->unit ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Hãng SX:</strong></label>
                                             </div>
@@ -61,7 +61,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->manufacturer ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Xuất xứ:</strong></label>
                                             </div>
@@ -69,7 +69,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->origin ?? "[N/A]" }}<br></p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Bảo hành:</strong></label>
                                             </div>
@@ -77,7 +77,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->guarantee }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Mô tả:</strong></label>
                                             </div>
@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Đơn giá nhập:</strong></label>
                                             </div>
@@ -96,7 +96,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->input_price }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tỷ lệ vênh:</strong></label>
                                             </div>
@@ -104,7 +104,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->markup_ratio }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Đơn giá xuất:</strong></label>
                                             </div>
@@ -112,7 +112,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->output_price ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Thuế:</strong></label>
                                             </div>
@@ -120,7 +120,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->tax ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tổng tiền:</strong></label>
                                             </div>
@@ -128,7 +128,7 @@
                                                 <p class="col-form-label input-label">{{ $goods->total }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Hình ảnh:</strong></label>
                                             </div>

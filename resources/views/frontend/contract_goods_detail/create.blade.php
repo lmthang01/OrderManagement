@@ -1,4 +1,4 @@
-@extends('frontend.layouts.business_transaction')
+@extends('frontend.layouts.business_contract')
 @section('content')
     <div class="main-content-inner">
         <div class="row">
@@ -8,9 +8,9 @@
                         <div class="card card-header-main">
                             <div class="card-body">
                                 <div class="card-header-order">
-                                    <h4 class="header-title header-title-main">Thêm mới giao dịch</h4>
+                                    <h4 class="header-title header-title-main">Thêm hàng hóa vào hợp đồng</h4>
                                     <div class="btn-group-head-order">
-                                        <a href="{{ route('get.transaction_index') }}">
+                                        <a href="{{ route('get.contract_index') }}">
                                             <button type="button" class="btn btn-addorder btn-back"><i class="fa fa-chevron-left" aria-hidden="true"></i><span>Trở về</span></button>
                                         </a>
                                     </div>
@@ -22,11 +22,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h4 class="header-title">Thông tin cơ bản</h4>
+                                    <h4 class="header-title">Thông tin Hàng Hóa - Hợp Đồng</h4>
                                 </div>
                                 <p class="text-muted font-14">Vui lòng điền thông tin cần thiết vào form bên dưới. Các trường có dấu <code>*</code> là bắt buộc phải điền.</p>
 
-                                @include('frontend.transaction.form_create')
+                                @include('frontend.contract_goods_detail.form_create')
 
                             </div>
                         </div>
