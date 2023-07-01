@@ -23,7 +23,7 @@ class TransactionController extends Controller
         $transactions = Transaction::with('customer:id,name','user:id,name','contact:id,name');
         $transactions = $transactions
             ->orderByDesc('id')
-            ->paginate(10);
+            ->get();
 
         $model = new Transaction();
         $status = $model->getStatus();

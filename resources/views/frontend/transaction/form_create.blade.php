@@ -33,7 +33,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="" class="col-form-label input-label">Liên hệ:</label>
+                <label for="" class="col-form-label input-label">Liên hệ<code>*</code>:</label>
                 <select name="contact_id" class="custom-select custom-select-height" id="">
                     <option value="">----Chọn liên hệ----</option>
                     @foreach ($contacts ?? [] as $item)
@@ -54,10 +54,10 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="deadline_date" class="col-form-label col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
-                <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
-                @error('deadline_date')
-                    <small id="" class="form-text text-danger">{{ $errors->first('deadline_date') }}</small>
+                <label for="deadline_day" class="col-form-label col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
+                <input class="form-control" type="datetime-local" name="deadline_day" value="{{ old('deadline_day') }}" id="deadline_day">
+                @error('deadline_day')
+                    <small id="" class="form-text text-danger">{{ $errors->first('deadline_day') }}</small>
                 @enderror
             </div>
             <div class="form-group">
@@ -68,10 +68,26 @@
                 @enderror
             </div>
             <input type="hidden" name="selected_start_day" id="selected_start_day">
-            <input type="hidden" name="selected_deadline_date" id="selected_deadline_date">
+            <input type="hidden" name="selected_deadline_day" id="selected_deadline_day">
             <input type="hidden" name="selected_finish_day" id="selected_finish_day">
         </div>
         <div class="col-sm-6">
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="user_id" class="col-form-label input-label">Mã phụ trách:</label>
+                    <input type="text" name="user_id" class="form-control" value="{{ old('user_id', Auth::user()->id ?? '') }}" id="user_id" readonly>
+                    @error('user_id')
+                        <small id="" class="form-text text-danger">{{ $errors->first('user_id') }}</small>
+                    @enderror
+                </div>
+                <div class="col-6 form-group">
+                    <label for="user_name" class="col-form-label input-label">Người phụ trách:</label>
+                    <input type="text" name="user_name" class="form-control" value="{{ old('user_name', Auth::user()->name ?? '') }}" id="user_name" readonly>
+                    @error('user_name')
+                        <small id="" class="form-text text-danger">{{ $errors->first('user_name') }}</small>
+                    @enderror
+                </div>
+            </div>
             <div class="form-group">
                 <label for="choose_transaction" class="col-form-label input-label">Loại giao dịch<span style="color: red">*</span>:</label>
                 <select name="transaction_type" class="custom-select custom-select-height" id="choose_transaction">
@@ -119,7 +135,7 @@
             </div>
             <div class="form-group">
                 <label for="transaction_address" class="col-form-label input-label">Địa chỉ giao dịch:</label>
-                <textarea name="address" id="transaction_address" class="form-control" cols="30" rows="2">{{ old('address', $transaction->transaction_address ?? '') }}</textarea>
+                <textarea name="transaction_address" id="transaction_address" class="form-control" cols="30" rows="2">{{ old('transaction_address', $transaction->transaction_address ?? '') }}</textarea>
                 @error('transaction_address')
                     <small id="" class="form-text text-danger">{{ $errors->first('transaction_address') }}</small>
                 @enderror
@@ -140,11 +156,11 @@
     <script>
         function setSelectedDates() {
             var startDay = document.getElementById('start_day').value;
-            var deadlineDate = document.getElementById('deadline_date').value;
+            var deadlineDate = document.getElementById('deadline_day').value;
             var finishDay = document.getElementById('finish_day').value;
 
             document.getElementById('selected_start_day').value = startDay;
-            document.getElementById('selected_deadline_date').value = deadlineDate;
+            document.getElementById('selected_deadline_day').value = deadlineDate;
             document.getElementById('selected_finish_day').value = finishDay;
         }
     </script>

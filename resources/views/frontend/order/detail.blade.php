@@ -65,7 +65,7 @@
                                                         <label for="example-text-input" class="col-form-label input-label"><strong>Tên người liên hệ:</strong></label>
                                                     </div>
                                                     <div class="col-sm-7">
-                                                        <p class="col-form-label input-label">{{ $orders->contact_id }}</p>
+                                                        <p class="col-form-label input-label">{{ $orders->contact_name }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row form-group">
@@ -73,7 +73,7 @@
                                                         <label for="example-text-input" class="col-form-label input-label"><strong>Số điện thoại:</strong></label>
                                                     </div>
                                                     <div class="col-sm-7">
-                                                        <p class="col-form-label input-label">{{ $orders->phone }}</p>
+                                                        <p class="col-form-label input-label">{{ $orders->contact_phone }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row form-group">
@@ -111,9 +111,37 @@
                                                         <p class="col-form-label input-label">{{ $orders->customer->name }}</p>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="row form-group">
                                                     <div class="col-sm-5">
-                                                        <label for="example-text-input" class="col-form-label input-label"><strong>Địa chỉ văn phòng:</strong></label>
+                                                        <label for="example-text-input" class="col-form-label input-label"><strong>Tỉnh thành:</strong></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <p class="col-form-label input-label">{{ $orders->customer->province->name ?? '...' }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col-sm-5">
+                                                        <label for="example-text-input" class="col-form-label input-label"><strong>Quận huyện:</strong></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <p class="col-form-label input-label">{{ $orders->customer->district->name ?? '...' }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col-sm-5">
+                                                        <label for="example-text-input" class="col-form-label input-label"><strong>Phường xã:</strong></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <p class="col-form-label input-label">{{ $orders->customer->ward->name ?? '...' }}</p>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row form-group">
+                                                    <div class="col-sm-5">
+                                                        <label for="example-text-input" class="col-form-label input-label"><strong>Số nhà:</strong></label>
                                                     </div>
                                                     <div class="col-sm-7">
                                                         <p class="col-form-label input-label">{{ $orders->customer->address }}</p>
@@ -354,7 +382,7 @@
                                                         <td>{{ $item->goods->origin }}</td>
                                                         <td>{{ $item->goods->manufacturer }}</td>
                                                         <td>{{ $item->goods->guarantee }}</td>
-                                                        <td>{{ $item->goods->unit->name }}</td>
+                                                        <td>{{ $item->goods->unit }}</td>
                                                         <td>{{ number_format($item->goods->input_price, 0, ',', '.') }}</td>
                                                         <td>{{ number_format($item->goods->output_price, 0, ',', '.') }}</td>
                                                         <td>{{ number_format($item->goods->markup_ratio, 0, ',', '.') }}</td>
@@ -392,16 +420,16 @@
                 <div class="card-body card-body-order">
                     <div class="statistics-total">
                         <div class="total-label">
-                            <span>Tiền hàng:</span><br>
-                            <span>Tiền thuế:</span><br>
+                            {{-- <span>Tiền hàng:</span><br>
+                            <span>Tiền thuế:</span><br> --}}
                             {{-- <span>Tiền CK:</span><br> --}}
                             <span>Tổng tiền:</span> 
                         </div>
                         <div class="total-money">
                           
-                            <span>{{ number_format($totalOutput_price, 0, ',', '.') }}</span><br>
-                            <span>{{ number_format($avgTax, 0, ',', '.') }}</span><br>
-                            <span>{{ number_format($totalOrder_price, 0, ',', '.') }}</span>
+                            {{-- <span>{{ number_format($totalOutput_price, 0, ',', '.') }}</span><br>
+                            <span>{{ number_format($avgTax, 0, ',', '.') }}</span><br> --}}
+                            <span>{{ number_format($totalOutput_price, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>

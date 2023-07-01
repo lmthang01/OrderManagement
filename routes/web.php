@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\TransactionController as FrontendTransactionCo
 use App\Http\Controllers\Frontend\ContractController as FrontendContractController;
 use App\Http\Controllers\Frontend\ContractTypeController as FrontendContractTypeController;
 use App\Http\Controllers\Frontend\GoodsController as FrontendGoodsController;
+use App\Http\Controllers\Frontend\ContractGoodsDetailController as FrontendContractGoodsDetailController;
 
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -84,7 +85,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         Route::get('delete/{id}', [CustomerController::class, 'delete'])->name('get_admin.customer.delete');
     });
 
-    // Location 
+    // Location
     Route::group(['prefix' => 'location'], function(){
         Route::get('district', [LocationController::class, 'district'])->name('get_admin.location.district');
         Route::get('ward', [LocationController::class, 'ward'])->name('get_admin.location.ward');
@@ -109,10 +110,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 });
 
 
-
-// // User
-// Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
-
 // User
 Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
 
@@ -136,6 +133,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
+     // Location
      // Representer
      Route::get('representer/index', [RepresenterController::class, 'index'])->name('get.representer_index');
 
@@ -192,7 +190,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
     Route::get('contract/delete/{id}', [FrontendContractController::class, 'delete'])->name('get.contract_delete');
 
-    // Route::get('/contract/{id}/pdf', 'FrontendContractController@generatePDF')->name('contract.pdf');
+    Route::get('contract/pdf/{id}', [FrontendContractController::class, 'pdf'])->name('get.contract_pdf');
 
     // ContractType (Loại hợp đồng)
     Route::get('contract_type/index', [FrontendContractTypeController::class, 'index'])->name('get.contract_type_index');
@@ -202,6 +200,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
 
     Route::get('contract_type/update/{id}', [FrontendContractTypeController::class, 'edit'])->name('get.contract_type_update');
     Route::post('contract_type/update/{id}', [FrontendContractTypeController::class, 'update'])->name('get.contract_type_update');
+
+    Route::get('contract_type/delete/{id}', [FrontendContractTypeController::class, 'delete'])->name('get.contract_type_delete');
 
     // Contact (Liên hệ với khách hàng)
     Route::get('contact/index', [FrontendContactController::class, 'index'])->name('get.contact_index');
@@ -275,6 +275,13 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     Route::post('goods/update/{id}', [FrontendGoodsController::class, 'update'])->name('get.goods_update');
 
     Route::get('goods/delete/{id}', [FrontendGoodsController::class, 'delete'])->name('get.goods_delete');
+
+    // Contract_Goods_Detail (Chi Tiết Hợp Đồng - Thêm Hàng Hóa Vào Hợp Đồng)
+    Route::get('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'create'])->name('get.contract_goods_detail_create');
+    Route::post('contract_goods_detail/create', [FrontendContractGoodsDetailController::class, 'store'])->name('get.contract_goods_detail_store');
+
+    // Route::get('contract_goods_detail/delete/{id}', [FrontendContractGoodsDetailController::class, 'delete'])->name('get.contract_goods_detail_delete');
+
 });
 
 

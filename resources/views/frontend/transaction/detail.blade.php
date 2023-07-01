@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tên giao dịch:</strong></label>
                                             </div>
@@ -37,7 +37,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Người phụ trách:</strong></label>
                                             </div>
@@ -45,7 +45,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->user->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Ngày bắt đầu:</strong></label>
                                             </div>
@@ -53,15 +53,15 @@
                                                 <p class="col-form-label input-label">{{ $transaction->start_day ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Hạn hoàn thành:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $transaction->deadline_date ?? "[N/A]" }}<br></p>
+                                                <p class="col-form-label input-label">{{ $transaction->deadline_day ?? "[N/A]" }}<br></p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Ngày hoàn thành:</strong></label>
                                             </div>
@@ -69,7 +69,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->finish_day }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Loại giao dịch:</strong></label>
                                             </div>
@@ -77,7 +77,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->transaction_type }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Trạng thái:</strong></label>
                                             </div>
@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Mức ưu tiên:</strong></label>
                                             </div>
@@ -96,7 +96,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->priority }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Mô tả:</strong></label>
                                             </div>
@@ -104,7 +104,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->description }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Người liên hệ:</strong></label>
                                             </div>
@@ -112,7 +112,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->contact->name ?? "[N/A]"}}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Chức vụ:</strong></label>
                                             </div>
@@ -120,7 +120,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->contact->position->name ?? "[N/A]" }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Kết quả:</strong></label>
                                             </div>
@@ -128,7 +128,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->result }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Địa chỉ giao dịch:</strong></label>
                                             </div>
@@ -136,7 +136,7 @@
                                                 <p class="col-form-label input-label">{{ $transaction->transaction_address }}</p>
                                             </div>
                                         </div>
-                                        <div class="row form-group detail-frame-right">
+                                        <div class="row form-group" style="border-bottom: 1px solid #f3eeff; border-left: 1px solid #f3eeff;">
                                             <div class="col-sm-5">
                                                 <label class="col-form-label input-label"><strong>Tài liệu liên quan:</strong></label>
                                             </div>
