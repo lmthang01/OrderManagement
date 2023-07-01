@@ -52,11 +52,12 @@
                             <!-- Khách hàng -->
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                <i class="ti-user"></i><span>Khách hàng</span></a>
+                                <i class="ti-user"></i><span>Khách Hàng</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
                                     <li><a href="{{ route('get.contact_index') }}">Liên hệ với khách hàng</a></li>
                                     <li><a href="{{ route('get.category_index') }}">List khách hàng</a></li>
+                                    <li><a href="{{ route('get.representer_index') }}">Người đại diện</a></li>
                                 </ul>
                             </li>
 

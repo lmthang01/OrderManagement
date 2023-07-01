@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // DB::table('users')->insert([
+
         //     'name' => 'Hà Trung Nghĩa',
         //     'email' => 'nghiauser@gmail.com',
         //     'password' => bcrypt('123456789'),
@@ -32,6 +33,16 @@ class DatabaseSeeder extends Seeder
             'address' => 'Cần Thơ',
             'created_at' => Carbon::now()
         ]);
+
+        //     'name' => 'Lê Trường',
+        //     'email' => 'truong123@gmail.com',
+        //     'password' => bcrypt('123456789'),
+        //     'phone' => '0869888999',
+        //     'status' => 1, // Type ADMIN
+        //     'address' => 'Cần Thơ',
+        //     'created_at' => Carbon::now()
+        // ]);
+
         // DB::table('orders')->insert([
         //     'code_customer' => 4,
         //     'deliver' => 'Huỳnh Nhật Trường',
@@ -45,6 +56,39 @@ class DatabaseSeeder extends Seeder
         //     'status'=> 1,
         //     'user_id' => 1,// Thuộc user nào tạo
 
+        //     'created_at' => Carbon::now()
+        // ]);
+
+
+          DB::table('status_order')->insert([
+            'name' => 'Chờ xử lý',
+            
+            'created_at' => Carbon::now()
+        ]);
+        DB::table('status_order')->insert([
+            'name' => 'Đang xử lý',
+            
+            'created_at' => Carbon::now()
+        ]);
+        DB::table('status_order')->insert([
+            'name' => 'Đã xử lý',
+            
+            'created_at' => Carbon::now()
+        ]);
+        DB::table('status_order')->insert([
+            'name' => 'Đang giao',
+            
+            'created_at' => Carbon::now()
+        ]);
+        DB::table('status_order')->insert([
+            'name' => 'Đã giao',
+            
+            'created_at' => Carbon::now()
+        ]);
+        // DB::table('status_order')->insert([
+        //     'id'=>'0',
+        //     'name' => 'Hủy đơn',
+            
         //     'created_at' => Carbon::now()
         // ]);
 

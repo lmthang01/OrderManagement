@@ -1,11 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
 -- Generation Time: Jun 30, 2023 at 10:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
+-- Generation Time: May 30, 2023 at 04:42 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +32,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -225,6 +228,7 @@ INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `update
 (3, 'Gói dịch vụ', 'Đăng ký sử dụng các gói dịch vụ được cung cấp', NULL, '2023-06-09 09:55:52'),
 (5, 'Thiết kế Web', 'Thiết kế website theo yêu cầu cho các mục đích thương mại điện tử, quản lý nghiệp vụ,....', '2023-06-08 13:56:00', '2023-06-08 13:56:00'),
 (8, 'Sử dụng chữ ký số', 'Hợp đồng sử dụng chữ ký số quy mô lớn, cấp doanh nghiệp', '2023-06-30 15:57:41', '2023-06-30 15:57:41');
+(5, 'Nhóm crm', 'Nhóm crm á', '2023-05-30__screenshot-2022-05-26-095306.jpg', 'nhom-crm', '2023-05-30 14:18:40', '2023-05-30 14:34:32');
 
 -- --------------------------------------------------------
 
@@ -234,14 +238,14 @@ INSERT INTO `contract_types` (`id`, `name`, `description`, `created_at`, `update
 
 CREATE TABLE `customers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `tax_code` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL DEFAULT 0,
@@ -255,6 +259,7 @@ CREATE TABLE `customers` (
 --
 -- Dumping data for table `customers`
 --
+
 
 INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, `description`, `avatar`, `slug`, `status`, `user_id`, `category_id`, `ward_id`, `district_id`, `province_id`, `created_at`, `updated_at`) VALUES
 (2, 'Lê Minh Thắng', 'Cần Thơ', '0869859343', 'thang12@gmail.com', 'T02', NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, 0, 0, 0, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
@@ -279,6 +284,14 @@ CREATE TABLE `districts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `email`, `tax_code`, `description`, `avatar`, `slug`, `status`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(2, 'Lê Minh Thắng', NULL, '0869859343', NULL, NULL, NULL, '2023-05-25__customer-vnpt.png', 'le-minh-thang', 1, 0, 1, '2023-05-25 02:45:33', '2023-05-25 09:57:19'),
+(3, 'Nhật Trường CTU', NULL, '0899555333', NULL, NULL, NULL, '2023-05-25__customer-ctu.png', 'nhat-truong-ctu', 2, 0, 2, '2023-05-25 02:50:54', '2023-05-26 01:56:28'),
+(4, 'Cao Thuần', NULL, '0899666333', 'thuan@gmail.com', NULL, NULL, '2023-05-25__customer-ctu.png', 'cao-thuan', 2, 0, 2, '2023-05-25 12:02:32', '2023-05-26 01:54:43'),
+(5, 'Bá Tùng', NULL, '0899555333', 'truong@gmail.com', NULL, NULL, NULL, 'ba-tung', 3, 0, 3, '2023-05-26 01:55:03', '2023-05-26 01:55:11'),
+(6, 'Khách hàng do Admin - Lê Thắng tạo', NULL, '0899555333', 'truong222@gmail.com', NULL, NULL, NULL, 'khach-hang-do-admin-le-thang-tao', 1, 5, 3, '2023-05-26 03:47:07', '2023-05-26 03:47:07');
+
+
 -- --------------------------------------------------------
 
 --
@@ -287,17 +300,18 @@ CREATE TABLE `districts` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `goods`
 --
 
@@ -335,13 +349,14 @@ INSERT INTO `goods` (`id`, `order_id`, `goods_code`, `name`, `unit`, `manufactur
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `jobs`
 --
 
 CREATE TABLE `jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint(3) UNSIGNED NOT NULL,
   `reserved_at` int(10) UNSIGNED DEFAULT NULL,
   `available_at` int(10) UNSIGNED NOT NULL,
@@ -356,7 +371,7 @@ CREATE TABLE `jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -414,6 +429,7 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(31, '2023_05_29_214705_create_jobs_table', 4);
 
 -- --------------------------------------------------------
 
@@ -422,8 +438,8 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -435,11 +451,11 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -527,21 +543,18 @@ INSERT INTO `transactions` (`id`, `name`, `description`, `user_id`, `customer_id
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `gender` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) DEFAULT 0,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `active_status` tinyint(1) NOT NULL DEFAULT 0,
-  `dark_mode` tinyint(1) NOT NULL DEFAULT 0,
-  `messenger_color` varchar(255) DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -554,6 +567,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ad
 (5, 'Lê Thắng', 'admin@gmail.com', NULL, '$2y$10$UM/UghIrzA5wQw6ef307ruRqQn0rQcEan7J2YrbjWyz3vKFo5AR4e', 'Cần Thơ', NULL, '0869888999', NULL, 2, NULL, '2023-05-26 02:38:04', NULL, 0, 0, NULL),
 (16, 'Lê Minh Thắng', 'thang259a3@gmail.com', NULL, '$2y$10$uHg7JjROxIYErGcsHniKBeCPH3QGedCEQlmdeA726O9mt3.qauxVi', NULL, NULL, '0869859434', '2023-05-29__z3256462162898-65a4e92d8293f141153ad646073ee509.jpg', 2, NULL, '2023-05-29 15:04:34', '2023-05-29 15:05:06', 0, 0, NULL),
 (18, 'Lê Trường', 'truong123@gmail.com', NULL, '$2y$10$rOU.z7b.f90xowv9MNsh7elj5NyZaxlfnMs.E.sHsCI1LZZpXlMRW', 'Cần Thơ', NULL, '0869888999', NULL, 1, NULL, '2023-06-27 12:06:03', NULL, 0, 0, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `gender`, `phone`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Lê Minh Thắng', 'thang@gmail.com', NULL, '$2y$10$bY8N540QNNgvsp8.qCYSs.Nt4oa.VCQFWZoJXSajc8yjywd.DgfFG', NULL, NULL, '0869859434', '2023-05-25__avata-2.jpg', 1, NULL, '2023-05-25 15:12:48', '2023-05-26 01:01:06'),
+(2, 'Huỳnh Nhật Trường', 'truong@gmail.com', NULL, '$2y$10$v55ze6Zb3e.VEnkrb9SEsOlI6AXNgroCcF30NqjoV6v4RY7vaZo.O', NULL, NULL, '0869859434', '2023-05-25__avata-3.jpg', 2, NULL, '2023-05-25 15:52:46', '2023-05-25 16:24:28'),
+(5, 'Lê Thắng', 'admin@gmail.com', NULL, '$2y$10$UM/UghIrzA5wQw6ef307ruRqQn0rQcEan7J2YrbjWyz3vKFo5AR4e', 'Cần Thơ', NULL, '0869888999', NULL, 2, NULL, '2023-05-26 02:38:04', NULL),
+(16, 'Lê Minh Thắng', 'thang259a3@gmail.com', NULL, '$2y$10$uHg7JjROxIYErGcsHniKBeCPH3QGedCEQlmdeA726O9mt3.qauxVi', NULL, NULL, '0869859434', '2023-05-29__z3256462162898-65a4e92d8293f141153ad646073ee509.jpg', 2, NULL, '2023-05-29 15:04:34', '2023-05-29 15:05:06');
 
 -- --------------------------------------------------------
 
@@ -588,8 +606,8 @@ INSERT INTO `user_has_types` (`id`, `user_id`, `user_type_id`, `created_at`, `up
 
 CREATE TABLE `user_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -632,44 +650,6 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
 
 --
--- Indexes for table `ch_favorites`
---
-ALTER TABLE `ch_favorites`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ch_messages`
---
-ALTER TABLE `ch_messages`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contacts`
---
-ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contracts`
---
-ALTER TABLE `contracts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contract_goods_detail`
---
-ALTER TABLE `contract_goods_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `contract_goods_detail_contract_id_foreign` (`contract_id`),
-  ADD KEY `contract_goods_detail_goods_id_foreign` (`goods_id`);
-
---
--- Indexes for table `contract_types`
---
-ALTER TABLE `contract_types`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -690,12 +670,6 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `goods`
---
-ALTER TABLE `goods`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -706,12 +680,6 @@ ALTER TABLE `jobs`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -805,6 +773,7 @@ ALTER TABLE `contract_goods_detail`
 --
 ALTER TABLE `contract_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -847,6 +816,7 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `orders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

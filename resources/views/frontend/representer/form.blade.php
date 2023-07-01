@@ -1,64 +1,58 @@
 <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+    @csrf
     <div class="row">
         <div class="col-sm-6">
-            @csrf
             <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Danh mục (List khách hàng) <span style="color: red">*</span></label>
-                <select name="category_id" class="custom-select-height form-control" id="">
-                    <option value="">----Chọn----</option>
-                    @foreach ($categories ?? [] as $item)
-                        <option value="{{ $item->id }}"
-                            {{ ($customer->category_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('category_id')
-                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
-                @enderror
+                <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
+                <input class="form-control custom-select-height" type="text"
+                    value="{{ old('customer_name', $representer->customer->name ?? '') }}" id="customer_name" readonly>
             </div>
             <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Trạng thái</label>
-                <select name="status" class="custom-select-height form-control" id="">
-                    @foreach ($status ?? [] as $key => $item)
-                        <option value="{{ $key }}" {{ ($customer->status ?? 0) == $key ? 'selected' : '' }}>
-                            {{ $item['name'] }}</option>
-                    @endforeach
-                </select>
+                <label for="customer_email" class="col-form-label input-label">Email:</label>
+                <input class="form-control custom-select-height" type="text"
+                    value="{{ old('customer_email', $representer->customer->email ?? '') }}" id="customer_email" readonly>
             </div>
             <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Tên khách hàng <span style="color: red">*</span></label>
-                <input type="text" name="name" placeholder="Tên khách hàng ..." class="form-control"
-                    value="{{ old('name', $customer->name ?? '') }}">
+                <label for="customer_phone" class="col-form-label input-label">Số điện thoại KH:</label>
+                <input class="form-control custom-select-height" type="text"
+                    value="{{ old('customer_phone', $representer->customer->phone ?? '') }}" id="customer_phone" readonly>
+            </div>
+            <div class="form-group">
+                <label for="customer_tax_code" class="col-form-label input-label">Mã số thuế:</label>
+                <input class="form-control custom-select-height" type="text"
+                    value="{{ old('customer_tax_code', $representer->customer->tax_code ?? '') }}" id="customer_tax_code" readonly>
+            </div>
+            <div class="form-group">
+                <label for="customer_id" class="col-form-label input-label">Mã khách hàng:</label>
+                <input type="text" name="customer_id" class="form-control"
+                    value="{{ old('customer_id', $representer->customer->id ?? '') }}" id="customer_id" readonly>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-form-label input-label" for="exampleInputEmail1">Tên khách người đại diện <span
+                        style="color: red">*</span></label>
+                <input type="text" name="name" placeholder="Nguyễn Văn A" class="form-control"
+                    value="{{ old('name', $representer->name ?? '') }}">
                 @error('name')
                     <small id="" class="form-text text-danger">{{ $errors->first('name') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Điện thoại <span style="color: red">*</span></label>
-                <input type="text" name="phone" placeholder="Số điện thoại ..." class="form-control"
-                    value="{{ old('phone', $customer->phone ?? '') }}">
+                <label class="col-form-label input-label" for="exampleInputEmail1">Điện thoại <span
+                        style="color: red">*</span></label>
+                <input type="text" name="phone" placeholder="0869 ... " class="form-control"
+                    value="{{ old('phone', $representer->phone ?? '') }}">
                 @error('phone')
                     <small id="" class="form-text text-danger">{{ $errors->first('phone') }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label class="col-form-label input-label" for="exampleInputEmail1">Email</label>
-                <input type="text" name="email" placeholder="Địa chỉ email ..." class="form-control"
-                    value="{{ old('email', $customer->email ?? '') }}">
+                <input type="text" name="email" placeholder="nguoidaidien@gmail.com" class="form-control"
+                    value="{{ old('email', $representer->email ?? '') }}">
                 @error('email')
                     <small id="" class="form-text text-danger">{{ $errors->first('email') }}</small>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-addorder btn-back"><i class="fa fa-floppy-o"
-                    aria-hidden="true"></i><span> Lưu dữ liệu</span></button>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Mã số thuế  <span style="color: red">*</span></label>
-                <input type="text" name="tax_code" placeholder="Mã số thuế ..." class="form-control"
-                    value="{{ old('tax_code', $customer->tax_code ?? '') }}">
-                @error('tax_code')
-                    <small id="" class="form-text text-danger">{{ $errors->first('tax_code') }}</small>
                 @enderror
             </div>
             <div class="form-group">
@@ -70,7 +64,7 @@
                                 <option value="">Chọn tỉnh thành</option>
                                 @foreach ($provinces ?? [] as $item)
                                     <option value="{{ $item->id }}"
-                                        {{ ($customer->province_id ?? 0) == $item->id ? 'selected' : '' }}>
+                                        {{ ($representer->province_id ?? 0) == $item->id ? 'selected' : '' }}>
                                         {{ $item->name }}</option>
                                 @endforeach
                             </select>
@@ -102,15 +96,16 @@
             </div>
             <div class="form-group">
                 <label class="col-form-label input-label" for="exampleInputEmail1">Địa chỉ cụ thể</label>
-                <textarea name="address" id="" class="form-control" placeholder="Địa chỉ cụ thể ..." cols="30"
-                    rows="2">{{ old('address', $customer->address ?? '') }}</textarea>
+                <textarea name="address" id="" class="form-control" placeholder="Số nhà 299, ..." cols="30"
+                    rows="2">{{ old('address', $representer->address ?? '') }}</textarea>
                 @error('address')
                     <small id="" class="form-text text-danger">{{ $errors->first('address') }}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label class="col-form-label input-label" for="exampleInputEmail1">Mô tả</label>
-                <textarea name="description" id="" class="form-control" placeholder="Mô tả ..." cols="30" rows="2">{{ old('description', $customer->description ?? '') }}</textarea>
+                <label class="col-form-label input-label" for="exampleInputEmail1">Chức vụ</label>
+                <textarea name="description" id="" class="form-control" placeholder="Phó giám đốc ..." cols="30"
+                    rows="2">{{ old('description', $representer->description ?? '') }}</textarea>
                 @error('description')
                     <small id="" class="form-text text-danger">{{ $errors->first('description') }}</small>
                 @enderror
@@ -119,11 +114,15 @@
                 <label class="col-form-label input-label" for="exampleInputPassword1">Hình ảnh</label>
                 <input type="file" class="form-control" name="avatar">
 
-                @if (isset($customer->avatar) && $customer->avatar)
-                    <img src="{{ pare_url_file($customer->avatar) }}"
-                        style="width: 60px; height: 60px; border-radius: 10px; margin-top: 10px" alt="avatar customer">
+                @if (isset($representer->avatar) && $representer->avatar)
+                    <img src="{{ pare_url_file($representer->avatar) }}"
+                        style="width: 60px; height: 60px; border-radius: 10px; margin-top: 10px"
+                        alt="avatar representer">
                 @endif
             </div>
+            <button type="submit" class="btn btn-addorder btn-back"><i class="fa fa-floppy-o"
+                    aria-hidden="true"></i><span>
+                    Lưu dữ liệu</span></button>
         </div>
     </div>
 </form>

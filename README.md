@@ -169,3 +169,6 @@
 
 # Video28 Chat system
 - Tổng hợp code báo cáo tuần 6
+
+# Video 29 Tạo chức năng người đại diện cho khách hàng
+- Tạo branch representer từ branch minhthang

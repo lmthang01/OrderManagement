@@ -50,26 +50,26 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <!-- Khách hàng -->
-                            <li>
+                            <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true">
                                 <i class="ti-user"></i><span>Khách Hàng</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
                                     <li><a href="{{ route('get.contact_index') }}">Liên hệ với khách hàng</a></li>
                                     <li><a href="{{ route('get.category_index') }}">List khách hàng</a></li>
-                                    <li><a href="{{ route('get.representer_index') }}">Người đại diện</a></li>
+                                    <li class="active"><a href="{{ route('get.representer_index') }}">Người đại diện</a></li>
                                 </ul>
                             </li>
 
                             <!-- Kinh doanh -->
-                            <li class="active">
+                            <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
                                 <i class="fa fa-briefcase"></i><span>Kinh doanh</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
                                     <li><a href="{{ route ('get.goods_index') }}">Hàng hóa</a></li>
                                     <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
-                                    <li class="active"><a href="{{ route('get.contract_index') }}">Hợp đồng bán ra</a></li>
+                                    <li><a href="{{ route('get.contract_index') }}">Hợp đồng bán ra</a></li>
                                 </ul>
                             </li>
 
@@ -108,8 +108,8 @@
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="{{ route('get.transaction_index') }}">Kinh Doanh</a></li>
-                                <li><span>Hợp Đồng Bán Ra</span></li>
+                                <li><a href="{{ route('get.representer_index') }}">Khách Hàng</a></li>
+                                <li><span>Người Đại Diện</span></li>
                             </ul>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                                 <a class="dropdown-item profile-option" href="#">Cài đặt Email</a>
                                 <a class="dropdown-item profile-option" href="#">Hòm thư</a>
                                 <a class="dropdown-item profile-option" href="#">Trợ giúp</a>
-                                <a class="dropdown-item profile-option" href="{{ route ('get_user.logout') }}">Thoát</a>
+                                <a class="dropdown-item profile-option" href="#">Thoát</a>
                             </div>
                         </div>
                     </div>
@@ -170,5 +170,71 @@
     <!-- others plugins -->
     <script src="../../../assets/js/plugins.js"></script>
     <script src="../../../assets/js/scripts.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> --}}
+
+    <script>
+        // feather.replace();
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+
+        $(function() {
+            $("#loadDistrict").change(function() {
+                console.log("------LOAD----------");
+                let province_id = $(this).find(":selected").val();
+                console.log("------province_id: ", province_id);
+
+                $.ajax({
+
+                        url: "/location/district",
+                        data: {
+
+                            province_id: province_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn quận huyện---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#districtsData").html(dataOptions);
+                    });
+            });
+
+            $("#districtsData").change(function() {
+
+                let district_id = $(this).find(":selected").val();
+
+                $.ajax({
+
+                        url: "/location/ward",
+                        data: {
+
+                            district_id: district_id
+                        },
+                        beforeSend: function(xhr) {
+                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    })
+                    .done(function(data) {
+                        console.log("------Data: ", data);
+
+                        let dataOptions = `<option value="">---Chọn phường xã---</option>`;
+                        data.map(function(index, key) {
+                            dataOptions += `<option value=${index.id}>${index.name}</option>`
+                        });
+                        $("#wardData").html(dataOptions);
+                    });
+            });
+        })
+    </script>
 </body>
 </html>

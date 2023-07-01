@@ -41,7 +41,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'code_customer'); // Liên kết 1-1, 1 khách hàng thuộc 1 liên hệ
+        return $this->belongsTo(Customer::class, 'customer_id'); // Liên kết 1-1, 1 khách hàng thuộc 1 liên hệ
     }
 
     public function contact()
@@ -59,5 +59,13 @@ class Order extends Model
      {
          return $this->belongsTo(Goods::class, 'goods_id');
      }
-    
+
+     public function deliver()
+     {
+         return $this->belongsTo(Deliver::class, 'deliver_id');
+     }
+      public function status_order()
+     {
+         return $this->belongsTo(Status_order::class, 'status');
+     }
 }

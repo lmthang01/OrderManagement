@@ -37,8 +37,8 @@
                             <input class="form-control" type="datetime-local" name="start_day" value="{{ old('start_day', $transaction->start_day) }}" id="start_day">
                         </div>
                         <div class="form-group">
-                            <label for="deadline_date" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
-                            <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date', $transaction->deadline_date) }}" id="deadline_date">
+                            <label for="deadline_day" class="col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
+                            <input class="form-control" type="datetime-local" name="deadline_day" value="{{ old('deadline_day', $transaction->deadline_day) }}" id="deadline_day">
                         </div>
                         <div class="form-group">
                             <label for="finish_day" class="col-form-label input-label">Ngày hoàn thành:</label>

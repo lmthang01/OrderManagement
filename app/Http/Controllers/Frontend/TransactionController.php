@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\Contact;
 use App\Models\Position;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -37,18 +38,21 @@ class TransactionController extends Controller
 
     public function create()
     {
+        $user = User::all();
         $customers = Customer::all();
         $contacts = Contact::all();
         $model = new Transaction();
         $status = $model->getStatus();
 
-        return view('frontend.transaction.create', compact('customers', 'contacts', 'status'));
+        return view('frontend.transaction.create', compact('customers', 'contacts', 'status', 'user'));
     }
 
     public function store(TransactionRequest $request)
     {
         try {
             $data = $request->all();
+            // $user = User::findOrFail($data['user_id']);
+            // dd($data);
             $customers = Customer::findOrFail($data['customer_id']);
             $contacts = Contact::findOrFail($data['contact_id']);
             // Lưu tệp tin vào thư mục lưu trữ
@@ -58,6 +62,8 @@ class TransactionController extends Controller
                 $filePath = $file->storeAs('documents', $fileName, 'public');
                 $data['document'] = $filePath;
             }
+
+            $data['user_id'] = Auth::user()->id; // Hiển thị name người tạo customer
 
             $transaction = Transaction::create($data);
 

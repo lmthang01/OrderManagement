@@ -23,6 +23,7 @@ use App\Models\Position;
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LocationController as FrontendLocationController;
+use App\Http\Controllers\Frontend\RepresenterController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
 use Illuminate\Support\Facades\Route;
@@ -108,6 +109,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
         });
 });
 
+
 // User
 Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], function(){
 
@@ -119,7 +121,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
      Route::get('/', [FrontendCustomerController::class, 'index'])->name('get.index');
 
     // Customer
-    Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
+     Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
 
      Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
      Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
@@ -132,6 +134,20 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
 
      // Location
+     // Representer
+     Route::get('representer/index', [RepresenterController::class, 'index'])->name('get.representer_index');
+
+     Route::get('representer/create', [RepresenterController::class, 'create'])->name('get.representer_create');
+     Route::post('representer/create', [RepresenterController::class, 'store'])->name('get.representer_store');
+
+     Route::get('representer/detail/{id}', [RepresenterController::class, 'detail'])->name('get.representer_detail');
+
+     Route::get('representer/update/{id}', [RepresenterController::class, 'edit'])->name('get.representer_update');
+     Route::post('representer/update/{id}', [RepresenterController::class, 'update'])->name('get.representer_update');
+
+     Route::get('representer/delete/{id}', [RepresenterController::class, 'delete'])->name('get.representer_delete');
+
+     // Location 
      Route::group(['prefix' => 'location'], function(){
         Route::get('district', [FrontendLocationController::class, 'district'])->name('get_customer.location.district');
         Route::get('ward', [FrontendLocationController::class, 'ward'])->name('get_customer.location.ward');
@@ -209,10 +225,32 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     //Order (Đơn hàng)
     Route::get('order/index', [FrontendOrderController::class, 'index'])->name('get.order_index');
 
-    Route::get('order/detail', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
+    Route::get('order/detail/{id}', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
+    Route::post('order/detail/{id}', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
 
     Route::get('order/create', [FrontendOrderController::class, 'create'])->name('get.order_create');
     Route::post('order/create', [FrontendOrderController::class, 'store'])->name('get.order_store');
+
+    Route::get('order/update/{id}', [FrontendOrderController::class, 'edit'])->name('get.order_update');
+    Route::post('order/update/{id}', [FrontendOrderController::class, 'update'])->name('get.order_update');
+
+    Route::get('order/delete/{id}', [FrontendOrderController::class, 'delete'])->name('get.order_delete');
+
+    // // Goods (Hàng hóa)
+        // Chọn hàng hóa
+    Route::get('order/form_goods', [FrontendOrderController::class, 'goods_selecttion_create'])->name('get.order_goods_create');
+    Route::post('order/form_goods', [FrontendOrderController::class, 'goods_selecttion_store'])->name('get.order_goods_create');
+    
+    Route::get('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_selecttion_edit'])->name('get.order_goods_update');
+    Route::post('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_selecttion_update'])->name('get.order_goods_update');
+
+    Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.order_goods_delete');
+    //
+    // Route::get('order/update/{id}', [FrontendOrderController::class, 'edit'])->name('get.order_update');
+    // Route::post('order/update/{id}', [FrontendOrderController::class, 'update'])->name('get.order_update');
+
+    // Route::get('order/delete/{id}', [FrontendOrderController::class, 'delete'])->name('get.order_delete');
+    
 
     // Goods (Hàng hóa)
     // Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');
@@ -256,6 +294,3 @@ Route::group(['namespace' => 'Frontend', 'prefix' => 'authuser'], function(){
 // Route::get('login', function(){
 //     return view('frontend/loginuser/login');
 // });
-
-
-
