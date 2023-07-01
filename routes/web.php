@@ -211,10 +211,32 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
     //Order (Đơn hàng)
     Route::get('order/index', [FrontendOrderController::class, 'index'])->name('get.order_index');
 
-    Route::get('order/detail', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
+    Route::get('order/detail/{id}', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
+    Route::post('order/detail/{id}', [FrontendOrderController::class, 'detail'])->name('get.order_detail');
 
     Route::get('order/create', [FrontendOrderController::class, 'create'])->name('get.order_create');
     Route::post('order/create', [FrontendOrderController::class, 'store'])->name('get.order_store');
+
+    Route::get('order/update/{id}', [FrontendOrderController::class, 'edit'])->name('get.order_update');
+    Route::post('order/update/{id}', [FrontendOrderController::class, 'update'])->name('get.order_update');
+
+    Route::get('order/delete/{id}', [FrontendOrderController::class, 'delete'])->name('get.order_delete');
+
+    // // Goods (Hàng hóa)
+        // Chọn hàng hóa
+    Route::get('order/form_goods', [FrontendOrderController::class, 'goods_selecttion_create'])->name('get.order_goods_create');
+    Route::post('order/form_goods', [FrontendOrderController::class, 'goods_selecttion_store'])->name('get.order_goods_create');
+    
+    Route::get('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_selecttion_edit'])->name('get.order_goods_update');
+    Route::post('order/form_goods_update/{id}', [FrontendOrderController::class, 'goods_selecttion_update'])->name('get.order_goods_update');
+
+    Route::get('order/goods_delete/{id}', [FrontendOrderController::class, 'goods_delete'])->name('get.order_goods_delete');
+    //
+    // Route::get('order/update/{id}', [FrontendOrderController::class, 'edit'])->name('get.order_update');
+    // Route::post('order/update/{id}', [FrontendOrderController::class, 'update'])->name('get.order_update');
+
+    // Route::get('order/delete/{id}', [FrontendOrderController::class, 'delete'])->name('get.order_delete');
+    
 
     // Goods (Hàng hóa)
     // Route::get('order/form_goods', [FrontendOrderController::class, 'goods_create'])->name('get.goods_create');

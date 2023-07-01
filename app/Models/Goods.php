@@ -19,5 +19,9 @@ class Goods extends Model
     {
         return $this->belongsTo(Contract::class, 'contract_id');
     }
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 
 }

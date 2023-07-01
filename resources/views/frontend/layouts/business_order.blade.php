@@ -67,8 +67,8 @@
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.transaction_index') }}">Giao dịch với khách hàng</a></li>
                                     <li><a href="{{ route ('get.goods_index') }}">Hàng hóa</a></li>
-                                    <li><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
-                                    <li class="active"><a href="{{ route('get.contract_index') }}">Hợp đồng bán ra</a></li>
+                                    <li class="active"><a href="{{ route ('get.order_index') }}">Đơn hàng</a></li>
+                                    <li><a href="{{ route('get.contract_index') }}">Hợp đồng bán ra</a></li>
                                 </ul>
                             </li>
 
@@ -107,8 +107,8 @@
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="{{ route('get.transaction_index') }}">Kinh Doanh</a></li>
-                                <li><span>Hợp Đồng Bán Ra</span></li>
+                                <li><a href="{{ route('get.order_index') }}">Kinh Doanh</a></li>
+                                <li><span>Đơn hàng</span></li>
                             </ul>
                         </div>
                     </div>
