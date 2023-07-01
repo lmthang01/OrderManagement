@@ -117,6 +117,12 @@
                         #dataTable3 {
                             width: 100% !important;
                         }
+                        #dataTable2 {
+                            width: 100% !important;
+                        }
+                        #dataTable {
+                            width: 100% !important;
+                        }
                     </style>
                     <!-- Profile Info -->
                     <div class="col-sm-6 clearfix">

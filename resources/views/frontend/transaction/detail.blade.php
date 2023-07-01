@@ -58,7 +58,7 @@
                                                 <label class="col-form-label input-label"><strong>Hạn hoàn thành:</strong></label>
                                             </div>
                                             <div class="col-sm-7">
-                                                <p class="col-form-label input-label">{{ $transaction->deadline_date ?? "[N/A]" }}<br></p>
+                                                <p class="col-form-label input-label">{{ $transaction->deadline_day ?? "[N/A]" }}<br></p>
                                             </div>
                                         </div>
                                         <div class="row form-group" style="border-bottom: 1px solid #f3eeff;">

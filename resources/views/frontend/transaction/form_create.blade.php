@@ -54,10 +54,10 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="deadline_date" class="col-form-label col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
-                <input class="form-control" type="datetime-local" name="deadline_date" value="{{ old('deadline_date') }}" id="deadline_date">
-                @error('deadline_date')
-                    <small id="" class="form-text text-danger">{{ $errors->first('deadline_date') }}</small>
+                <label for="deadline_day" class="col-form-label col-form-label input-label">Hạn hoàn thành<code>*</code>:</label>
+                <input class="form-control" type="datetime-local" name="deadline_day" value="{{ old('deadline_day') }}" id="deadline_day">
+                @error('deadline_day')
+                    <small id="" class="form-text text-danger">{{ $errors->first('deadline_day') }}</small>
                 @enderror
             </div>
             <div class="form-group">
@@ -68,7 +68,7 @@
                 @enderror
             </div>
             <input type="hidden" name="selected_start_day" id="selected_start_day">
-            <input type="hidden" name="selected_deadline_date" id="selected_deadline_date">
+            <input type="hidden" name="selected_deadline_day" id="selected_deadline_day">
             <input type="hidden" name="selected_finish_day" id="selected_finish_day">
         </div>
         <div class="col-sm-6">
@@ -156,11 +156,11 @@
     <script>
         function setSelectedDates() {
             var startDay = document.getElementById('start_day').value;
-            var deadlineDate = document.getElementById('deadline_date').value;
+            var deadlineDate = document.getElementById('deadline_day').value;
             var finishDay = document.getElementById('finish_day').value;
 
             document.getElementById('selected_start_day').value = startDay;
-            document.getElementById('selected_deadline_date').value = deadlineDate;
+            document.getElementById('selected_deadline_day').value = deadlineDate;
             document.getElementById('selected_finish_day').value = finishDay;
         }
     </script>
