@@ -19,30 +19,37 @@ class OrderRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    // public function rules(): array
-    // {
-    //     return [
-    //         'name' => 'required|unique:contacts,name,'.$this->id,
-    //         'email' => 'unique:contacts,email,'.$this->id,
-    //         'customer_id' => 'required|unique:contacts,customer_id,'.$this->id,
-    //         'position_id' => 'required',
-
-    //     ];
-    // }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'name.unique' => 'Tên người liên hệ đã tồn tại!',
-    //         'name.required' => 'Tên người liên hệ không được để trống!',
-
-    //         'email.unique' => 'Email đã tồn tại!',
-
-    //         'customer_id.unique' => 'Tên khách hàng đã tồn tại!',
-    //         'customer_id.required' => 'Tên khách hàng không được để trống!',
-           
-    //         'position_id.required' => 'Chức vụ không được để trống!',
+    public function rules(): array
+    {
+       
+        return [
             
-    //     ];
-    // }
+            'code_order' => 'required|unique:orders,code_order,'.$this->id,
+            // 'phone' => 'required',
+            'contact_name' => 'required',
+            'payments' => 'required',
+            'deliver_id'=>'required',
+            'delivery_address'=> 'required',
+
+        ];
+    
+    }
+
+    public function messages()
+    {
+       
+        return [
+            'code_order.unique' => 'Mã đơn hàng đã tồn tại!',
+            'code_order.required' => 'Mã đơn hàng không được để trống!',
+
+            // 'phone.required' => 'Số điện thoại không được để trống!',
+           
+            'contact_name.required' => 'Người liên hệ không được để trống!',
+            'payments.required' => 'Hình thức thanh toán không được để trống!',
+            'deliver_id.required'=>'Vui lòng chọn người giao hàng!',
+            'delivery_address.required' => 'Địa chỉ giao hàng không được để trống!',
+            
+        ];
+    }
+    
 }

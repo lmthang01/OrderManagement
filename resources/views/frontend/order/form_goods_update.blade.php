@@ -46,9 +46,9 @@
                                                                                     aria-hidden="true" ></i>Chọn</li></button>
                                                        
                                                                     </ul>
-                                                                    
+                                                                    <input name="goods_id" type="hidden" value="{{  $item->id }}"  >  
                                                                 </td>
-                                                                <input name="goods_id" type="hidden" value="{{  $item->id }}"  >
+                                                              
                                                                 </form>
                                                             <td>{{ $item->id }}</td>
                                                             <td>{{ $item->name }}</td>
