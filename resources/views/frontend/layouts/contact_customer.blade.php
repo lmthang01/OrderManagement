@@ -58,11 +58,12 @@
                             <!-- Khách hàng -->
                             <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="ti-user"></i><span>Khách hàng</span></a>
+                                    <i class="ti-user"></i><span>Khách Hàng</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
                                     <li class="active"><a href="{{ route('get.contact_index') }}">Liên hệ với khách hàng</a></li>
                                     <li><a href="{{ route('get.category_index') }}">List khách hàng</a></li>
+                                    <li><a href="{{ route('get.representer_index') }}">Người đại diện</a></li>
                                 </ul>
                             </li>
 
@@ -116,7 +117,7 @@
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="{{ route('get.index') }}">Khách hàng</a></li>
+                                <li><a href="{{ route('get.index') }}">Khách Hàng</a></li>
                                 <li><span>Liên hệ với khách hàng</span></li>
                             </ul>
                         </div>

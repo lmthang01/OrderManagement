@@ -27,7 +27,7 @@
                                         <th>Mô tả</th>
                                         <th>Ngày tạo</th>
                                         <th>Thao tác</th>
-                                        <th>Số lượng</th>
+                                        {{-- <th>Số lượng</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,7 +47,7 @@
                                                     <li><a href="{{ route('get.category_delete', $item->id) }}" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>
-                                            <td>10</td>
+                                            {{-- <td>10</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>

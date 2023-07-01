@@ -22,6 +22,7 @@ use App\Models\Position;
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LocationController as FrontendLocationController;
+use App\Http\Controllers\Frontend\RepresenterController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use App\Http\Controllers\ListCustomerController;
 use Illuminate\Support\Facades\Route;
@@ -123,7 +124,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
      Route::get('/', [FrontendCustomerController::class, 'index'])->name('get.index');
 
     // Customer
-    Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
+     Route::get('customer/index', [FrontendCustomerController::class, 'index'])->name('get.index');
 
      Route::get('customer/create', [FrontendCustomerController::class, 'create'])->name('get.customer_create');
      Route::post('customer/create', [FrontendCustomerController::class, 'store'])->name('get.customer_store');
@@ -134,6 +135,19 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'check.login.user'], fu
      Route::post('customer/update/{id}', [FrontendCustomerController::class, 'update'])->name('get.customer_update');
 
      Route::get('customer/delete/{id}', [FrontendCustomerController::class, 'delete'])->name('get.customer_delete');
+
+     // Representer
+     Route::get('representer/index', [RepresenterController::class, 'index'])->name('get.representer_index');
+
+     Route::get('representer/create', [RepresenterController::class, 'create'])->name('get.representer_create');
+     Route::post('representer/create', [RepresenterController::class, 'store'])->name('get.representer_store');
+
+     Route::get('representer/detail/{id}', [RepresenterController::class, 'detail'])->name('get.representer_detail');
+
+     Route::get('representer/update/{id}', [RepresenterController::class, 'edit'])->name('get.representer_update');
+     Route::post('representer/update/{id}', [RepresenterController::class, 'update'])->name('get.representer_update');
+
+     Route::get('representer/delete/{id}', [RepresenterController::class, 'delete'])->name('get.representer_delete');
 
      // Location 
      Route::group(['prefix' => 'location'], function(){
