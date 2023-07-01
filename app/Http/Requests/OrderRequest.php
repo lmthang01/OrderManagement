@@ -27,6 +27,8 @@ class OrderRequest extends FormRequest
             'code_order' => 'required|unique:orders,code_order,'.$this->id,
             // 'phone' => 'required',
             'contact_name' => 'required',
+            'customer_id' => 'required',
+            'goods_name'=>'required',
             'payments' => 'required',
             'deliver_id'=>'required',
             'delivery_address'=> 'required',
@@ -44,7 +46,10 @@ class OrderRequest extends FormRequest
 
             // 'phone.required' => 'Số điện thoại không được để trống!',
            
-            'contact_name.required' => 'Người liên hệ không được để trống!',
+            // 'contact_name.required' => 'Người liên hệ không được để trống!',
+            'customer_id.required' => 'Vui lòng chọn khách hàng!',
+            'goods_name.required' => 'Vui lòng chọn hàng hóa!',
+            'contact_name.required' => 'Vui lòng chọn người liên hệ!',
             'payments.required' => 'Hình thức thanh toán không được để trống!',
             'deliver_id.required'=>'Vui lòng chọn người giao hàng!',
             'delivery_address.required' => 'Địa chỉ giao hàng không được để trống!',

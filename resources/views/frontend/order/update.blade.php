@@ -206,6 +206,15 @@
                                     </a>
                                     <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-customer"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Khách Hàng</button>
                                     <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-contact"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Liên Hệ</button>
+                                    @error('goods_name')
+                                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('goods_name') }}</small>
+                                @enderror
+                                @error('customer_id')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>  
+                                @enderror
+                                @error('contact_name')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('contact_name') }}</small>  
+                                @enderror
                                 </div>
                              
                                     
@@ -254,7 +263,12 @@
             <label for="customer_id" class="col-form-label input-label">Mã khách hàng</label>
              
             <input class="form-control"  name="customer_id"  type="text" value="{{ old('customer_id', $order->customer_id ?? '') }}"   id="customer_id" readonly>
-                <input type="hidden" name="order_id" @foreach ($orders1 as $item) value="{{ $item->id }}" @endforeach>
+           
+            @error('customer_id')
+                <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>  
+            @enderror
+       
+            <input type="hidden" name="order_id" @foreach ($orders1 as $item) value="{{ $item->id }}" @endforeach>
                     
                 
         </div>
@@ -318,8 +332,8 @@
         <div class="form-group">
             <label for="contact_name" class="col-form-label input-label">Tên người liên hệ<span style="color: red">*</span></label>
             <input class="form-control" type="text" name="contact_name"  type="text" value="{{ old('contact_name', $order->contact_name ?? '') }}"   id="contact_name" readonly>
-            @error('contact_id')
-                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('contact_id') }}</small>
+            @error('contact_name')
+                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('contact_name') }}</small>
             @enderror
         </div>
         <div class="form-group">
@@ -383,7 +397,8 @@
                                                     </ul>
                                                 </td>
                                                 {{-- <td>{{ $item->goods_code }} </td> --}}
-                                                <td>{{  $item->goods->name }}</td>
+                                                <td ><input class="form-control" type="text" value="{{  $item->goods->name }}" readonly></td>
+
                                                 <td>{{ $item->goods->describe }}</td>
                                                 <td>{{ $item->goods->origin }}</td>
                                                 <td>{{ $item->goods->manufacturer }}</td>
@@ -406,7 +421,8 @@
                                                     </ul>
                                                 </td>
                                                 {{-- <td>{{ $item->goods_code }} </td> --}}
-                                                <td>{{  $item->goods->name }}</td>
+                                                <td ><input name="goods_name" class="form-control" type="text" value="{{  $item->goods->name }}" readonly></td>
+
                                                 <td>{{ $item->goods->describe }}</td>
                                                 <td>{{ $item->goods->origin }}</td>
                                                 <td>{{ $item->goods->manufacturer }}</td>

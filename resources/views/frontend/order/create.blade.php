@@ -206,10 +206,20 @@
                                     </a>
                                     {{-- @if ( $orders->code_order=='') --}}
                                     <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-customer"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Khách Hàng</button>
+                                    
                                     {{-- @else --}}
                                     {{-- <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-customer" disabled><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Khách Hàng</button> --}}
                                     {{-- @endif --}}
                                     <button type="button" class="btn btn-xs btn-outline-dark mb-3 mt-3 mr-3" data-toggle="modal" data-target="#modal-contact"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Chọn Liên Hệ</button>
+                                    @error('goods_name')
+                                        <small id="emailHelp" class="form-text text-danger">{{ $errors->first('goods_name') }}</small>
+                                    @enderror
+                                    @error('customer_id')
+                                        <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>  
+                                    @enderror
+                                    @error('contact_name')
+                                        <small id="" class="form-text text-danger">{{ $errors->first('contact_name') }}</small>  
+                                    @enderror
                                 </div>
                              
                                     
@@ -255,9 +265,12 @@
                                     <div class="col-4">
                                     
                                         <div class="form-group">
-                                            <label for="customer_id" class="col-form-label input-label">Mã khách hàng</label>
+                                            <label for="customer_id" class="col-form-label input-label">Mã khách hàng<span style="color: red">*</span></label>
                                             
                                             <input class="form-control"  name="customer_id"  type="text" value="{{ old('customer_id', $order->customer_id ?? '') }}"   id="customer_id" readonly>
+                                            @error('customer_id')
+                                                <small id="" class="form-text text-danger">{{ $errors->first('customer_id') }}</small>  
+                                            @enderror
                                                 <input type="hidden" name="order_id" @foreach ($orders1 as $item) value="{{ $item->id }}" @endforeach>
                                                     
                                                 
@@ -266,28 +279,28 @@
 
                                         
                                         <div class="form-group">
-                                            <label for="customer_name" class="col-form-label input-label">Tên khách hàng:</label>
+                                            <label for="customer_name" class="col-form-label input-label">Tên khách hàng</label>
                                             <input class="form-control" id="customer_name" value="" type="text"  readonly>
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label for="customer_address" class="col-form-label input-label">Địa chỉ:</label>
+                                            <label for="customer_address" class="col-form-label input-label">Địa chỉ</label>
                                             <input class="form-control" type="text" id="customer_address" value="" type="text"  readonly >
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label for="customer_email" class="col-form-label input-label">Email:</label>
+                                            <label for="customer_email" class="col-form-label input-label">Email</label>
                                             <input class="form-control" type="text" id="customer_email" value="" type="text"  readonly>
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label for="customer_phone" class="col-form-label input-label">Số điện thoại:</label>
+                                            <label for="customer_phone" class="col-form-label input-label">Số điện thoại</label>
                                             <input class="form-control" type="text" id="customer_phone" value="" type="text"  readonly>
                                         
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label for="customer_tax" class="col-form-label input-label">Mã số thuế:</label>
+                                            <label for="customer_tax" class="col-form-label input-label">Mã số thuế</label>
                                             <input class="form-control" type="text" id="customer_tax" value="" type="text"  readonly>
                                         
                                         </div>
@@ -299,7 +312,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-text-input" class="col-form-label input-label">Ghi chú:</label>
+                                            <label for="example-text-input" class="col-form-label input-label">Ghi chú</label>
                                             <input class="form-control" name="note" type="text" value="{{ old('note', $order->note ?? '') }}" id="example-text-input">
                                         </div>
                                     </div>
@@ -322,9 +335,9 @@
                                         <div class="form-group">
                                             <label for="contact_name" class="col-form-label input-label">Tên người liên hệ<span style="color: red">*</span></label>
                                             <input class="form-control" type="text" name="contact_name"  type="text" value="{{ old('contact_name', $order->contact_name ?? '') }}"   id="contact_name" readonly>
-                                            @error('contact_id')
-                                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('contact_id') }}</small>
-                                            @enderror
+                                            @error('contact_name')
+                                            <small id="emailHelp" class="form-text text-danger">{{ $errors->first('contact_name') }}</small>
+                                        @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="contact_phone" class="col-form-label input-label">Số điện thoại</label>
@@ -342,7 +355,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-datetime-local-input" class="col-form-label input-label">Thời gian GH:</label>
+                                            <label for="example-datetime-local-input" class="col-form-label input-label">Thời gian GH</label>
                                             <input class="form-control" name="delivery_time" type="datetime-local" value="{{ old('delivery_time', $order->delivery_time ?? '') }}" id="example-datetime-local-input">
                                         </div>
                                     </div>
@@ -389,7 +402,8 @@
                                                     </ul>
                                                 </td>
                                                 {{-- <td>{{ $item->goods_code }} </td> --}}
-                                                <td>{{  $item->goods->name }}</td>
+                                                {{-- <td name="goods_name"></td> --}}
+                                                <td ><input name="goods_name" class="form-control" type="text" value="{{  $item->goods->name }}" readonly></td>
                                                 <td>{{ $item->goods->describe }}</td>
                                                 <td>{{ $item->goods->origin }}</td>
                                                 <td>{{ $item->goods->manufacturer }}</td>
