@@ -12,7 +12,7 @@
                                 <div class="card-header-order">
                                     <h4 class="header-title header-title-main">Cập nhật đơn hàng</h4>
                                     <div class="btn-group-head-order">
-                                        <button type="button" onclick="submitForm()" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Lưu</span></button>
+                                        <button type="button" onclick="submitForm()" class="btn btn-addorder"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Cập nhật</span></button>
                                         <script>
                                             function submitForm() {
                                                 var form = document.getElementById('orderForm');

@@ -22,9 +22,9 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:contacts,name,'.$this->id,
-            'email' => 'unique:contacts,email,'.$this->id,
-            'customer_id' => 'required|unique:contacts,customer_id,'.$this->id,
+            'name' => 'required',
+            'email' => 'required',
+            'customer_id' => 'required',
             'position_id' => 'required',
 
         ];
@@ -33,15 +33,15 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Tên người liên hệ đã tồn tại!',
+           
             'name.required' => 'Tên người liên hệ không được để trống!',
 
-            'email.unique' => 'Email đã tồn tại!',
+            'email.required' => 'Email không được để trống!',
 
-            'customer_id.unique' => 'Tên khách hàng đã tồn tại!',
-            'customer_id.required' => 'Tên khách hàng không được để trống!',
+            
+            'customer_id.required' => 'Vui lòng chọn khách hàng!',
            
-            'position_id.required' => 'Chức vụ không được để trống!',
+            'position_id.required' => 'Vui lòng chọn chức vụ!',
             
         ];
     }

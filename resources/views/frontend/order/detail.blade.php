@@ -233,14 +233,14 @@
                                                         <p class="col-form-label input-label">{{ $orders->delivery_address }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="row form-group">
+                                                {{-- <div class="row form-group">
                                                     <div class="col-sm-5">
                                                         <label for="example-text-input" class="col-form-label input-label"><strong>Thời gian giao hàng:</strong></label>
                                                     </div>
                                                     <div class="col-sm-7">
                                                         <p class="col-form-label input-label">...</p>
-                                                    </div>
-                                                </div>
+                                                    </div> --}}
+                                                {{-- </div> --}}
                                                 <div class="row form-group">
                                                     <div class="col-sm-5">
                                                         <label for="example-text-input" class="col-form-label input-label"><strong>Bảo hành:</strong></label>

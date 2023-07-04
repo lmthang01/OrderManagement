@@ -175,12 +175,14 @@
                                             var contactName = $(this).find('td:nth-child(2)').text();
                                             var contactPosition = $(this).find('td:nth-child(3)').text();
                                             var contactPhone = $(this).find('td:nth-child(5)').text();
+                                            var contactTaxCode = $(this).find('td:nth-child(6)').text();
 
                                             // Hiển thị thông tin khách hàng được chọn vào các box
                                             $('#contact_id').val(contactId);
                                             $('#contact_name').val(contactName);
                                             $('#contact_position').val(contactPosition);
                                             $('#contact_phone').val(contactPhone);
+                                            $('#customer_tax_code').val(contactTaxCode);
 
                                             // Đồng thời ẩn modal
                                             $('#modal-contact').modal('hide');
@@ -280,7 +282,7 @@
                                         
                                         <div class="form-group">
                                             <label for="customer_name" class="col-form-label input-label">Tên khách hàng</label>
-                                            <input class="form-control" id="customer_name" value="" type="text"  readonly>
+                                            <input class="form-control" id="customer_name" name="customer_name" value="{{ old('customer_name', $order->customer->name ?? '') }}" type="text"  readonly>
                                         
                                         </div>
                                         {{-- <div class="form-group">
@@ -290,18 +292,18 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="customer_email" class="col-form-label input-label">Email</label>
-                                            <input class="form-control" type="text" id="customer_email" value="" type="text"  readonly>
+                                            <input class="form-control" name="customer_email" type="text" id="customer_email" value="{{ old('customer_email', $order->customer->email ?? '') }}" type="text"  readonly>
                                         
                                         </div>
                                         <div class="form-group">
                                             <label for="customer_phone" class="col-form-label input-label">Số điện thoại</label>
-                                            <input class="form-control" type="text" id="customer_phone" value="" type="text"  readonly>
+                                            <input class="form-control" name="customer_phone" type="text" id="customer_phone" value="{{ old('customer_phone', $order->customer->phone ?? '') }}" type="text"  readonly>
                                         
                                         </div>
                                         
                                         <div class="form-group">
                                             <label for="customer_tax" class="col-form-label input-label">Mã số thuế</label>
-                                            <input class="form-control" type="text" id="customer_tax" value="" type="text"  readonly>
+                                            <input class="form-control" type="text" name="customer_tax_code" id="customer_tax_code" value="{{ old('customer_tax_code', $order->customer->tax_code ?? '') }}" type="text"  readonly>
                                         
                                         </div>
                                         <div class="form-group">

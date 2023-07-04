@@ -138,18 +138,30 @@
                             });
                         </script>
                         {{-- End --}}
-                        <div class="form-group">
-                            <label for="goods_tax" class="col-form-label input-label">Thuế:</label>
-                            <div class="textbox-unitprice">
-                                <input name="tax" class="form-control custom-select-height" type="text" value="{{ old('tax', $goods->tax ?? '') }}" id="goods_tax" style="border-radius: 3px 0 0 3px !important;">
-                                <span class="unit-price" style="border-radius: 0 3px 3px 0 !important;">%</span>
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <label for="goods_tax" class="col-form-label input-label">Thuế:</label>
+                                <div class="textbox-unitprice">
+                                    <input name="tax" class="form-control custom-select-height" type="text" value="{{ old('tax', $goods->tax ?? '') }}" id="goods_tax" style="border-radius: 3px 0 0 3px !important;">
+                                    <span class="unit-price" style="border-radius: 0 3px 3px 0 !important;">%</span>
+                                </div>
+                                @error('tax')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('tax') }}</small>
+                                @enderror
                             </div>
-                            @error('tax')
-                                <small id="" class="form-text text-danger">{{ $errors->first('tax') }}</small>
-                            @enderror
+                            <div class="col-6 form-group">
+                                <label for="tax_value" class="col-form-label input-label">Tiền thuế:</label>
+                                <div class="textbox-unitprice">
+                                    <input name="tax_value" class="form-control custom-select-height" type="text" value="{{ old('tax_value', $goods->tax_value ?? '') }}" id="tax_value" style="border-radius: 3px 0 0 3px !important;">
+                                    <span id="unit-price-tax_value" class="unit-price" style="border-radius: 0 3px 3px 0 !important;">0</span>
+                                </div>
+                                @error('tax_value')
+                                    <small id="" class="form-text text-danger">{{ $errors->first('tax_value') }}</small>
+                                @enderror
+                            </div>
                         </div>
                         <script>
-                            $(document).ready(function(){
+                             $(document).ready(function(){
                                 // Lắng nghe sự kiện khi giá trị trong ô Thuế thay đổi
                                 $('#goods_tax').on('input', function() {
                                     var goodsTax = $(this).val();
@@ -158,6 +170,11 @@
                                     $('#total_value_goods').val(totalValue);
                                     var formattedTotal = parseFloat(totalValue).toLocaleString('vi-VN');
                                     $('#total_highlight').text(formattedTotal);
+
+                                    var taxValue = outputPrice * (goodsTax / 100);
+                                    $('#tax_value').val(taxValue);
+                                    var formattedTaxValue = parseFloat(taxValue).toLocaleString('vi-VN');
+                                    $('#unit-price-tax_value').text(formattedTaxValue);
                                 });
                             })
                         </script>
